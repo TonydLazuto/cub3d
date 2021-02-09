@@ -21,7 +21,9 @@ typedef struct      s_cub
 */    int             floor;
     int             ceiling;
     char            **map;
+    int             param_map_num;
 }                   t_cub;
+
 
 
 typedef struct		s_ptr
@@ -42,6 +44,7 @@ typedef struct      s_data
 int     create_trgb(int t, int r, int g, int b);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	ft_free(char **s);
+char	*my_strjoin(char *s1, char *s2);
 int     skip_space(int i, char *line);
 
 int     check_valid_cub(int ac, const char **av, t_cub *cub);
