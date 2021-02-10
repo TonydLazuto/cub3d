@@ -1,49 +1,62 @@
 #include "cub3d.h"
-/*
-int		parse_line(t_ptr ptr, char *line)
+
+char	**fill_map(char **file_lines, char **map, size_t len_map, size_t start)
 {
 	size_t	i;
-    int     color;
 
 	i = 0;
-	if (line[i] == '\n')
-		return (-1);
-	while (line[i])
+	if (!(map = malloc(sizeof(char*) * (len_map + 1))))
+		return (NULL);
+	while (file_lines[start])
 	{
-		if (line[i] == '0')
-			draw(ptr, i, create_trgb(0, 255, 255, 255));
-		else if (line[i] == '1')
-			draw(ptr, i, create_trgb(0, 0, 255, 0));
-		else if (line[i] == '2')
-			draw(ptr, i, create_trgb(0, 0, 0, 255));
-		else if (line[i] == 'N' || line[i] == 'S' || line[i] == 'E' || line[i] == 'W')
-			draw(ptr, i, create_trgb(0, 255, 0, 0));
-        else
-            return (-1);
+		if (!(map[i] = ft_strdup(file_lines[start])))
+			return (NULL);
+		start++;
+		i++;
+	}
+	map[i] = NULL;
+	return (map);
+}
+
+int		fill_params_and_map(char **file_lines, t_cub *cub, size_t len_params)
+{
+	size_t	len_map;
+	size_t	i;
+
+	i = 0;
+	len_map = len_params;
+	while (file_lines[len_map])
+		len_map++;
+	len_map -= len_params;
+	if (!(cub->map = fill_map(file_lines, cub->map, len_map, len_params)))
+		return (-1);
+	while (i < len_map)
+	{
+		printf("%s\n", cub->map[i]);
 		i++;
 	}
 	return (0);
 }
 
-int     parse_file(t_ptr ptr)
+int		split_params_map(char *file, t_cub *cub)
 {
-	int		fd;
-	char	*line;
+	size_t	j;
+	size_t	len_params;
+	char	**file_lines;
 
-	fd = open("./map1.cub", O_RDONLY);
-    //if (parse_data == -1)
-    //    return (-1);
-	while (get_next_line(fd, &line) == 1)
+	len_params = 0;
+	cub->height = 300;
+	cub->width = 300;
+	if (!(file_lines = ft_split(file, '\n')))
+		return (-1);
+	while (file_lines[len_params])
 	{
-		if (parse_line(ptr, line) == -1)
-            return (-1);
-		free(line);
+		j = skip_space(file_lines[len_params]);
+		if (file_lines[len_params][j] == '1')
+			break;
+		len_params++;
 	}
-	get_next_line(fd, &line);
-    if (parse_line(img, line) == -1)
-        return (-1);
-	free(line);
-
-	close(fd);
-    return (0);
-}*/
+	if (fill_params_and_map(file_lines, cub, len_params) == -1)
+		return (-1);
+	return (0);
+}

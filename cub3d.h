@@ -11,20 +11,17 @@
 
 typedef struct      s_cub
 {
-    size_t          width;
-    size_t          height;
-/*    char            *north_text_path;
+    int             width;
+    int             height;
+    char            *north_text_path;
     char            *south_text_path;
     char            *west_text_path;
     char            *east_text_path;
     char            *sprite_text_path;
-*/    int             floor;
+    int             floor;
     int             ceiling;
     char            **map;
-    int             param_map_num;
 }                   t_cub;
-
-
 
 typedef struct		s_ptr
 {
@@ -41,13 +38,16 @@ typedef struct      s_data
     int             endian;
 }                   t_data;
 
-int     create_trgb(int t, int r, int g, int b);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	ft_free(char **s);
 char	*my_strjoin(char *s1, char *s2);
-int     skip_space(int i, char *line);
+char	*strjoinfree(char *s1, char *s2);
+int     skip_space(char *line);
+
+int     create_trgb(int t, int r, int g, int b);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 int     check_valid_cub(int ac, const char **av, t_cub *cub);
+int		split_params_map(char *file, t_cub *cub);
 
 void	draw(t_ptr ptr, int i, int color);
 
