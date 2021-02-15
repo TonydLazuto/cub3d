@@ -1,11 +1,21 @@
 #include "cub3d.h"
 
+void	init_cub(t_cub *cub)
+{
+	cub->north_text_path = NULL;
+	cub->south_text_path = NULL;
+	cub->west_text_path = NULL;
+	cub->east_text_path = NULL;
+	cub->sprite_text_path = NULL;
+	cub->map = NULL;
+}
+
 int     main(int ac, const char *av[])
 {
 	t_ptr	ptr;
 	t_cub	cub;
 
-	cub.map = NULL;
+	init_cub(&cub);
 	if ((check_valid_cub(ac, av, &cub)) == -1)
 		return (0);
 	ptr.mlx = mlx_init();

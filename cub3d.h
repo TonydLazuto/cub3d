@@ -41,13 +41,18 @@ typedef struct      s_data
 void	ft_free(char **s);
 char	*my_strjoin(char *s1, char *s2);
 char	*strjoinfree(char *s1, char *s2);
-int     skip_space(char *line);
-
-int     create_trgb(int t, int r, int g, int b);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int		skip_space(char *line, unsigned int i);
+//char	*trim_line(char *line);
 
 int     check_valid_cub(int ac, const char **av, t_cub *cub);
 int		split_params_map(char *file, t_cub *cub);
+int     parse_param(char *line, t_cub *cub);
+char    *get_resolution(char *line, unsigned int start, size_t *j);
+char    *get_rgb(char *line, unsigned int start, size_t *j, int nb);
+char    *get_path(char *line, unsigned int start, size_t *j);
+
+int     create_trgb(int t, int r, int g, int b);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 void	draw(t_ptr ptr, int i, int color);
 

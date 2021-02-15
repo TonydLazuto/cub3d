@@ -17,19 +17,17 @@ static char *file_to_string(int fd)
 	}
     if (!(full_file = strjoinfree(full_file, line)))
         return (NULL);
-    //printf("%s\n", full_file);
 	ft_free(&line);
     return (full_file);
 }
 
-static int  parse_file(const char *av, t_cub *cub)
+static int  parse_file(const char *map_file, t_cub *cub)
 {
     int     fd;
     char    *file;
 
     file = NULL;
-    cub->map = NULL;
-    if ((fd = open(av, O_RDONLY)) == -1)
+    if ((fd = open(map_file, O_RDONLY)) == -1)
     {
         ft_putendl_fd("Error\nFile .cub -> (Maybe doesn't exists)", 1);
         return (-1);
@@ -68,7 +66,7 @@ int         check_valid_cub(int ac, const char **av, t_cub *cub)
 {
     if (ac == 2 || ac == 3)
     {
-        if (cmp_ext(av[1])) // Y a t il un ordre dans le OU logique?
+        if (cmp_ext(av[1])) // Y a-t-il un ordre dans le OU logique?
             return (-1);
         if ((parse_file(av[1], cub)) == -1)
             return (-1);

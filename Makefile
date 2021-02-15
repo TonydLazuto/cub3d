@@ -19,12 +19,10 @@ SRCS		=	cub3d.c \
 				check_valid_cub.c \
 				./gnl/get_next_line.c \
 				./gnl/get_next_line_utils.c \
-				parse_utils.c  \
-				parse.c
+				parse.c \
+				parse_params.c \
+				get_cub_data.c
 				#draws.c \
-				check_line.c  \
-				check_rfcs.c \
-				check_txt.c \
 
 OBJS		= $(SRCS:.c=.o)
 
