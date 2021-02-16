@@ -2,11 +2,15 @@
 
 void	init_cub(t_cub *cub)
 {
-	cub->north_text_path = NULL;
-	cub->south_text_path = NULL;
-	cub->west_text_path = NULL;
-	cub->east_text_path = NULL;
-	cub->sprite_text_path = NULL;
+	cub->width = 0;
+	cub->height = 0;
+	cub->north_path = NULL;
+	cub->south_path = NULL;
+	cub->west_path = NULL;
+	cub->east_path = NULL;
+	cub->sprite_path = NULL;
+	cub->floor = 0;
+	cub->ceiling = 0;
 	cub->map = NULL;
 }
 

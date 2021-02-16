@@ -13,11 +13,11 @@ typedef struct      s_cub
 {
     int             width;
     int             height;
-    char            *north_text_path;
-    char            *south_text_path;
-    char            *west_text_path;
-    char            *east_text_path;
-    char            *sprite_text_path;
+    char            *north_path;
+    char            *south_path;
+    char            *west_path;
+    char            *east_path;
+    char            *sprite_path;
     int             floor;
     int             ceiling;
     char            **map;
@@ -47,9 +47,9 @@ int		skip_space(char *line, unsigned int i);
 int     check_valid_cub(int ac, const char **av, t_cub *cub);
 int		split_params_map(char *file, t_cub *cub);
 int     parse_param(char *line, t_cub *cub);
-char    *get_resolution(char *line, unsigned int start, size_t *j);
-char    *get_rgb(char *line, unsigned int start, size_t *j, int nb);
-char    *get_path(char *line, unsigned int start, size_t *j);
+char    *get_resolution(char *line, size_t *j, t_cub *cub);
+char    *get_rgb(char *line, size_t *j, int nb);
+char    *get_path(char *line, size_t *j);
 
 int     create_trgb(int t, int r, int g, int b);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
