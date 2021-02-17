@@ -41,7 +41,7 @@ static int      parse_color(char *line, t_cub *cub, size_t j)
         cub->floor = create_trgb(0,rgb[0],rgb[1],rgb[2]);//Voir la transparence
     else
         cub->ceiling = create_trgb(0,rgb[0],rgb[1],rgb[2]);//Voir la transparence
-    //ft_free(&digit);
+    ft_free(&digit);
     return (0);
 }
 

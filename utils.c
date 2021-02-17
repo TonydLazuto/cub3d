@@ -12,6 +12,24 @@ int			skip_space(char *line, unsigned int i)
 	return (i);
 }
 
+char		*trim_line(char *line)
+{
+    char			*line_clean;
+	unsigned int	i;
+	size_t			k;
+
+	i = 0;
+    line_clean = NULL;
+    i = skip_space(line, 0);
+	k = ft_strlen(line) - 1;
+	while (k > 0 && (line[k] == ' ' || line[k] == '\t'))
+		k--;
+    if (!(line_clean = ft_substr(line, i, k + 1 - (size_t)i)))
+        return (NULL);
+	ft_free(&line);
+    return (line_clean);
+}
+
 char		*strjoinfree(char *s1, char *s2)
 {
 	char	*str;

@@ -16,25 +16,8 @@ static void		check_max_screen_size(t_cub *cub, t_ptr ptr)
 		cub->height = screen_height;
 }
 */
-static char		*trim_line(char *line)
-{
-    char			*line_clean;
-	unsigned int	i;
-	size_t			k;
 
-	i = 0;
-    line_clean = NULL;
-    i = skip_space(line, 0);
-	k = ft_strlen(line) - 1;
-	while (k > 0 && (line[k] == ' ' || line[k] == '\t'))
-		k--;
-    if (!(line_clean = ft_substr(line, i, k + 1 - (size_t)i)))
-        return (NULL);
-	ft_free(&line);
-    return (line_clean);
-}
-
-static int		fill_check_params(char **file_lines, t_cub *cub, size_t len_params, t_ptr ptr)
+static int		fill_params(char **file_lines, t_cub *cub, size_t len_params, t_ptr ptr)
 {
 	size_t	i;
 
@@ -71,16 +54,12 @@ static int		fill_map(char **file_lines, t_cub *cub, size_t len_params)
 		return (-1);
 	while (file_lines[len_params])
 	{
-		if (!(cub->map[i] = ft_strdup(file_lines[len_params])))
+		if (!(cub->map[i++] = ft_strdup(file_lines[len_params++])))
 			return (-1);
-		len_params++;
-		i++;
 	}
 	cub->map[i] = NULL;
-	/*
-		check param par ici
-		!! checker les leaks !!
-	*/
+//	if (check_map(file_lines, cub, len_params) == -1)
+//		return (-1);
 	return (0);
 }
 
@@ -102,9 +81,7 @@ int				split_params_map(char *file, t_cub *cub, t_ptr ptr)
 	}
 	if (fill_map(file_lines, cub, len_params) == -1)
 		return (-1);
-//	if (check_map(file_lines, cub, len_params) == -1)
-//		return (-1);
-	if (fill_check_params(file_lines, cub, len_params, ptr) == -1)
+	if (fill_params(file_lines, cub, len_params, ptr) == -1)
 		return (-1);
 	ft_free(file_lines);
 	return (0);

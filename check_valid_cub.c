@@ -41,8 +41,6 @@ static int  parse_file(const char *map_file, t_cub *cub, t_ptr ptr)
     close(fd);
     if (split_params_map(file, cub, ptr) == -1)
         return (-1);
-//    if (parse_map(file, cub) == -1)
-//        return (-1);
     return (0);
 }
 

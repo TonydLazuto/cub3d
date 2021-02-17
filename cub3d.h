@@ -42,7 +42,7 @@ void	ft_free(char **s);
 char	*my_strjoin(char *s1, char *s2);
 char	*strjoinfree(char *s1, char *s2);
 int		skip_space(char *line, unsigned int i);
-//char	*trim_line(char *line);
+char	*trim_line(char *line);
 
 int     check_valid_cub(int ac, const char **av, t_cub *cub, t_ptr ptr);
 int		split_params_map(char *file, t_cub *cub, t_ptr ptr);
