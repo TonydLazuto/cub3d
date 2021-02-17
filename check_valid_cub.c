@@ -17,11 +17,11 @@ static char *file_to_string(int fd)
 	}
     if (!(full_file = strjoinfree(full_file, line)))
         return (NULL);
-	ft_free(&line);
+    ft_free(&line);
     return (full_file);
 }
 
-static int  parse_file(const char *map_file, t_cub *cub)
+static int  parse_file(const char *map_file, t_cub *cub, t_ptr ptr)
 {
     int     fd;
     char    *file;
@@ -32,14 +32,14 @@ static int  parse_file(const char *map_file, t_cub *cub)
         ft_putendl_fd("Error\nFile .cub -> (Maybe doesn't exists)", 1);
         return (-1);
     }
-    if (!(file = file_to_string(fd))) //inverser pour pas repeter le close fd
+    if (!(file = file_to_string(fd)))
     {
         ft_putendl_fd("Error\nWhile malloc the gnl in a string", 1);
         close(fd);
         return (-1);
     }
     close(fd);
-    if (split_params_map(file, cub) == -1)
+    if (split_params_map(file, cub, ptr) == -1)
         return (-1);
 //    if (parse_map(file, cub) == -1)
 //        return (-1);
@@ -62,13 +62,11 @@ static int  cmp_ext(const char *av)
     return (res_cmp);
 }
 
-int         check_valid_cub(int ac, const char **av, t_cub *cub)
+int         check_valid_cub(int ac, const char **av, t_cub *cub, t_ptr ptr)
 {
     if (ac == 2 || ac == 3)
     {
-        if (cmp_ext(av[1])) // Y a-t-il un ordre dans le OU logique?
-            return (-1);
-        if ((parse_file(av[1], cub)) == -1)
+        if (cmp_ext(av[1]) || ((parse_file(av[1], cub, ptr)) == -1))
             return (-1);
         if (ac == 3)
         {

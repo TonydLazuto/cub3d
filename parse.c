@@ -1,12 +1,21 @@
 #include "cub3d.h"
-
-int				skip_space(char *line, unsigned int i)
+/*
+--> delete the comparison inside parse_resolution() in parse_params.c
+--> VOIR si mlx_get_screen_size() type "void" returns?
+static void		check_max_screen_size(t_cub *cub, t_ptr ptr)
 {
-	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
-		i++;
-	return (i);
-}
+	int screen_width;
+	int screen_height;
 
+	screen_width = 0;
+	screen_height = 0;
+	mlx_get_screen_size(ptr.mlx, &screen_width, &screen_height);
+	if (cub->width > screen_width)
+		cub->width = screen_width;
+	if (cub->height > screen_height)
+		cub->height = screen_height;
+}
+*/
 static char		*trim_line(char *line)
 {
     char			*line_clean;
@@ -25,13 +34,11 @@ static char		*trim_line(char *line)
     return (line_clean);
 }
 
-static int		fill_params(char **file_lines, t_cub *cub, size_t len_params)
+static int		fill_check_params(char **file_lines, t_cub *cub, size_t len_params, t_ptr ptr)
 {
 	size_t	i;
-	unsigned int j;
 
-	i  = 0;
-	j = 0;
+	i = 0;
 	if (len_params != 8)
 	{
 		ft_putendl_fd("Error\nMap's parmaters number incorrect", 1);
@@ -45,6 +52,8 @@ static int		fill_params(char **file_lines, t_cub *cub, size_t len_params)
 			return (-1);
 		i++;
 	}
+	(void)(ptr);
+	//check_max_screen_size(ptr);
 	return (0);
 }
 
@@ -68,10 +77,14 @@ static int		fill_map(char **file_lines, t_cub *cub, size_t len_params)
 		i++;
 	}
 	cub->map[i] = NULL;
+	/*
+		check param par ici
+		!! checker les leaks !!
+	*/
 	return (0);
 }
 
-int				split_params_map(char *file, t_cub *cub)
+int				split_params_map(char *file, t_cub *cub, t_ptr ptr)
 {
 	size_t	j;
 	size_t	len_params;
@@ -89,7 +102,9 @@ int				split_params_map(char *file, t_cub *cub)
 	}
 	if (fill_map(file_lines, cub, len_params) == -1)
 		return (-1);
-	if (fill_params(file_lines, cub, len_params) == -1)
+//	if (check_map(file_lines, cub, len_params) == -1)
+//		return (-1);
+	if (fill_check_params(file_lines, cub, len_params, ptr) == -1)
 		return (-1);
 	ft_free(file_lines);
 	return (0);

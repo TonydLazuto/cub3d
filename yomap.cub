@@ -12,7 +12,7 @@
 
 			WE ./path_to_the_west_texture  
 
-EA ./path_to_the_east_texture     
+EA ./path_to_the_east_texture      
 
 	    NO       ./path_to_the_north_texture
 S             ./path_to_the_sprite_texture

@@ -48,6 +48,7 @@ static int			read_buf(int fd, char *buf, char **cur, char **line)
 	int		end;
 
 	*buf = '\0';
+	ret = 0;
 	while (pos_new_line(*cur) == -1 &&
 			(ret = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
@@ -74,12 +75,12 @@ int					get_next_line(int fd, char **line)
 	int				is_end;
 
 	buf = NULL;
+	new_line = NULL;
+	is_end = 0;
 	if (!line || fd < 0 || read(fd, buf, 0) < 0 || BUFFER_SIZE < 1)
 		return (-1);
 	if (!(buf = (char*)malloc(BUFFER_SIZE + 1)))
 		return (-1);
-	new_line = NULL;
-	is_end = 0;
 	if ((is_end = read_buf(fd, buf, &current, line)) == -1)
 		return (-1);
 	if ((new_line = my_strchr(current, '\n')) != NULL)

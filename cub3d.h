@@ -44,8 +44,8 @@ char	*strjoinfree(char *s1, char *s2);
 int		skip_space(char *line, unsigned int i);
 //char	*trim_line(char *line);
 
-int     check_valid_cub(int ac, const char **av, t_cub *cub);
-int		split_params_map(char *file, t_cub *cub);
+int     check_valid_cub(int ac, const char **av, t_cub *cub, t_ptr ptr);
+int		split_params_map(char *file, t_cub *cub, t_ptr ptr);
 int     parse_param(char *line, t_cub *cub);
 char    *get_resolution(char *line, size_t *j, t_cub *cub);
 char    *get_rgb(char *line, size_t *j, int nb);

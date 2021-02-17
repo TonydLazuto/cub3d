@@ -15,7 +15,7 @@ static int      parse_resolution(char *line, t_cub *cub, size_t j)
     if ((cub->height = ft_atoi(digit)) == -1)
         return (-1);
     ft_free(&digit);
-    if (cub->width > 2560) // voir la taille de max de l'écran!!!
+    if (cub->width > 2560)
         cub->width = 2560;
     if (cub->height > 1440)
         cub->height = 1440;
@@ -24,9 +24,9 @@ static int      parse_resolution(char *line, t_cub *cub, size_t j)
 
 static int      parse_color(char *line, t_cub *cub, size_t j)
 {
-    char            *digit;
-    int             rgb[3];
-    int             nb;
+    char    *digit;
+    int     rgb[3];
+    int     nb;
 
     nb = 0;
     digit = NULL;
@@ -41,7 +41,7 @@ static int      parse_color(char *line, t_cub *cub, size_t j)
         cub->floor = create_trgb(0,rgb[0],rgb[1],rgb[2]);//Voir la transparence
     else
         cub->ceiling = create_trgb(0,rgb[0],rgb[1],rgb[2]);//Voir la transparence
-    ft_free(&digit);
+    //ft_free(&digit);
     return (0);
 }
 

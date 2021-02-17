@@ -27,9 +27,9 @@ static int		check_set(char const *set, char c)
 char			*ft_strtrim(char const *s, char const *set)
 {
 	char	*str;
-	size_t	i;
-	size_t	j;
-	size_t	len;
+	int		i;
+	int		j;
+	int		len;
 
 	i = 0;
 	if (!s)

@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void	init_cub(t_cub *cub)
+void	init_cub_ptr(t_cub *cub, t_ptr *ptr)
 {
 	cub->width = 0;
 	cub->height = 0;
@@ -12,6 +12,8 @@ void	init_cub(t_cub *cub)
 	cub->floor = 0;
 	cub->ceiling = 0;
 	cub->map = NULL;
+	ptr->mlx = NULL;
+	ptr->win = NULL;
 }
 
 int     main(int ac, const char *av[])
@@ -19,8 +21,8 @@ int     main(int ac, const char *av[])
 	t_ptr	ptr;
 	t_cub	cub;
 
-	init_cub(&cub);
-	if ((check_valid_cub(ac, av, &cub)) == -1)
+	init_cub_ptr(&cub, &ptr);
+	if ((check_valid_cub(ac, av, &cub, ptr)) == -1)
 		return (0);
 	ptr.mlx = mlx_init();
 	if (!(ptr.win = mlx_new_window(ptr.mlx, cub.width, cub.height, "Mon titre")))
