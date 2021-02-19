@@ -52,7 +52,7 @@ char     *get_path(char *line, size_t *j)
     path = NULL;
     *j = skip_space(line, *j);
     start = (unsigned int)*j;
-    while (line[*j] && line[*j] != ' ' && line[*j] != '\t')
+    while (line[*j] && line[*j] != ' ')
             (*j)++;
     if (!(path = ft_substr(line, start, (*j) - start)))
         return (NULL);

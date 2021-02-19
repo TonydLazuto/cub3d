@@ -7,7 +7,7 @@ int     	create_trgb(int t, int r, int g, int b)
 
 int			skip_space(char *line, unsigned int i)
 {
-	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+	while (line[i] && line[i] == ' ')
 		i++;
 	return (i);
 }
@@ -22,7 +22,7 @@ char		*trim_line(char *line)
     line_clean = NULL;
     i = skip_space(line, 0);
 	k = ft_strlen(line) - 1;
-	while (k > 0 && (line[k] == ' ' || line[k] == '\t'))
+	while (k > 0 && line[k] == ' ')
 		k--;
     if (!(line_clean = ft_substr(line, i, k + 1 - (size_t)i)))
         return (NULL);
