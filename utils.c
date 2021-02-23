@@ -51,6 +51,21 @@ char		*strjoinfree(char *s1, char *s2)
 	return (str);
 }
 
+int		get_col_player(char *line, char player)
+{
+	int		col;
+
+	col = 0;
+	while (line[col])
+	{
+		if (line[col] == player)
+			return (col);
+		col++;
+	}
+	if (line[col] == player)
+		return (col);
+	return (-1);
+}
 /*
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {

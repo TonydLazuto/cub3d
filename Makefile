@@ -21,6 +21,7 @@ SRCS		=	cub3d.c \
 				./gnl/get_next_line_utils.c \
 				parse.c \
 				parse_params.c \
+				parse_map.c \
 				get_cub_data.c
 				#draws.c \
 

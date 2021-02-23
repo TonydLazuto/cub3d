@@ -23,6 +23,14 @@ typedef struct      s_cub
     char            **map;
 }                   t_cub;
 
+typedef struct		s_coor
+{
+	size_t			x;
+    size_t          y;
+    char            val;
+    struct s_coor   *next;          
+}                   t_coor;
+
 typedef struct		s_ptr
 {
 	void			*mlx;
@@ -43,6 +51,7 @@ char	*my_strjoin(char *s1, char *s2);
 char	*strjoinfree(char *s1, char *s2);
 int		skip_space(char *line, unsigned int i);
 char	*trim_line(char *line);
+int		get_col_player(char *line, char player);
 
 int     check_valid_cub(int ac, const char **av, t_cub *cub, t_ptr ptr);
 int		split_params_map(char *file, t_cub *cub, t_ptr ptr);

@@ -28,7 +28,7 @@ static int		fill_params(char **file_lines, t_cub *cub, size_t len_params, t_ptr 
 			return (-1);
 		if (file_lines[i][0] != '\0')
 		{
-			printf("%s\n", file_lines[i]);
+			//printf("%s\n", file_lines[i]);
 			if (parse_param(file_lines[i], cub) == -1)
 				return (-1);
 		}
