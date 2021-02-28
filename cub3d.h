@@ -23,13 +23,13 @@ typedef struct      s_cub
     char            **map;
 }                   t_cub;
 
-typedef struct		s_coor
+typedef struct		s_point
 {
 	size_t			x;
     size_t          y;
     char            val;
-    struct s_coor   *next;          
-}                   t_coor;
+    struct s_point   *next;         
+}                   t_point;
 
 typedef struct		s_ptr
 {
@@ -47,11 +47,19 @@ typedef struct      s_data
 }                   t_data;
 
 void	ft_free(char **s);
-char	*my_strjoin(char *s1, char *s2);
 char	*strjoinfree(char *s1, char *s2);
 int		skip_space(char *line, unsigned int i);
 char	*trim_line(char *line);
-int		get_col_player(char *line, char player);
+int     check_charset(char c, char const *set);
+
+t_point *is_point(t_point *point);
+t_point *new_point(size_t x, size_t y, char val);
+void    addfront_point(t_point **lstpoint, t_point *new);
+void    del_point(t_point *point);
+t_point *lastpoint(t_point *point);
+void	delfront_point(t_point *lst);
+void    clear_points(t_point **point);
+int     is_same_point_in(t_point **lstpoint, t_point *point);
 
 int     check_valid_cub(int ac, const char **av, t_cub *cub, t_ptr ptr);
 int		split_params_map(char *file, t_cub *cub, t_ptr ptr);
@@ -60,6 +68,7 @@ char    *get_resolution(char *line, size_t *j, t_cub *cub);
 char    *get_rgb(char *line, size_t *j, int nb);
 char    *get_path(char *line, size_t *j);
 int     parse_map(char **map, size_t len_map);
+int     spread_map(char **map, t_point *stack);
 
 int     create_trgb(int t, int r, int g, int b);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);

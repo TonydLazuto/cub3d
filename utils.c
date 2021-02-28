@@ -51,21 +51,15 @@ char		*strjoinfree(char *s1, char *s2)
 	return (str);
 }
 
-int		get_col_player(char *line, char player)
+int             check_charset(char c, char const *set)
 {
-	int		col;
-
-	col = 0;
-	while (line[col])
-	{
-		if (line[col] == player)
-			return (col);
-		col++;
-	}
-	if (line[col] == player)
-		return (col);
-	return (-1);
+	while (*set && *set != c)
+		set++;
+    if (!*set)
+        return (-1);
+	return (0);
 }
+
 /*
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {

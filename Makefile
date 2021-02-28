@@ -22,7 +22,10 @@ SRCS		=	cub3d.c \
 				parse.c \
 				parse_params.c \
 				parse_map.c \
-				get_cub_data.c
+				get_cub_data.c \
+				lst_point.c \
+				lst_point2.c \
+				spread_map.c
 				#draws.c \
 
 OBJS		= $(SRCS:.c=.o)
