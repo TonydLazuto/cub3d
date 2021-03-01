@@ -52,14 +52,15 @@ int		skip_space(char *line, unsigned int i);
 char	*trim_line(char *line);
 int     check_charset(char c, char const *set);
 
-t_point *is_point(t_point *point);
+int     is_empty_lst(t_point *point);
 t_point *new_point(size_t x, size_t y, char val);
-void    addfront_point(t_point **lstpoint, t_point *new);
-void    del_point(t_point *point);
+t_point *addfront_point(t_point *list, t_point *elet);
 t_point *lastpoint(t_point *point);
-void	delfront_point(t_point *lst);
+void    popback_point(t_point **lst);
 void    clear_points(t_point **point);
-int     is_same_point_in(t_point **lstpoint, t_point *point);
+int     is_point_in_list(t_point **lstpoint, t_point *point);
+
+void        print_points(t_point *point);
 
 int     check_valid_cub(int ac, const char **av, t_cub *cub, t_ptr ptr);
 int		split_params_map(char *file, t_cub *cub, t_ptr ptr);

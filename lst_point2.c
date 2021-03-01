@@ -1,14 +1,5 @@
 #include "cub3d.h"
 
-void        del_point(t_point *point)
-{
-    free(point);
-	point->x = 0;
-	point->y = 0;	
-	point->val = 0;
-	point->next = NULL;
-}
-
 t_point		*lastpoint(t_point *point)
 {
 	if (point == NULL)
@@ -18,36 +9,30 @@ t_point		*lastpoint(t_point *point)
 	return (point);
 }
 
-void        clear_points(t_point **point)
+void		clear_points(t_point **lst)
 {
-    t_point *tmp;
+	t_point *newlst;
 
-    tmp = NULL;
-	if (*point == NULL)
+	newlst = *lst;
+	if (is_empty_lst(*lst))
 		return ;
-	while (*point)
-	{
-        if ((*point)->next)
-		    tmp = (*point)->next;
-        del_point((*point));
-		*point = tmp;
-		free(tmp);
-	}
-	tmp = NULL;
-    *point = NULL;
+	while (newlst)
+		popback_point(&newlst);
+	*lst = newlst;
 }
 
-int			is_same_point_in(t_point **lstpoint, t_point *point)
+int			is_point_in_list(t_point **lstpoint, t_point *point)
 {
+	t_point *elet;
+
+	elet = *lstpoint;
 	if (!*lstpoint || !point)
 		return (-1);
-	while ((*lstpoint))
+	while (elet)
 	{
-		if ((point->x == (*lstpoint)->x) && (point->y == (*lstpoint)->y))
+		if (point->x == elet->x && point->y == elet->y)
 			return (1);
-		*lstpoint = (*lstpoint)->next;
+		elet = elet->next;
 	}
-	if ((point->x == (*lstpoint)->x) && (point->y == (*lstpoint)->y))
-		return (1);
 	return (0);
 }

@@ -1,10 +1,10 @@
 #include "cub3d.h"
 
-t_point		*is_point(t_point *point)
+int			is_empty_lst(t_point *point)
 {
     if (point == NULL)
-        return (NULL);
-    return (point);
+        return (1);
+    return (0);
 }
 
 t_point		*new_point(size_t x, size_t y, char val)
@@ -20,22 +20,38 @@ t_point		*new_point(size_t x, size_t y, char val)
 	return (point);
 }
 
-void		addfront_point(t_point **lstpoint, t_point *new)
+t_point		*addfront_point(t_point *list, t_point *elet)
 {
-	if (new == NULL)
-		return ;
-	if (*lstpoint == NULL)
-		new->next = NULL;
+	if (!elet)
+		return (list);
+	if (is_empty_lst(list))
+		elet->next = NULL;
 	else
-		new->next = (*lstpoint)->next;
-	*lstpoint = new;
+		elet->next = list;
+	return (elet);
 }
 
-void		delback_point(t_point *lst)
+void		popback_point(t_point **lst)
 {
-	if (lst == NULL)
+	t_point *before;
+	t_point *tmp;
+
+	tmp = *lst;
+	before = *lst;
+	if (!*lst)
 		return ;
-	if (!(lastpoint(lst)))
+	if (!((*lst)->next))
+	{
+		free(*lst);
+		*lst = NULL;
 		return ;
-	del_point(lst);
+	}
+	while (tmp->next)
+	{
+		before = tmp;
+		tmp = tmp->next;
+	}
+	before->next = NULL;
+	free(tmp);
+	tmp = NULL;
 }
