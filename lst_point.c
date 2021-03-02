@@ -20,38 +20,30 @@ t_point		*new_point(size_t x, size_t y, char val)
 	return (point);
 }
 
-t_point		*addfront_point(t_point *list, t_point *elet)
+void		push_back_point(t_point **list, t_point *elet)
 {
+	t_point	*tmp;
+
+	tmp = *list;
 	if (!elet)
-		return (list);
-	if (is_empty_lst(list))
-		elet->next = NULL;
-	else
-		elet->next = list;
-	return (elet);
+		return ;
+	if (!*list)
+	{
+		*list = elet;
+		return ;
+	}
+	tmp = last_point(tmp);
+	tmp->next = elet;
 }
 
-void		popback_point(t_point **lst)
+void		pop_front_point(t_point **lst)
 {
-	t_point *before;
-	t_point *tmp;
+	t_point *first;
 
-	tmp = *lst;
-	before = *lst;
+	first = *lst;
 	if (!*lst)
 		return ;
-	if (!((*lst)->next))
-	{
-		free(*lst);
-		*lst = NULL;
-		return ;
-	}
-	while (tmp->next)
-	{
-		before = tmp;
-		tmp = tmp->next;
-	}
-	before->next = NULL;
-	free(tmp);
-	tmp = NULL;
+	*lst = (*lst)->next;
+	free(first);
+	first = NULL;
 }

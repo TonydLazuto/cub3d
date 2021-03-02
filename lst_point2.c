@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-t_point		*lastpoint(t_point *point)
+t_point		*last_point(t_point *point)
 {
 	if (point == NULL)
 		return (NULL);
@@ -17,17 +17,17 @@ void		clear_points(t_point **lst)
 	if (is_empty_lst(*lst))
 		return ;
 	while (newlst)
-		popback_point(&newlst);
+		pop_front_point(&newlst);
 	*lst = newlst;
 }
 
-int			is_point_in_list(t_point **lstpoint, t_point *point)
+int			is_point_in_list(t_point *lstpoint, t_point *point) // try_push_point
 {
 	t_point *elet;
 
-	elet = *lstpoint;
-	if (!*lstpoint || !point)
-		return (-1);
+	elet = lstpoint;
+	if (!lstpoint)
+		return (0);
 	while (elet)
 	{
 		if (point->x == elet->x && point->y == elet->y)

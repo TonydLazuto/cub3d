@@ -54,11 +54,11 @@ int     check_charset(char c, char const *set);
 
 int     is_empty_lst(t_point *point);
 t_point *new_point(size_t x, size_t y, char val);
-t_point *addfront_point(t_point *list, t_point *elet);
-t_point *lastpoint(t_point *point);
-void    popback_point(t_point **lst);
+void    push_back_point(t_point **list, t_point *elet);
+t_point *last_point(t_point *point);
+void    pop_front_point(t_point **lst);
 void    clear_points(t_point **point);
-int     is_point_in_list(t_point **lstpoint, t_point *point);
+int     is_point_in_list(t_point *lstpoint, t_point *point);
 
 void        print_points(t_point *point);
 
