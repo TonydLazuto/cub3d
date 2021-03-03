@@ -69,7 +69,7 @@ char    *get_resolution(char *line, size_t *j, t_cub *cub);
 char    *get_rgb(char *line, size_t *j, int nb);
 char    *get_path(char *line, size_t *j);
 int     parse_map(char **map, size_t len_map);
-int     spread_map(char **map, t_point *stack);
+int     spread_map(char **map, t_point *player);
 
 int     create_trgb(int t, int r, int g, int b);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);

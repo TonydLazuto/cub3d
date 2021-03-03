@@ -58,10 +58,7 @@ static int		fill_map(char **file_lines, t_cub *cub, size_t len_params)
 	}
 	cub->map[i] = NULL;
 	if (parse_map(cub->map, len_map) == -1)
-	{
-		ft_putendl_fd("Error\nMap parsing", 1);
 		return (-1);
-	}
 	return (0);
 }
 
@@ -85,7 +82,7 @@ static int		check_nb_params(char** line, size_t len_params)
 	}
 	if (nb_params != 0)
 	{
-		ft_putendl_fd("Error\nNumber map paramaters", 1);
+		ft_putendl_fd("Error\nNumber map paramaters.", 1);
 		return (-1);
 	}
 	return (0);

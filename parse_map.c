@@ -52,21 +52,24 @@ static t_point   *find_player(char **map, t_point *player)
 
 int             parse_map(char **map, size_t len_map)
 {
-    t_point  *player;
+    t_point     *player;
     (void)(len_map);
 
     player = NULL;
     if (check_map_chars(map) == -1)
-        return (-1);
-    if (!(player = find_player(map, player)))
-        return (-1);
-    if (spread_map(map, player) == -1)
-        return (-1);
-    /*
-    while (map[i])
     {
-        printf("%s\n", map[i]);
-        i++;
-    }*/
+        ft_putendl_fd("Error\nUnexpected characters in total map.", 1);
+        return (-1);
+    }
+    if (!(player = find_player(map, player)))
+    {
+        ft_putendl_fd("Error\nThe player may not exists or there is multiple players.", 1);
+        return (-1);
+    }
+    if (spread_map(map, player) == -1)
+    {
+        ft_putendl_fd("Error\nWhen trying to spread the map from the player.", 1);
+        return (-1);
+    }
     return (0);
 }
