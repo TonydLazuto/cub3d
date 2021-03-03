@@ -53,9 +53,11 @@ static t_point   *find_player(char **map, t_point *player)
 int             parse_map(char **map, size_t len_map)
 {
     t_point     *player;
+    t_point     *visited;
     (void)(len_map);
 
     player = NULL;
+    visited = NULL;
     if (check_map_chars(map) == -1)
     {
         ft_putendl_fd("Error\nUnexpected characters in total map.", 1);
@@ -66,9 +68,9 @@ int             parse_map(char **map, size_t len_map)
         ft_putendl_fd("Error\nThe player may not exists or there is multiple players.", 1);
         return (-1);
     }
-    if (spread_map(map, player) == -1)
+    if (spread_map(map, player, &visited) == -1)
     {
-        ft_putendl_fd("Error\nWhen trying to spread the map from the player.", 1);
+        ft_putendl_fd("Error\nThe player is not in a closed map.", 1);
         return (-1);
     }
     return (0);
