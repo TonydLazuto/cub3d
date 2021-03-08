@@ -51,13 +51,13 @@ char		*strjoinfree(char *s1, char *s2)
 	return (str);
 }
 
-int             check_charset(char c, char const *set)
+int             is_in_charset(char c, char const *set)
 {
 	while (*set && *set != c)
 		set++;
     if (!*set)
-        return (-1);
-	return (0);
+        return (0);
+	return (1);
 }
 
 /*

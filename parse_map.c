@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-static int      check_map_chars(char **map)
+static int          check_map_chars(char **map)
 {
     size_t  i;
     size_t  j;
@@ -11,7 +11,7 @@ static int      check_map_chars(char **map)
         j = 0;
         while (map[i][j])
         {
-            if (check_charset(map[i][j], "012NSEW ") == -1)
+            if (!is_in_charset(map[i][j], "012NSEW "))
                 return (-1);
             j++;
         }
@@ -20,7 +20,7 @@ static int      check_map_chars(char **map)
     return (0);
 }
 
-static t_point   *find_player(char **map, t_point *player)
+static t_point      *find_player(char **map, t_point *player)
 {
     size_t  i;
     size_t  j;
@@ -50,7 +50,34 @@ static t_point   *find_player(char **map, t_point *player)
     return (nb_players == 1 ? player : NULL);
 }
 
-int             parse_map(char **map, size_t len_map)
+static t_point      *spread_all_points(char **map, t_point *visited)
+{
+    size_t  i;
+    size_t  j;
+    t_point *stack2;
+
+    i = 0;
+    while (map[i])
+    {
+        j = 0;
+        while (map[i][j])
+        {
+            if (!(stack2 = new_point(i, j, map[i][j])))
+                return (NULL);
+            if (!is_point_in_list(visited, stack2) &&
+                (map[i][j] == '0' || map[i][j] == '2'))
+            {
+                if (!(visited = spread_map(map, stack2, visited)))
+                    return (NULL);
+            }
+            j++;
+        }
+        i++;
+    }
+    return (visited);
+}
+
+int                 parse_map(char **map, size_t len_map)
 {
     t_point     *player;
     t_point     *visited;
@@ -68,10 +95,10 @@ int             parse_map(char **map, size_t len_map)
         ft_putendl_fd("Error\nThe player may not exists or there is multiple players.", 1);
         return (-1);
     }
-    if (spread_map(map, player, &visited) == -1)
-    {
-        ft_putendl_fd("Error\nThe player is not in a closed map.", 1);
+    if (!(visited = spread_map(map, player, visited)))
         return (-1);
-    }
+    if (!(visited = spread_all_points(map, visited)))
+        return (-1);
+    clear_points(&visited);
     return (0);
 }

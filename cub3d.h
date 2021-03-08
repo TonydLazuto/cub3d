@@ -50,7 +50,7 @@ void	ft_free(char **s);
 char	*strjoinfree(char *s1, char *s2);
 int		skip_space(char *line, unsigned int i);
 char	*trim_line(char *line);
-int     check_charset(char c, char const *set);
+int     is_in_charset(char c, char const *set);
 
 int     is_empty_lst(t_point *point);
 t_point *new_point(size_t x, size_t y, char val);
@@ -69,7 +69,7 @@ char    *get_resolution(char *line, size_t *j, t_cub *cub);
 char    *get_rgb(char *line, size_t *j, int nb);
 char    *get_path(char *line, size_t *j);
 int     parse_map(char **map, size_t len_map);
-int     spread_map(char **map, t_point *player, t_point **visited);
+t_point *spread_map(char **map, t_point *stack, t_point *visited);
 
 int     create_trgb(int t, int r, int g, int b);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
