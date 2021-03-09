@@ -25,7 +25,7 @@ int     main(int ac, const char *av[])
 	if ((check_valid_cub(ac, av, &cub, ptr)) == -1)
 		return (0);
 	ptr.mlx = mlx_init();
-	//if (!(ptr.win = mlx_new_window(ptr.mlx, cub.width, cub.height, "Mon titre")))
+	if (!(ptr.win = mlx_new_window(ptr.mlx, cub.width, cub.height, "Mon titre")))
 		return (0);
 //	img.img = mlx_new_image(ptr.mlx, WIDTH, HEIGHT);
 //	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);

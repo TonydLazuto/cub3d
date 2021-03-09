@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static int      parse_resolution(char *line, t_cub *cub, size_t j)
 {

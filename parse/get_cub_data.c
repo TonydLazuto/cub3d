@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../cub3d.h"
 
 char     *get_resolution(char *line, size_t *j, t_cub *cub)
 {

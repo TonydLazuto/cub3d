@@ -15,17 +15,17 @@ LIB_DIR		= libft
 MLX_DIR		= mlx
 
 SRCS		=	cub3d.c \
-				utils.c  \
-				check_valid_cub.c \
 				./gnl/get_next_line.c \
 				./gnl/get_next_line_utils.c \
-				parse.c \
-				parse_params.c \
-				parse_map.c \
-				get_cub_data.c \
-				lst_point.c \
-				lst_point2.c \
-				spread_map.c
+				./utils/utils.c  \
+				./utils/lst_point.c \
+				./utils/lst_point2.c \
+				./parse/check_valid_cub.c \
+				./parse/parse.c \
+				./parse/parse_params.c \
+				./parse/parse_map.c \
+				./parse/get_cub_data.c \
+				./parse/spread_map.c
 				#draws.c \
 
 OBJS		= $(SRCS:.c=.o)

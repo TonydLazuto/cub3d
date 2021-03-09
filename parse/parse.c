@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../cub3d.h"
 /*
 --> delete the comparison inside parse_resolution() in parse_params.c
 --> VOIR si mlx_get_screen_size() type "void" returns?
@@ -28,7 +28,6 @@ static int		fill_params(char **file_lines, t_cub *cub, size_t len_params, t_ptr 
 			return (-1);
 		if (file_lines[i][0] != '\0')
 		{
-			//printf("%s\n", file_lines[i]);
 			if (parse_param(file_lines[i], cub) == -1)
 				return (-1);
 		}
