@@ -70,14 +70,16 @@ char    *get_rgb(char *line, size_t *j, int nb);
 char    *get_path(char *line, size_t *j);
 int     parse_map(char **map, size_t len_map);
 t_point *spread_map(char **map, t_point *stack, t_point *visited);
+t_point *find_player(char **map, t_point *player);
 
 int     create_trgb(int t, int r, int g, int b);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
-void	draw(t_ptr ptr, int i, int color);
-
+t_data  draw_square(int x, int y, t_data img, int color);
+void	draw(t_ptr ptr, t_cub cub, t_point *map_points);
+/*
 void	draw_sprite(t_data *img, int color);
 void	draw_wall(t_data *img, int color);
 void	draw_pers(t_data *img, int color);
-
+*/
 #endif

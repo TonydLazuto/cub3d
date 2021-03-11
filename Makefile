@@ -18,6 +18,7 @@ SRCS		=	cub3d.c \
 				./gnl/get_next_line.c \
 				./gnl/get_next_line_utils.c \
 				./utils/utils.c  \
+				./utils/utils2.c  \
 				./utils/lst_point.c \
 				./utils/lst_point2.c \
 				./parse/check_valid_cub.c \
@@ -25,8 +26,9 @@ SRCS		=	cub3d.c \
 				./parse/parse_params.c \
 				./parse/parse_map.c \
 				./parse/get_cub_data.c \
-				./parse/spread_map.c
-				#draws.c \
+				./parse/spread_map.c \
+				draws.c \
+				forms.c
 
 OBJS		= $(SRCS:.c=.o)
 

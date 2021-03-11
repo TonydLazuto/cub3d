@@ -20,7 +20,7 @@ static int          check_map_chars(char **map)
     return (0);
 }
 
-static t_point      *find_player(char **map, t_point *player)
+t_point             *find_player(char **map, t_point *player)
 {
     size_t  i;
     size_t  j;

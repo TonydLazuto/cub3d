@@ -16,6 +16,20 @@ void	init_cub_ptr(t_cub *cub, t_ptr *ptr)
 	ptr->win = NULL;
 }
 
+void	draw_map(t_cub cub, t_ptr ptr)
+{
+	t_point *map_points;
+	t_point *player;
+
+	player = NULL;
+	map_points = NULL;
+	if (!(player = find_player(cub.map, player)))
+		return ;
+	if (!(map_points = spread_map(cub.map, player, map_points)))
+		return ;
+	draw(ptr, cub, map_points);
+}
+
 int     main(int ac, const char *av[])
 {
 	t_ptr	ptr;
@@ -24,13 +38,10 @@ int     main(int ac, const char *av[])
 	init_cub_ptr(&cub, &ptr);
 	if ((check_valid_cub(ac, av, &cub, ptr)) == -1)
 		return (0);
-	ptr.mlx = mlx_init();
+	/*ptr.mlx = mlx_init();
 	if (!(ptr.win = mlx_new_window(ptr.mlx, cub.width, cub.height, "Mon titre")))
 		return (0);
-//	img.img = mlx_new_image(ptr.mlx, WIDTH, HEIGHT);
-//	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
-//	parse_file(ptr);
-//	mlx_put_image_to_window(ptr.mlx, ptr.win, img.img, 10, 0);
+	draw_map(cub, ptr);*/
 //	mlx_key_hook(ptr.win, deal_key, ptr.win);
 	mlx_loop(ptr.mlx);
 //	mlx_clear_window(mlx_ptr, win_ptr);
