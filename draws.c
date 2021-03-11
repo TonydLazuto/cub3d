@@ -71,12 +71,9 @@ void	draw_pers(t_cub cub, t_ptr ptr)
 
 t_point		*get_pos_relative(t_point *map_points, t_point *player)
 {
-	int	*coord;
-
-	coord = NULL;
-	coord[0] = map_points->x - player->x;
-	coord[1] = map_points->y - player->y;
-	return (coord);
+	map_points->x = map_points->x - player->x;
+	map_points->y = map_points->y - player->y;
+	return (map_points);
 }
 
 void		draw(t_ptr ptr, t_cub cub, t_point *map_points)
@@ -87,11 +84,11 @@ void		draw(t_ptr ptr, t_cub cub, t_point *map_points)
 		return ;
 	draw_pers(cub, ptr);
 	pop_front_point(&map_points);
-	//printf("|----------------------|\n");
-	//print_points(player);
+	printf("|----------------------|\n");
+	print_points(map_points);
 	//while (map_points)
 	//{
-		map_points = get_pos_relative(map_points, player);
+		//map_points = get_pos_relative(map_points, player);
 		//if (map_points->val == '0')
 			//draw_floor(cub, ptr, pos_relative);
 		/*else if (map_points->val == '1')

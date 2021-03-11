@@ -38,10 +38,10 @@ int     main(int ac, const char *av[])
 	init_cub_ptr(&cub, &ptr);
 	if ((check_valid_cub(ac, av, &cub, ptr)) == -1)
 		return (0);
-	/*ptr.mlx = mlx_init();
+	ptr.mlx = mlx_init();
 	if (!(ptr.win = mlx_new_window(ptr.mlx, cub.width, cub.height, "Mon titre")))
 		return (0);
-	draw_map(cub, ptr);*/
+	draw_map(cub, ptr);
 //	mlx_key_hook(ptr.win, deal_key, ptr.win);
 	mlx_loop(ptr.mlx);
 //	mlx_clear_window(mlx_ptr, win_ptr);

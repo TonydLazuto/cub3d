@@ -25,8 +25,8 @@ typedef struct      s_cub
 
 typedef struct		s_point
 {
-	size_t			x;
-    size_t          y;
+	int             x;
+    int             y;
     char            val;
     struct s_point   *next;         
 }                   t_point;
@@ -53,7 +53,7 @@ char	*trim_line(char *line);
 int     is_in_charset(char c, char const *set);
 
 int     is_empty_lst(t_point *point);
-t_point *new_point(size_t x, size_t y, char val);
+t_point *new_point(int x, int y, char val);
 void    push_back_point(t_point **list, t_point *elet);
 t_point *last_point(t_point *point);
 void    pop_front_point(t_point **lst);
@@ -63,12 +63,12 @@ int     is_point_in_list(t_point *lstpoint, t_point *point);
 void        print_points(t_point *point);
 
 int     check_valid_cub(int ac, const char **av, t_cub *cub, t_ptr ptr);
-int		split_params_map(char *file, t_cub *cub, t_ptr ptr);
+int		split_file(char *file, t_cub *cub, t_ptr ptr);
 int     parse_param(char *line, t_cub *cub);
 char    *get_resolution(char *line, size_t *j, t_cub *cub);
 char    *get_rgb(char *line, size_t *j, int nb);
 char    *get_path(char *line, size_t *j);
-int     parse_map(char **map, size_t len_map);
+int     parse_map(char **map);
 t_point *spread_map(char **map, t_point *stack, t_point *visited);
 t_point *find_player(char **map, t_point *player);
 

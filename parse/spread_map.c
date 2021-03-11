@@ -9,7 +9,7 @@ void        print_points(t_point *point)
     i++;
     while (point)
     {
-        printf("point->x = %zu\npoint->y = %zu\npoint->val = %c\n\n",
+        printf("point->x = %d\npoint->y = %d\npoint->val = %c\n\n",
             point->x, point->y, point->val);
         point = point->next;
     }
@@ -35,10 +35,10 @@ static void         get_neighbor(t_point *neighbor, size_t compass)
         neighbor->y += 1;
 }
 
-static int          point_in_map(char **map, size_t x, size_t y)
+static int          point_in_map(char **map, int x, int y)
 {
-    size_t i; 
-    size_t j;
+    int i;
+    int j;
 
     i = 0;
     while (map[i])

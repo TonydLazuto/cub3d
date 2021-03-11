@@ -7,7 +7,7 @@ int			is_empty_lst(t_point *point)
     return (0);
 }
 
-t_point		*new_point(size_t x, size_t y, char val)
+t_point		*new_point(int x, int y, char val)
 {
 	t_point *point;
 

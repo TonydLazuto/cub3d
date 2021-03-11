@@ -2,8 +2,8 @@
 
 static int          check_map_chars(char **map)
 {
-    size_t  i;
-    size_t  j;
+    int  i;
+    int  j;
 
     i = 0;
     while (map[i])
@@ -22,9 +22,9 @@ static int          check_map_chars(char **map)
 
 t_point             *find_player(char **map, t_point *player)
 {
-    size_t  i;
-    size_t  j;
-    size_t  nb_players;
+    int  i;
+    int  j;
+    int  nb_players;
 
     i = 0;
     nb_players = 0;
@@ -52,8 +52,8 @@ t_point             *find_player(char **map, t_point *player)
 
 static t_point      *spread_all_points(char **map, t_point *visited)
 {
-    size_t  i;
-    size_t  j;
+    int     i;
+    int     j;
     t_point *stack2;
 
     i = 0;
@@ -77,11 +77,10 @@ static t_point      *spread_all_points(char **map, t_point *visited)
     return (visited);
 }
 
-int                 parse_map(char **map, size_t len_map)
+int                 parse_map(char **map)
 {
     t_point     *player;
     t_point     *visited;
-    (void)(len_map);
 
     player = NULL;
     visited = NULL;
