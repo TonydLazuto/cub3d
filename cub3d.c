@@ -16,10 +16,11 @@ void	init_cub_ptr(t_cub *cub, t_ptr *ptr)
 	ptr->win = NULL;
 }
 
-void	draw_map(t_cub cub, t_ptr ptr)
+void	draw_2d_map(t_cub cub, t_ptr ptr)
 {
 	t_point *map_points;
 	t_point *player;
+	t_dir_plane *dir_plane;
 
 	player = NULL;
 	map_points = NULL;
@@ -28,6 +29,8 @@ void	draw_map(t_cub cub, t_ptr ptr)
 	if (!(map_points = spread_map(cub.map, player, map_points)))
 		return ;
 	draw(ptr, cub, map_points);
+	print_points(map_points);
+	start(dir_plane, player);
 }
 
 int     main(int ac, const char *av[])
@@ -41,7 +44,7 @@ int     main(int ac, const char *av[])
 	ptr.mlx = mlx_init();
 	if (!(ptr.win = mlx_new_window(ptr.mlx, cub.width, cub.height, "Mon titre")))
 		return (0);
-	draw_map(cub, ptr);
+	draw_2d_map(cub, ptr);
 //	mlx_key_hook(ptr.win, deal_key, ptr.win);
 	mlx_loop(ptr.mlx);
 //	mlx_clear_window(mlx_ptr, win_ptr);

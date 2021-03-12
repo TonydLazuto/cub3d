@@ -76,6 +76,8 @@ static t_point      *fill_stack(char **map, t_point *cur_point, t_point *stack, 
                 push_back_point(&stack, point);
         }
     }
+    else if (!is_point_in_list(*visited, point))
+        push_back_point(visited, point);
     return (stack);
 }
 

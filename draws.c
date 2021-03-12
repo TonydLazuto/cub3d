@@ -56,13 +56,13 @@ void		draw(t_ptr ptr, t_cub cub, t_point *map_points)
 	img.img = mlx_new_image(ptr.mlx, cub.width, cub.height);
     img.addr = mlx_get_data_addr(img.img, &(img.bits_per_pixel), &(img.line_length), &(img.endian));
 	draw_pers(cub, img);
-	pop_front_point(&map_points);
+	map_points = map_points->next;
 	print_points(map_points);
 	while (map_points)
 	{
 		map_points = get_pos_relative(map_points, player);
 		draw_elemt(cub, map_points, img);
-		pop_front_point(&map_points);
+		map_points = map_points->next;
 	}
 	mlx_put_image_to_window(ptr.mlx, ptr.win, img.img, 0, 0);
 }

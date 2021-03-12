@@ -37,6 +37,14 @@ typedef struct		s_ptr
     void			*win;
 }                   t_ptr;
 
+typedef struct		s_dir_plane
+{
+	double          dirX;
+    double          dirY;
+    double          planeX;
+    double          planeY;
+}                   t_dir_plane;
+
 typedef struct      s_data
 {
     void            *img;
