@@ -35,6 +35,11 @@ static int      parse_color(char *line, t_cub *cub, size_t j)
         if (!(digit = get_rgb(line, &j, nb)))
             return (-1);
         rgb[nb] = ft_atoi(digit);
+        if (rgb[nb] < 0 || rgb[nb] > 255)
+        {
+            ft_putendl_fd("Error\nRange Color Rgb -> Floor or/and Ceiling is incorrect.", 1);
+            return (-1);
+        }
         nb++;
     }
     if (line[0] == 'F')
