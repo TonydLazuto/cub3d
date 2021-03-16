@@ -25,7 +25,7 @@ SRCS		=	cub3d.c \
 				./parse/parse.c \
 				./parse/parse_params.c \
 				./parse/parse_map.c \
-				./parse/get_cub_data.c \
+				./parse/get_params.c \
 				./parse/spread_map.c \
 				draws.c \
 				forms.c

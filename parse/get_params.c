@@ -13,7 +13,7 @@ char     *get_resolution(char *line, size_t *j, t_cub *cub)
     if (!(resolution = ft_substr(line, start, (*j) - start)))
         return (NULL);
     *j = skip_space(line, *j);
-    if (line[*j] != '\0' && cub->width != 0)
+    if (line[*j] != '\0' && cub->res_text.width != 0)
     {
         ft_putendl_fd("Error\nResolution in .cub file.", 1);
         return (NULL);

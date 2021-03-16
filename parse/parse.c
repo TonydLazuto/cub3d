@@ -2,14 +2,14 @@
 /*
 --> delete the comparison inside parse_resolution() in parse_params.c
 --> VOIR si mlx_get_screen_size() type "void" returns?
-static void		check_max_screen_size(t_cub *cub, t_ptr ptr)
+static void		check_max_screen_size(t_cub *cub)
 {
 	int screen_width;
 	int screen_height;
 
 	screen_width = 0;
 	screen_height = 0;
-	mlx_get_screen_size(ptr.mlx, &screen_width, &screen_height);
+	mlx_get_screen_size(cub->mlx_ptr, &screen_width, &screen_height);
 	if (cub->width > screen_width)
 		cub->width = screen_width;
 	if (cub->height > screen_height)
@@ -17,7 +17,7 @@ static void		check_max_screen_size(t_cub *cub, t_ptr ptr)
 }
 */
 
-static int		fill_params(char **file_lines, t_cub *cub, size_t len_params, t_ptr ptr)
+static int		fill_params(char **file_lines, t_cub *cub, size_t len_params)
 {
 	size_t	i;
 
@@ -33,8 +33,7 @@ static int		fill_params(char **file_lines, t_cub *cub, size_t len_params, t_ptr 
 		}
 		i++;
 	}
-	(void)(ptr); // a suppr
-	//check_max_screen_size(ptr);
+	//check_max_screen_size(cub);
 	return (0);
 }
 
@@ -87,7 +86,7 @@ static int		check_nb_params(char** line, size_t len_params)
 	return (0);
 }
 
-int				split_file(char *file, t_cub *cub, t_ptr ptr)
+int				split_file(char *file, t_cub *cub)
 {
 	size_t	j;
 	size_t	len_params;
@@ -107,7 +106,7 @@ int				split_file(char *file, t_cub *cub, t_ptr ptr)
 		return (-1);
 	if (fill_map(file_lines, cub, len_params) == -1)
 		return (-1);
-	if (fill_params(file_lines, cub, len_params, ptr) == -1)
+	if (fill_params(file_lines, cub, len_params) == -1)
 		return (-1);
 	ft_free(file_lines);
 	return (0);

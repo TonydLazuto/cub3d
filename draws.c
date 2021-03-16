@@ -1,16 +1,16 @@
 #include "cub3d.h"
 
-int		get_color(t_point *map_points)
+int		get_color(t_point *map_points, t_cub cub)
 {
 	int color;
 
 	color = 0;
 	if (map_points->val == '0')
-		color = 0xEAEDF4;
+		color = cub.res_text.floor;
 	else if (map_points->val == '1')
 		color = 0x636873;
 	else if (map_points->val == '2')
-		color = 0x4B0399;
+		color = 0x319954;
 	return (color);
 }
 void	draw_elemt(t_cub cub, t_point *map_points, t_data img)
@@ -19,9 +19,9 @@ void	draw_elemt(t_cub cub, t_point *map_points, t_data img)
 	int		y;
 	int		color;
 
-	x = cub.width / 2 + map_points->y * 20;
-	y = cub.height / 2 + map_points->x * 20;
-	color = get_color(map_points);
+	x = cub.res_text.width / 2 + map_points->y * 20;
+	y = cub.res_text.height / 2 + map_points->x * 20;
+	color = get_color(map_points, cub);
 	img = draw_square(x, y, img, color);
 }
 void	draw_pers(t_cub cub, t_data img)
@@ -30,8 +30,8 @@ void	draw_pers(t_cub cub, t_data img)
 	int		y;
 	int		color;
 
-	x = cub.width / 2;
-	y = cub.height / 2;
+	x = cub.res_text.width / 2;
+	y = cub.res_text.height / 2;
 	color = 0xC11515;
 	my_mlx_pixel_put(&img, x, y, create_trgb(0, 31, 133, 222));
 	img = draw_square(x, y, img, color);
@@ -44,7 +44,7 @@ t_point		*get_pos_relative(t_point *map_points, t_point *player)
 	return (map_points);
 }
 
-void		draw(t_ptr ptr, t_cub cub, t_point *map_points)
+void		draw(t_cub cub, t_point *map_points)
 {
 	t_point	*player;
 	t_data	img;
@@ -53,7 +53,7 @@ void		draw(t_ptr ptr, t_cub cub, t_point *map_points)
 		return ;
 	//printf("|----------------------|\n");
 	//print_points(player);
-	img.img = mlx_new_image(ptr.mlx, cub.width, cub.height);
+	img.img = mlx_new_image(cub.mlx_ptr, cub.res_text.width, cub.res_text.height);
     img.addr = mlx_get_data_addr(img.img, &(img.bits_per_pixel), &(img.line_length), &(img.endian));
 	draw_pers(cub, img);
 	map_points = map_points->next;
@@ -64,5 +64,5 @@ void		draw(t_ptr ptr, t_cub cub, t_point *map_points)
 		draw_elemt(cub, map_points, img);
 		map_points = map_points->next;
 	}
-	mlx_put_image_to_window(ptr.mlx, ptr.win, img.img, 0, 0);
+	mlx_put_image_to_window(cub.mlx_ptr, cub.win_ptr, img.img, 0, 0);
 }

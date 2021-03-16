@@ -21,7 +21,7 @@ static char *file_to_string(int fd)
     return (full_file);
 }
 
-static int  parse_file(const char *map_file, t_cub *cub, t_ptr ptr)
+static int  parse_file(const char *map_file, t_cub *cub)
 {
     int     fd;
     char    *file;
@@ -39,7 +39,7 @@ static int  parse_file(const char *map_file, t_cub *cub, t_ptr ptr)
         return (-1);
     }
     close(fd);
-    if (split_file(file, cub, ptr) == -1)
+    if (split_file(file, cub) == -1)
         return (-1);
     return (0);
 }
@@ -60,11 +60,11 @@ static int  cmp_ext(const char *av)
     return (res_cmp);
 }
 
-int         check_valid_cub(int ac, const char **av, t_cub *cub, t_ptr ptr)
+int         check_valid_cub(int ac, const char **av, t_cub *cub)
 {
     if (ac == 2 || ac == 3)
     {
-        if (cmp_ext(av[1]) || ((parse_file(av[1], cub, ptr)) == -1))
+        if (cmp_ext(av[1]) || ((parse_file(av[1], cub)) == -1))
             return (-1);
         if (ac == 3)
         {

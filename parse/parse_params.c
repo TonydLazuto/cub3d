@@ -7,18 +7,14 @@ static int      parse_resolution(char *line, t_cub *cub, size_t j)
     digit = NULL;
     if (!(digit = get_resolution(line, &j, cub)))
         return (-1);
-    if ((cub->width = ft_atoi(digit)) == -1)
+    if ((cub->res_text.width = ft_atoi(digit)) == -1)
         return (-1);
     ft_free(&digit);
     if (!(digit = get_resolution(line, &j, cub)))
         return (-1);
-    if ((cub->height = ft_atoi(digit)) == -1)
+    if ((cub->res_text.height = ft_atoi(digit)) == -1)
         return (-1);
     ft_free(&digit);
-    if (cub->width > 2560)
-        cub->width = 2560;
-    if (cub->height > 1440)
-        cub->height = 1440;
     return (0);
 }
 
@@ -43,9 +39,9 @@ static int      parse_color(char *line, t_cub *cub, size_t j)
         nb++;
     }
     if (line[0] == 'F')
-        cub->floor = create_trgb(0,rgb[0],rgb[1],rgb[2]);//Voir la transparence
+        cub->res_text.floor = create_trgb(0,rgb[0],rgb[1],rgb[2]);//Voir la transparence
     else
-        cub->ceiling = create_trgb(0,rgb[0],rgb[1],rgb[2]);//Voir la transparence
+        cub->res_text.ceiling = create_trgb(0,rgb[0],rgb[1],rgb[2]);//Voir la transparence
     ft_free(&digit);
     return (0);
 }
@@ -54,27 +50,27 @@ static int      parse_path(char *line, t_cub *cub, size_t j)
 {
     if (line[0] == 'N' && line[1] == 'O')
     {
-        if (!(cub->north_path = get_path(line, &j)))
+        if (!(cub->path.north = get_path(line, &j)))
             return (-1);
     }
     else if (line[0] == 'S' && line[1] == 'O')
     {
-        if (!(cub->south_path = get_path(line, &j)))
+        if (!(cub->path.south = get_path(line, &j)))
             return (-1);
     }
     else if (line[0] == 'W' && line[1] == 'E')
     {
-        if (!(cub->west_path = get_path(line, &j)))
+        if (!(cub->path.west = get_path(line, &j)))
             return (-1);
     }
     else if (line[0] == 'E' && line[1] == 'A')
     {
-        if (!(cub->east_path = get_path(line, &j)))
+        if (!(cub->path.east = get_path(line, &j)))
             return (-1);
     }
     else if (line[0] == 'S' && line[1] == ' ')
     {
-        if (!(cub->sprite_path = get_path(line, &j)))
+        if (!(cub->path.sprite = get_path(line, &j)))
             return (-1);
     }
     return (0);
