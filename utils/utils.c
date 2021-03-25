@@ -24,8 +24,8 @@ char		*trim_line(char *line)
 	k = ft_strlen(line) - 1;
 	while (k > 0 && line[k] == ' ')
 		k--;
-    if (!(line_clean = ft_substr(line, i, k + 1 - (size_t)i)))
-        return (NULL);
+	if (!(line_clean = ft_substr(line, i, k + 1 - (size_t)i)))
+		return (NULL);
 	ft_free(&line);
     return (line_clean);
 }
@@ -55,8 +55,8 @@ int             is_in_charset(char c, char const *set)
 {
 	while (*set && *set != c)
 		set++;
-    if (!*set)
-        return (0);
+	if (!*set)
+		return (0);
 	return (1);
 }
 

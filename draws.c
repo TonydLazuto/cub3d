@@ -6,35 +6,35 @@ int		get_color(t_point *map_points, t_cub cub)
 
 	color = 0;
 	if (map_points->val == '0')
-		color = cub.res_text.floor;
+		color = cub.floor;
 	else if (map_points->val == '1')
 		color = 0x636873;
 	else if (map_points->val == '2')
 		color = 0x319954;
 	return (color);
 }
-void	draw_elemt(t_cub cub, t_point *map_points, t_data img)
+void	draw_elemt(t_cub *cub, t_point *map_points)
 {
 	int		x;
 	int		y;
 	int		color;
 
-	x = cub.res_text.width / 2 + map_points->y * 20;
-	y = cub.res_text.height / 2 + map_points->x * 20;
-	color = get_color(map_points, cub);
-	img = draw_square(x, y, img, color);
+	x = cub->width / 2 + map_points->y * 20;
+	y = cub->height / 2 + map_points->x * 20;
+	color = get_color(map_points, *cub);
+	draw_square(x, y, cub, color);
 }
-void	draw_pers(t_cub cub, t_data img)
+void	draw_pers(t_cub *cub)
 {
 	int		x;
 	int		y;
 	int		color;
 
-	x = cub.res_text.width / 2;
-	y = cub.res_text.height / 2;
+	x = cub->width / 2;
+	y = cub->height / 2;
 	color = 0xC11515;
-	my_mlx_pixel_put(&img, x, y, create_trgb(0, 31, 133, 222));
-	img = draw_square(x, y, img, color);
+	my_mlx_pixel_put(cub, x, y, create_trgb(0, 31, 133, 222));
+	draw_square(x, y, cub, color);
 }
 
 t_point		*get_pos_relative(t_point *map_points, t_point *player)
@@ -44,25 +44,23 @@ t_point		*get_pos_relative(t_point *map_points, t_point *player)
 	return (map_points);
 }
 
-void		draw(t_cub cub, t_point *map_points)
+void		draw(t_cub *cub, t_point *map_points)
 {
 	t_point	*player;
-	t_data	img;
 
 	if (!(player = new_point(map_points->x, map_points->y, map_points->val)))
 		return ;
 	//printf("|----------------------|\n");
 	//print_points(player);
-	img.img = mlx_new_image(cub.mlx_ptr, cub.res_text.width, cub.res_text.height);
-    img.addr = mlx_get_data_addr(img.img, &(img.bits_per_pixel), &(img.line_length), &(img.endian));
-	draw_pers(cub, img);
+	cub->img->img = mlx_new_image(cub->mlx_ptr, cub->width, cub->height);
+    cub->img->addr = mlx_get_data_addr(cub->img->img, &(cub->img->bits_per_pixel), &(cub->img->line_length), &(cub->img->endian));
+	draw_pers(cub);
 	map_points = map_points->next;
-	print_points(map_points);
 	while (map_points)
 	{
 		map_points = get_pos_relative(map_points, player);
-		draw_elemt(cub, map_points, img);
+		draw_elemt(cub, map_points);
 		map_points = map_points->next;
 	}
-	mlx_put_image_to_window(cub.mlx_ptr, cub.win_ptr, img.img, 0, 0);
+	mlx_put_image_to_window(cub->mlx_ptr, cub->win_ptr, cub->img->img, 0, 0);
 }

@@ -21,7 +21,7 @@ void		clear_points(t_point **lst)
 	*lst = newlst;
 }
 
-int			is_point_in_list(t_point *lstpoint, t_point *point) // try_push_point
+int			is_point_in_list(t_point *lstpoint, t_point *point)
 {
 	t_point *elet;
 
@@ -31,12 +31,7 @@ int			is_point_in_list(t_point *lstpoint, t_point *point) // try_push_point
 	while (elet)
 	{
 		if (point->x == elet->x && point->y == elet->y)
-		{
-			/*printf("|-----Visited-----|\n");
-			print_points(lstpoint);
-			printf("|||||-----Mon-Point-----|||||\npoint->x : %zu\npoint->y : %zu\npoint->val : %c\n", point->x, point->y, point->val);*/
 			return (1);
-		}
 		elet = elet->next;
 	}
 	return (0);
