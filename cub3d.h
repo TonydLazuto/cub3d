@@ -33,7 +33,7 @@ typedef struct s_cub
 	void		*mlx_ptr;
 	void		*win_ptr;
 	char		**map;
-	t_img		*img;
+	t_img		img;
 }				t_cub;
 
 typedef struct s_point
@@ -79,7 +79,7 @@ t_point	*spread_map(char **map, t_point *stack, t_point *visited);
 t_point	*find_player(char **map, t_point *player);
 
 int		create_trgb(int t, int r, int g, int b);
-void	my_mlx_pixel_put(t_cub *cub, int x, int y, int color);
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
 void    draw_square(int x, int y, t_cub *cub, int color);
 void	draw(t_cub *cub, t_point *map_points);

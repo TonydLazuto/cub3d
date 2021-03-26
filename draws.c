@@ -33,7 +33,7 @@ void	draw_pers(t_cub *cub)
 	x = cub->width / 2;
 	y = cub->height / 2;
 	color = 0xC11515;
-	my_mlx_pixel_put(cub, x, y, create_trgb(0, 31, 133, 222));
+	my_mlx_pixel_put(&cub->img, x, y, create_trgb(0, 31, 133, 222));
 	draw_square(x, y, cub, color);
 }
 
@@ -52,8 +52,8 @@ void		draw(t_cub *cub, t_point *map_points)
 		return ;
 	//printf("|----------------------|\n");
 	//print_points(player);
-	cub->img->img = mlx_new_image(cub->mlx_ptr, cub->width, cub->height);
-    cub->img->addr = mlx_get_data_addr(cub->img->img, &(cub->img->bits_per_pixel), &(cub->img->line_length), &(cub->img->endian));
+	cub->img.img = mlx_new_image(cub->mlx_ptr, cub->width, cub->height);
+    cub->img.addr = mlx_get_data_addr(cub->img.img, &cub->img.bits_per_pixel, &cub->img.line_length, &cub->img.endian);
 	draw_pers(cub);
 	map_points = map_points->next;
 	while (map_points)
@@ -62,5 +62,5 @@ void		draw(t_cub *cub, t_point *map_points)
 		draw_elemt(cub, map_points);
 		map_points = map_points->next;
 	}
-	mlx_put_image_to_window(cub->mlx_ptr, cub->win_ptr, cub->img->img, 0, 0);
+	mlx_put_image_to_window(cub->mlx_ptr, cub->win_ptr, cub->img.img, 0, 0);
 }

@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void    start(t_dir_plane *dir_plane, t_point *player)
+void    start(t_orientation *dir_plane, t_point *player)
 {
     dir_plane->dirX = 0;
     dir_plane->dirY = 0;

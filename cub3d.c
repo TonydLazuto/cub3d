@@ -2,7 +2,10 @@
 
 void	init_cub(t_cub *cub)
 {
-    cub->img = NULL;
+    cub->width = 0;
+    cub->height = 0;
+    cub->img.img = NULL;
+    cub->img.addr = NULL;
     cub->north = NULL;
     cub->south = NULL;
     cub->east = NULL;
@@ -13,7 +16,7 @@ void	init_cub(t_cub *cub)
 	cub->win_ptr = NULL;
 }
 
-void	draw_2d_map(t_cub *cub)
+int     draw_2d_map(t_cub *cub)
 {
 	t_point	*map_points;
 	t_point	*player;
@@ -21,10 +24,13 @@ void	draw_2d_map(t_cub *cub)
 	player = NULL;
 	map_points = NULL;
 	if (!(player = find_player(cub->map, player)))
-		return ;
+		return (0);
 	if (!(map_points = spread_map(cub->map, player, map_points)))
-		return ;
+		return (0);
 	draw(cub, map_points);
+    //printf("|-----map_points-----|\n");
+    //print_points(map_points);
+    return (0);
 }
 
 void	destroy_all(t_cub *cub)
@@ -85,7 +91,7 @@ int     main(int ac, const char *av[])
 	//cub.img->img = mlx_new_image(cub.mlx_ptr, cub.width, cub.height);
     //cub.img->addr = mlx_get_data_addr(cub.img->img, &(cub.img->bits_per_pixel), &(cub.img->line_length), &(cub.img->endian));
 	draw_2d_map(&cub);
-	//mlx_loop_hook(cub.mlx_ptr, &get_next_frame, &img);
+	//mlx_loop_hook(cub.mlx_ptr, &draw_2d_map, &cub);
 	mlx_hook(cub.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &cub);
 	mlx_hook(cub.win_ptr, KeyRelease, KeyReleaseMask, &handle_keyrelease, &cub);
 	

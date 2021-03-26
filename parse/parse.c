@@ -98,19 +98,16 @@ int	split_file(char *file, t_cub *cub)
 	char	**file_lines;
 
 	len_params = 0;
-	file_lines = NULL;
 	file_lines = ft_split(file, '\n');
 	if (!file_lines)
 		return (-1);
 	while (file_lines[len_params])
 	{
 		j = skip_space(file_lines[len_params], 0);
-		printf("|%c|\n", file_lines[len_params][j]);
 		if (file_lines[len_params][j] == '1')
 			break ;
 		len_params++;
 	}
-	//printf("|%zu|\n", len_params);
 	if (check_nb_params(file_lines, len_params) == -1)
 		return (-1);
 	if (fill_map(file_lines, cub, len_params) == -1)
