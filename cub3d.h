@@ -44,13 +44,34 @@ typedef struct s_point
 	struct s_point	*next;
 }					t_point;
 
-typedef struct s_orientation
+typedef struct s_data
 {
+    double      posX;
+    double      posY;
 	double		dirX;
 	double		dirY;
+	double		rayDirX;
+	double		rayDirY;
 	double		planeX;
 	double		planeY;
-}				t_orientation;
+    double      time;
+    double      old_time;
+    //which box of the map we're in
+    int         mapX;
+    int         mapY;
+    //length of ray from current position to next x or y-side
+    double      sideDistX;
+    double      sideDistY;
+    //length of ray from one x or y-side to next x or y-side
+    double      deltaDistX;
+    double      deltaDistY;
+    double      perpWallDist;
+    //what direction to step in x or y-direction (either +1 or -1)
+    int         stepX;
+    int         stepY;
+    int         hit; //was there a wall hit?
+    int         side; //was a NS or a EW wall hit?
+}				t_data;
 
 void	ft_free(char **s);
 char	*strjoinfree(char *s1, char *s2);
@@ -84,5 +105,6 @@ void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 void    draw_square(int x, int y, t_cub *cub, int color);
 void	draw(t_cub *cub, t_point *map_points);
 //void	scan(t_img img, t_cub *cub, t_point *map_points);
+void    draw_little_square(int x, int y, t_cub *cub, int color);
 
 #endif
