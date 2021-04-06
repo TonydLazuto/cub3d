@@ -1,23 +1,25 @@
 #include "cub3d.h"
 
-void    start(t_data *data, t_point *player)
+void    start(t_cub *cub, t_point *player)
 {
-    data->posX = (double)player->x;
-    data->posY = (double)player->y;
-    data->dirX = 0;
-    data->dirY = 0;
-    data->planeX = 0;
-    data->planeY = 0.66;
-    data->deltaDistX = abs(1 / data->rayDirX);
-    data->deltaDistY = abs(1 / data->rayDirY);
-    data->hit = 0;
+    cub->data.posX = 0;
+    cub->data.posY = 0;
+    cub->data.mapX = player->x;
+    cub->data.mapY = player->y;
+    cub->data.dirX = 0;
+    cub->data.dirY = 0;
+    cub->data.planeX = 0;
+    cub->data.planeY = 0.66;
+    cub->data.deltaDistX = (cub->data.rayDirY == 0) ? 0 : ((cub->data.rayDirX == 0) ? 1 : fabs(1 / cub->data.rayDirX)); //voir fabs pour float ou abs pour int
+    cub->data.deltaDistY = (cub->data.rayDirX == 0) ? 0 : ((cub->data.rayDirY == 0) ? 1 : fabs(1 / cub->data.rayDirX));
+    cub->data.hit = 0;
     if (player->val == 'N')
-        data->dirY = 1;
+        cub->data.dirY = 1;
     else if (player->val == 'S')
-        data->dirY = -1;
+        cub->data.dirY = -1;
     else if (player->val == 'E')
-        data->dirX = 1;
+        cub->data.dirX = 1;
     else if (player->val == 'W')
-        data->dirX = -1;
+        cub->data.dirX = -1;
     return ;
 }

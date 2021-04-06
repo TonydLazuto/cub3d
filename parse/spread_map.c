@@ -112,7 +112,8 @@ t_point             *spread_map(char **map, t_point *stack, t_point *visited)
 {
     while (stack)
     {
-        if (!(stack = handle_stack(map, &visited, stack)))
+        stack = handle_stack(map, &visited, stack);
+        if (!stack)
         {
             clear_points(&stack);
             clear_points(&visited);

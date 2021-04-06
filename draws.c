@@ -19,21 +19,22 @@ void	draw_elemt(t_cub *cub, t_point *map_points)
 	int		y;
 	int		color;
 
-    x = cub->width / 2;
-	y = cub->height / 2;
+    x = cub->width / 2 + map_points->y * 40;
+	y = cub->height / 2 + map_points->x * 40;
     color = get_color(map_points, *cub);
-    if (ft_isalpha(map_points->val))
-    {
-	    draw_square(x, y, cub, color);
-        color = 0xC11515;
-	    draw_little_square(x, y, cub, color);
-    }
-    else
-    {
-        x += map_points->y * 20;
-	    y += map_points->x * 20;
-	    draw_square(x, y, cub, color);
-    }
+	draw_square(x, y, cub, color);
+}
+
+void	draw_pers(t_cub *cub)
+{
+    int		x;
+	int		y;
+	int		color;
+
+    x = cub->width / 2 + cub->data.posX;
+	y = cub->height / 2 + cub->data.posY;
+	color = 0xC11515;
+    draw_little_square(x, y, cub, color);
 }
 
 t_point		*get_pos_relative(t_point *map_points, t_point *player)
@@ -49,17 +50,14 @@ void		draw(t_cub *cub, t_point *map_points)
 
 	if (!(player = new_point(map_points->x, map_points->y, map_points->val)))
 		return ;
-	//printf("|----------------------|\n");
-	//print_points(player);
 	//cub->img.img = mlx_new_image(cub->mlx_ptr, cub->width, cub->height);
     //cub->img.addr = mlx_get_data_addr(cub->img.img, &cub->img.bits_per_pixel, &cub->img.line_length, &cub->img.endian);
-	map_points = map_points->next;
 	while (map_points)
 	{
 		map_points = get_pos_relative(map_points, player);
 		draw_elemt(cub, map_points);
 		map_points = map_points->next;
 	}
-    draw_elemt(cub, player);
+    draw_pers(cub);
 	//mlx_put_image_to_window(cub->mlx_ptr, cub->win_ptr, cub->img.img, 0, 0);
 }

@@ -5,11 +5,13 @@ void    draw_square(int x, int y, t_cub *cub, int color)
     int		i;
 	int		j;
 
-	j = -10;
-    while (j < 9)
+	j = -20;
+
+    
+    while (j < 19)
 	{
-		i = -10;
-		while (i < 9)
+		i = -20;
+		while (i < 19)
 		{
 			my_mlx_pixel_put(&cub->img, x + i, y + j, color);
             i++;

@@ -19,35 +19,12 @@ typedef struct s_img
 	int			endian;
 }				t_img;
 
-typedef struct s_cub
-{
-	int			width;
-	int			height;
-    char		*north;
-	char		*south;
-	char		*west;
-	char		*east;
-	char		*sprite;
-	int			floor;
-	int			ceiling;
-	void		*mlx_ptr;
-	void		*win_ptr;
-	char		**map;
-	t_img		img;
-}				t_cub;
-
-typedef struct s_point
-{
-	int				x;
-	int				y;
-	char			val;
-	struct s_point	*next;
-}					t_point;
-
 typedef struct s_data
 {
-    double      posX;
-    double      posY;
+    //t_point pos
+    int         posX;
+    int         posY;
+    //
 	double		dirX;
 	double		dirY;
 	double		rayDirX;
@@ -57,6 +34,7 @@ typedef struct s_data
     double      time;
     double      old_time;
     //which box of the map we're in
+    //t_point cur_point
     int         mapX;
     int         mapY;
     //length of ray from current position to next x or y-side
@@ -72,6 +50,33 @@ typedef struct s_data
     int         hit; //was there a wall hit?
     int         side; //was a NS or a EW wall hit?
 }				t_data;
+
+typedef struct s_point
+{
+	int				x;
+	int				y;
+	char			val;
+	struct s_point	*next;
+}					t_point;
+
+typedef struct s_cub
+{
+	int			width;
+	int			height;
+    char		*north;
+	char		*south;
+	char		*west;
+	char		*east;
+	char		*sprite;
+	int			floor;
+	int			ceiling;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	char		**map;
+	t_img		img;
+    t_data      data;
+    t_point     *map_point;
+}				t_cub;
 
 void	ft_free(char **s);
 char	*strjoinfree(char *s1, char *s2);
@@ -106,5 +111,7 @@ void    draw_square(int x, int y, t_cub *cub, int color);
 void	draw(t_cub *cub, t_point *map_points);
 //void	scan(t_img img, t_cub *cub, t_point *map_points);
 void    draw_little_square(int x, int y, t_cub *cub, int color);
+
+void    start(t_cub *cub, t_point *player);
 
 #endif

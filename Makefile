@@ -28,7 +28,8 @@ SRCS		=	cub3d.c \
 				./parse/get_params.c \
 				./parse/spread_map.c \
 				draws.c \
-				forms.c
+				forms.c \
+				start.c
 
 OBJS		= $(SRCS:.c=.o)
 
