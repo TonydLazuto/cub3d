@@ -2,8 +2,15 @@
 
 void    start(t_cub *cub, t_point *player)
 {
-    cub->data.posX = 0;
-    cub->data.posY = 0;
+    int x;
+    int y;
+    
+    x = cub->width / 2;
+	y = cub->height / 2;
+    cub->data.posX = (double)x;
+    cub->data.posY = (double)y;
+    cub->data.pdx = cos(cub->data.pa) * 5;
+    cub->data.pdy = sin(cub->data.pa) * 5;
     cub->data.mapX = player->x;
     cub->data.mapY = player->y;
     cub->data.dirX = 0;

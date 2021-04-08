@@ -9,6 +9,7 @@
 # include "./gnl/get_next_line.h"
 # include "./mlx/mlx.h"
 # include "./libft/libft.h"
+# define PI 3.1415926535
 
 typedef struct s_img
 {
@@ -21,10 +22,8 @@ typedef struct s_img
 
 typedef struct s_data
 {
-    //t_point pos
-    int         posX;
-    int         posY;
-    //
+    double      posX;
+    double      posY;
 	double		dirX;
 	double		dirY;
 	double		rayDirX;
@@ -49,6 +48,10 @@ typedef struct s_data
     int         stepY;
     int         hit; //was there a wall hit?
     int         side; //was a NS or a EW wall hit?
+    //try out
+    double      pdx;
+    double      pdy;
+    double      pa;
 }				t_data;
 
 typedef struct s_point
@@ -107,10 +110,6 @@ t_point	*find_player(char **map, t_point *player);
 int		create_trgb(int t, int r, int g, int b);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
-void    draw_square(int x, int y, t_cub *cub, int color);
-void	draw(t_cub *cub, t_point *map_points);
-//void	scan(t_img img, t_cub *cub, t_point *map_points);
-void    draw_little_square(int x, int y, t_cub *cub, int color);
 
 void    start(t_cub *cub, t_point *player);
 
