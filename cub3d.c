@@ -53,7 +53,7 @@ int     main(int ac, const char *av[])
 	cub.img.img = mlx_new_image(cub.mlx_ptr, cub.width, cub.height);
     cub.img.addr = mlx_get_data_addr(cub.img.img, &(cub.img.bits_per_pixel), &(cub.img.line_length), &(cub.img.endian));
     
-    //draw_map(&cub);
+    draw_map(&cub);
 	//mlx_loop_hook(cub.mlx_ptr, &draw_2d_map, &cub);
 	mlx_hook(cub.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &cub);
 

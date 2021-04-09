@@ -27,21 +27,21 @@ void    check_wall(t_cub *cub, t_point *player)
     int direction;
 
     direction = 1;
-    if (player->val == 'W' || player->val == 'S')
+    if (player->val == 'N' || player->val == 'W')
         direction = -1;
     if (player->val == 'N' || player->val == 'S')
     {
         next = player->y;
-        while (cub->map[next][player->y] != '1')
+        while (cub->map[next][player->x] != '1')
             next += direction;
-        printf("cub->map[%d][%d] = %c\n", player->x, next, cub->map[player->x][next]);
+        printf("cub->map[%d][%d] = %c\n", next, player->x, cub->map[next][player->x]);
     }
     else if (player->val == 'W' || player->val == 'E')
     {
         next = player->x;
-        while (cub->map[next][player->y] != '1')
+        while (cub->map[player->y][next] != '1')
             next += direction;
-        printf("cub->map[%d][%d] = %c\n", next, player->y, cub->map[next][player->y]);
+        printf("cub->map[%d][%d] = %c\n", player->y, next, cub->map[player->y][next]);
     }
 }
 /*
@@ -58,11 +58,10 @@ void    draw_map(t_cub *cub)
 
     player = NULL;
     player = find_player(cub->map, player);
-    print_points(player);
     cub->data.posX = 20.0;
     cub->data.posY = 20.0;
     cub->data.sideDistX = 20.0;
     cub->data.sideDistY = 0.0;
     rotate_sideDist(cub, player);
-    //check_wall(cub, player);
+    check_wall(cub, player);
 }

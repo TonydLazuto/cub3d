@@ -130,6 +130,5 @@ t_point             *spread_map(char **map, t_point *stack, t_point *visited)
     //printf("|-----Visited-----|\n");
     //print_points(visited);
     clear_points(&stack);
-    print_points(visited);
     return (visited);
 }
