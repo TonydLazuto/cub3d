@@ -21,29 +21,58 @@ void    rotate_sideDist(t_cub *cub, t_point *player)
     cub->data.sideDistY = oldX * sin(angle) + oldY * cos(angle);
 }
 
-void    check_wall(t_cub *cub, t_point *player)
+void    set_deltaDistY(t_cub *cub, int diff)
 {
-    int next;
-    int direction;
+    double size;
 
-    direction = 1;
-    if (player->val == 'N' || player->val == 'W')
-        direction = -1;
-    if (player->val == 'N' || player->val == 'S')
-    {
-        next = player->y;
-        while (cub->map[next][player->x] != '1')
-            next += direction;
-        printf("cub->map[%d][%d] = %c\n", next, player->x, cub->map[next][player->x]);
-    }
-    else if (player->val == 'W' || player->val == 'E')
-    {
-        next = player->x;
-        while (cub->map[player->y][next] != '1')
-            next += direction;
-        printf("cub->map[%d][%d] = %c\n", player->y, next, cub->map[player->y][next]);
-    }
+    size = (double)diff;
+    cub->data.deltaDistX = 0.0;
+    cub->data.deltaDistY = SIZE_SQUARE / 2;
+    if (diff > 0)
+        cub->data.deltaDistY += size * SIZE_SQUARE;
 }
+
+int     find_wall(int var, t_point *player)
+{
+    if (player->val == 'N' || player->val == 'W')
+        var--;
+    else
+        var++;
+    return (var);
+}
+
+/*
+    get the first Point in front of the player vision
+*/
+
+int     check_wall(t_cub *cub, t_point *player)
+{
+    int j;
+    int i;
+    int diff;
+    
+    j = player->y;
+    i = player->x;
+    print_points(player);
+    diff = j;
+    while (cub->map[j][i] != '1')
+    {
+        if (player->val == 'N' || player->val == 'S')
+            j = find_wall(j ,player);
+        else
+            i = find_wall(i ,player);
+    }
+    if (diff != j)
+        diff = j - player->y;
+    else
+        diff = i - player->x;
+    if (diff < 0)
+        diff = -diff;
+    diff--;
+    set_deltaDistY(cub, diff);
+    return (diff);
+}
+
 /*
     | We assume that the map is 40x40 |
 

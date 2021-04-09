@@ -2,11 +2,8 @@
 
 void        print_points(t_point *point)
 {
-    static int i = 1;
     if (!point)
         return ;
-    //printf("|%d|\n",i);
-    i++;
     while (point)
     {
         printf("point->x = %d\npoint->y = %d\npoint->val = %c\n\n",

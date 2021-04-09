@@ -10,6 +10,7 @@
 # include "./mlx/mlx.h"
 # include "./libft/libft.h"
 # define PI 3.1415926535
+# define SIZE_SQUARE 40.0
 
 typedef struct s_img
 {
