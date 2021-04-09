@@ -5,6 +5,7 @@ void    draw_square(int x, int y, t_cub *cub, int color)
     int		i;
 	int		j;
 
+    j = -20;
     while (j < 19)
 	{
 		i = -20;

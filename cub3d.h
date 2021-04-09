@@ -24,18 +24,12 @@ typedef struct s_data
 {
     double      posX;
     double      posY;
-	double		dirX;
-	double		dirY;
 	double		rayDirX;
 	double		rayDirY;
 	double		planeX;
 	double		planeY;
     double      time;
     double      old_time;
-    //which box of the map we're in
-    //t_point cur_point
-    int         mapX;
-    int         mapY;
     //length of ray from current position to next x or y-side
     double      sideDistX;
     double      sideDistY;
@@ -110,7 +104,6 @@ t_point	*find_player(char **map, t_point *player);
 int		create_trgb(int t, int r, int g, int b);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
-
-void    start(t_cub *cub, t_point *player);
+void    draw_map(t_cub *cub);
 
 #endif

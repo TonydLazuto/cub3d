@@ -14,7 +14,12 @@ void        print_points(t_point *point)
         point = point->next;
     }
 }
-
+/*
+    compass be like :
+        812
+        7N3
+        654
+*/
 static void         get_neighbor(t_point *neighbor, size_t compass)
 {
     if (compass == 1)
@@ -40,17 +45,17 @@ static int          point_in_map(char **map, int x, int y)
     int i;
     int j;
 
-    i = 0;
-    while (map[i])
+    j = 0;
+    while (map[j])
     {
-        j = 0;
-        while (map[i][j])
+        i = 0;
+        while (map[j][i])
         {
-            if (x == i && j == y)
+            if (x == i && y == j)
                 return (1);
-            j++;
+            i++;
         }
-        i++;
+        j++;
     }
     return (0);
 }
@@ -58,7 +63,7 @@ static t_point      *fill_stack(char **map, t_point *cur_point, t_point *stack, 
 {
     t_point     *point;
 
-    cur_point->val = map[cur_point->x][cur_point->y];
+    cur_point->val = map[cur_point->y][cur_point->x];
     if (!(point = new_point(cur_point->x, cur_point->y, cur_point->val)))
         return (NULL);
     if (!is_in_charset(point->val, "012NSWE"))
@@ -125,5 +130,6 @@ t_point             *spread_map(char **map, t_point *stack, t_point *visited)
     //printf("|-----Visited-----|\n");
     //print_points(visited);
     clear_points(&stack);
+    print_points(visited);
     return (visited);
 }
