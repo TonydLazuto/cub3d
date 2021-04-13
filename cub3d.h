@@ -31,6 +31,12 @@ typedef struct s_img
     int		*addr2;
 }				t_img;
 
+typedef struct		s_sprxy
+{
+	double			x;
+	double			y;
+}					t_sprxy;
+
 typedef struct		s_sprite
 {
 	int				nbspr;
@@ -126,6 +132,8 @@ typedef struct s_cub
 	int			ceiling;
 	void		*mlx_ptr;
 	void		*win_ptr;
+    int         screen_width;
+    int         screen_height;
 	char		**map;
     int         save;
 	t_img		img;
@@ -133,6 +141,8 @@ typedef struct s_cub
     t_ray       ray;
     t_point     *player;
     t_texture   t;
+    t_sprite    s;
+    t_sprxy     *sxy;
 }				t_cub;
 
 void	ft_free(char **s);
@@ -172,6 +182,11 @@ void	ft_draw_texture(t_cub *cub, int x, int y);
 
 void	ft_initialisation3(t_cub *cub);
 void    ft_initialisation2(t_cub *cub);
+void	ft_init_more(t_cub *cub);
+void	ft_init_dir(t_cub *cub);
+void	ft_init_more3(t_cub *cub);
+void	ft_init_sprite(t_cub *cub);
+void	ft_init_texture(t_cub *cub);
 
 void	ft_forward_back(t_cub *cub);
 void	ft_left_right(t_cub *cub);
@@ -188,6 +203,7 @@ void	ft_incrementray(t_cub *cub);
 void	ft_drawstartend(t_cub *cub);
 void	ft_swap(t_cub *cub);
 
+void	ft_sprite(t_cub *cub);
 
 void	ft_header(t_cub *cub, int fd);
 void	ft_save(t_cub *cub);

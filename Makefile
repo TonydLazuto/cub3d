@@ -18,7 +18,6 @@ SRCS		=	cub3d.c \
 				./gnl/get_next_line.c \
 				./gnl/get_next_line_utils.c \
 				./utils/utils.c  \
-				./utils/utils2.c  \
 				./utils/lst_point.c \
 				./utils/lst_point2.c \
 				./parse/check_valid_cub.c \
@@ -31,9 +30,11 @@ SRCS		=	cub3d.c \
 				raycasting.c \
 				raycasting_move.c \
 				raycasting_utils.c \
+				init.c \
 				key_draw.c \
 				errors.c \
-				save.c
+				save.c \
+				sprites.c
 
 OBJS		= $(SRCS:.c=.o)
 

@@ -24,19 +24,19 @@ void	ft_get_texture(t_cub *cub)
 	if (!(cub->texture[0].img = mlx_xpm_file_to_image(cub->mlx_ptr,
 					cub->north, &(cub->texture[0].width),
 					&(cub->texture[0].height))))
-		ft_error(cub, "Texture SO\n");
+		ft_error(cub, "Texture NO\n");
 	if (!(cub->texture[1].img = mlx_xpm_file_to_image(cub->mlx_ptr,
 					cub->south, &(cub->texture[1].width),
 					&(cub->texture[1].height))))
-		ft_error(cub, "Texture NO\n");
+		ft_error(cub, "Texture SO\n");
 	if (!(cub->texture[2].img = mlx_xpm_file_to_image(cub->mlx_ptr,
 					cub->west, &(cub->texture[2].width),
 					&(cub->texture[2].height))))
-		ft_error(cub, "Texture EA\n");
+		ft_error(cub, "Texture WE\n");
 	if (!(cub->texture[3].img = mlx_xpm_file_to_image(cub->mlx_ptr,
 					cub->east, &(cub->texture[3].width),
 					&(cub->texture[3].height))))
-		ft_error(cub, "Texture WE\n");
+		ft_error(cub, "Texture EA\n");
 	if (!(cub->texture[4].img = mlx_xpm_file_to_image(cub->mlx_ptr,
 					cub->sprite, &(cub->texture[4].width),
 					&(cub->texture[4].height))))
@@ -52,11 +52,10 @@ int		ft_raycasting(t_cub *cub)
 		ft_initialisation3(cub);
 		ft_stepsidedist(cub);
 		ft_color_column(cub);
-        //sprite
-		//cub->s.zbuffer[cub->ray.x] = cub->ray.perpWallDist;
+		cub->s.zbuffer[cub->ray.x] = cub->ray.perpWallDist;
 		cub->ray.x++;
 	}
-	//ft_sprite(cub);
+	ft_sprite(cub);
 	if (cub->save == 1)
 		ft_save(cub);
 	mlx_put_image_to_window(cub->mlx_ptr, cub->win_ptr, cub->img.img, 0, 0);
@@ -70,8 +69,7 @@ int		ft_raycasting(t_cub *cub)
 int		ft_mlx(t_cub *cub)
 {
 	ft_initialisation2(cub);
-	if (!(cub->mlx_ptr = mlx_init()))
-		ft_error(cub, "Mlx init impossible\n");
+    ft_init_sprite(cub);
 	ft_get_texture(cub);
 	cub->img.img = mlx_new_image(cub->mlx_ptr, cub->width, cub->height);
 	cub->img.addr = (int *)mlx_get_data_addr(cub->img.img, &cub->img.

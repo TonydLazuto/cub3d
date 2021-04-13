@@ -1,24 +1,5 @@
 #include "cub3d.h"
 
-void	ft_init_texture(t_cub *cub)
-{
-	if (cub->ray.side == 0 && cub->ray.rayDirX < 0)
-		cub->t.texdir = 0; //SO
-	if (cub->ray.side == 0 && cub->ray.rayDirX >= 0)
-		cub->t.texdir = 1; //NO
-	if (cub->ray.side == 1 && cub->ray.rayDirY < 0)
-		cub->t.texdir = 2; //EA
-	if (cub->ray.side == 1 && cub->ray.rayDirY >= 0)
-		cub->t.texdir = 3; //WE
-	if (cub->ray.side == 0)
-		cub->t.wallx = cub->ray.posY + cub->ray.perpWallDist \
-						* cub->ray.rayDirY;
-	else
-		cub->t.wallx = cub->ray.posX + cub->ray.perpWallDist \
-						* cub->ray.rayDirX;
-	cub->t.wallx -= floor((cub->t.wallx));
-}
-
 int		ft_key_press(int keycode, t_cub *cub)
 {
 	if (keycode == FORWARD_W_Z)
