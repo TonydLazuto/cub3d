@@ -9,31 +9,83 @@
 # include "./gnl/get_next_line.h"
 # include "./mlx/mlx.h"
 # include "./libft/libft.h"
-# define PI 3.1415926535
-# define SIZE_SQUARE 40.0
+# define PI             3.1415926535
+# define SIZE_SQUARE    40.0
+# define ROTATE_LEFT	123
+# define ROTATE_RIGHT	124
+# define FORWARD_W_Z	13
+# define BACK_S_S		1
+# define RIGHT_D_D		2
+# define LEFT_A_Q		0
 
 typedef struct s_img
 {
 	void		*img;
-	char		*addr;
+	int		*addr;
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
+    int         width;
+	int         height;
+    void        *img2;
+    int		*addr2;
 }				t_img;
 
-typedef struct s_data
+typedef struct		s_sprite
+{
+	int				nbspr;
+	int				*order;
+	double			*dist;
+	double			spritex;
+	double			spritey;
+	double			invdet;
+	double			transformx;
+	double			transformy;
+	int				spritescreenx;
+	int				spriteheight;
+	int				drawstartx;
+	int				drawstarty;
+	int				drawendy;
+	int				drawendx;
+	int				spritewidth;
+	double			*zbuffer;
+}					t_sprite;
+
+typedef struct		s_texture
+{
+	int				texdir;
+	double			wallx;
+	int				texx;
+	int				texy;
+	double			step;
+	double			texpos;
+}					t_texture;
+
+typedef struct s_ray
 {
     double      posX;
     double      posY;
+    double      cameraX;
+    int         x;
+    double      dirX;
+    double      dirY;
 	double		rayDirX;
 	double		rayDirY;
 	double		planeX;
 	double		planeY;
-    double      time;
-    double      old_time;
+    double      time; //
+    double      oldTime; //
+    int         drawstart;
+	int         drawend;
+    int         rotate_left;
+    int         rotate_right;
+    //which box of the map we're in
+    int         mapX;
+    int         mapY;
     //length of ray from current position to next x or y-side
     double      sideDistX;
     double      sideDistY;
+    int         lineheight;
     //length of ray from one x or y-side to next x or y-side
     double      deltaDistX;
     double      deltaDistY;
@@ -42,12 +94,16 @@ typedef struct s_data
     int         stepX;
     int         stepY;
     int         hit; //was there a wall hit?
-    int         side; //was a NS or a EW wall hit?
-    //try out
-    double      pdx;
-    double      pdy;
-    double      pa;
-}				t_data;
+    int         side; //0 = NS(x-side) or 1 = EW(y-side) wall
+    //movement
+    int         forward;
+	int         back;
+	int         left;
+	int         right;
+    //frame
+    double      moveSpeed;
+	double      rotSpeed;
+}				t_ray;
 
 typedef struct s_point
 {
@@ -71,9 +127,12 @@ typedef struct s_cub
 	void		*mlx_ptr;
 	void		*win_ptr;
 	char		**map;
+    int         save;
 	t_img		img;
-    t_data      data;
-    t_point     *map_point;
+	t_img		texture[5];
+    t_ray       ray;
+    t_point     *player;
+    t_texture   t;
 }				t_cub;
 
 void	ft_free(char **s);
@@ -105,6 +164,34 @@ t_point	*find_player(char **map, t_point *player);
 int		create_trgb(int t, int r, int g, int b);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
-void    draw_map(t_cub *cub);
+int		ft_exit(t_cub *cub);
+int		ft_key_press(int keycode, t_cub *cub);
+int		ft_key_release(int keycode, t_cub *cub);
+int		ft_color_column(t_cub *cub);
+void	ft_draw_texture(t_cub *cub, int x, int y);
+
+void	ft_initialisation3(t_cub *cub);
+void    ft_initialisation2(t_cub *cub);
+
+void	ft_forward_back(t_cub *cub);
+void	ft_left_right(t_cub *cub);
+void	ft_rotate_right_left(t_cub *cub);
+void	ft_rotate_left(t_cub *cub, double olddirx);
+
+void	ft_get_texture_adress(t_cub *cub);
+void	ft_get_texture(t_cub *cub);
+int		ft_raycasting(t_cub *cub);
+int		ft_mlx(t_cub *cub);
+
+void	ft_stepsidedist(t_cub *cub);
+void	ft_incrementray(t_cub *cub);
+void	ft_drawstartend(t_cub *cub);
+void	ft_swap(t_cub *cub);
+
+
+void	ft_header(t_cub *cub, int fd);
+void	ft_save(t_cub *cub);
+int		ft_check_save(char *str);
+void	ft_error(t_cub *cub, char *str);
 
 #endif

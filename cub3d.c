@@ -12,8 +12,14 @@ void	init_cub(t_cub *cub)
     cub->west = NULL;
     cub->sprite = NULL;
 	cub->map = NULL;
+    cub->player = NULL;
 	cub->mlx_ptr = NULL;
 	cub->win_ptr = NULL;
+    cub->texture[0].img = NULL;
+	cub->texture[1].img = NULL;
+	cub->texture[2].img = NULL;
+	cub->texture[3].img = NULL;
+	cub->texture[4].img = NULL;
 }
 
 void	destroy_all(t_cub *cub)
@@ -28,7 +34,7 @@ void	destroy_all(t_cub *cub)
 
 int		handle_keypress(int keysym, t_cub *cub)
 {
-	//printf("Keypress |%d|\n", keysym);
+	printf("Keypress |%d|\n", keysym);
 	if (keysym == 53)
         destroy_all(cub);
     if (keysym == 13 || keysym == 0 || keysym == 1 || keysym == 2) 
@@ -52,8 +58,8 @@ int     main(int ac, const char *av[])
 	}
 	cub.img.img = mlx_new_image(cub.mlx_ptr, cub.width, cub.height);
     cub.img.addr = mlx_get_data_addr(cub.img.img, &(cub.img.bits_per_pixel), &(cub.img.line_length), &(cub.img.endian));
-    
-    draw_map(&cub);
+    cub.player = find_player(cub.map, cub.player);
+    ft_mlx(&cub);
 	//mlx_loop_hook(cub.mlx_ptr, &draw_2d_map, &cub);
 	mlx_hook(cub.win_ptr, KeyPress, KeyPressMask, &handle_keypress, &cub);
 

@@ -27,9 +27,13 @@ SRCS		=	cub3d.c \
 				./parse/parse_map.c \
 				./parse/get_params.c \
 				./parse/spread_map.c \
-				draws.c \
-				forms.c \
-				start.c
+				raycasting_init.c \
+				raycasting.c \
+				raycasting_move.c \
+				raycasting_utils.c \
+				key_draw.c \
+				errors.c \
+				save.c
 
 OBJS		= $(SRCS:.c=.o)
 

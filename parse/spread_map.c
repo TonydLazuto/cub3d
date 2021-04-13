@@ -1,5 +1,8 @@
 #include "../cub3d.h"
-
+/*
+    This is base one a flood filled algorithm
+    "visited" is filled while "stack" is emptyied out
+*/
 void        print_points(t_point *point)
 {
     if (!point)

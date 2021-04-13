@@ -1,16 +1,16 @@
          R 1000 680   
 
-      SO  ./path_to_the_south_texture   
+      SO  ./textures/output-onlinepngtools.png  
 
         F 31, 133   ,222      
      
 
-    WE ./path_to_the_west_texture  
+    WE ./textures/output-onlinepngtools-1.png  
 
-EA ./path_to_the_east_texture      
+EA ./textures/output-onlinepngtools-2.png      
 
-    NO       ./path_to_the_north_texture
-S             ./path_to_the_sprite_texture
+    NO       ./textures/output-onlinepngtools-3.png
+S             ./textures/output-onlinepngtools-4.png
 
 
    C 225,  30,255 
