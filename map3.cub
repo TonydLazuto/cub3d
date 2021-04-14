@@ -1,19 +1,20 @@
          R 1000 680   
 
-      SO  ./textures/output-onlinepngtools.png  
+      SO  txt1.xpm  
 
         F 31, 133   ,222      
      
 
-    WE ./textures/output-onlinepngtools-1.png  
+    WE   txt2.xpm
 
-EA ./textures/output-onlinepngtools-2.png      
+EA txt3.xpm      
 
-    NO       ./textures/output-onlinepngtools-3.png
-S             ./textures/output-onlinepngtools-4.png
+    NO       txt4.xpm
+S            covid.xpm
 
 
-   C 225,  30,255 
+   C 225,  30,255
+ 
      1
      1
      1

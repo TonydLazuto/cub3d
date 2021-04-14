@@ -4,14 +4,14 @@ void	ft_error2(t_cub *cub)
 {
 	if (cub->map)
 		free(cub->map);
-	/*if (cub->s.order)
+	if (cub->s.order)
 		free(cub->s.order);
 	if (cub->s.dist)
 		free(cub->s.dist);
 	if (cub->sxy)
 		free(cub->sxy);
 	if (cub->s.zbuffer)
-		free(cub->s.zbuffer);*/
+		free(cub->s.zbuffer);
 	ft_exit(cub);
 }
 

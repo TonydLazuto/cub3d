@@ -1,22 +1,5 @@
 #include "../cub3d.h"
 
-/*
---> delete the comparison inside parse_resolution() in parse_params.c
---> VOIR si mlx_get_screen_size() type "void" returns?
-static void		resize_max_screen_size(t_cub *cub)
-{
-	int screen_width;
-	int screen_height;
-
-	screen_width = 0;
-	screen_height = 0;
-	mlx_get_screen_size(cub->mlx_ptr, &screen_width, &screen_height);
-	if (cub->width > screen_width)
-		cub->width = screen_width;
-	if (cub->height > screen_height)
-		cub->height = screen_height;
-}
-*/
 static char	*file_to_string(int fd)
 {
 	char	*full_file;
@@ -89,11 +72,10 @@ int	check_valid_cub(int ac, const char **av, t_cub *cub)
 	{
 		if (cmp_ext(av[1]) || ((parse_file(av[1], cub)) == -1))
 			return (-1);
-		//resize_max_screen_size(cub);
 		if (ac == 3)
 		{
 			if (ft_strncmp(av[2], "--save", 6) == 0)
-				ft_putendl_fd("Your .cub file has been saved successfully", 1);
+				cub->save = 1;
 		}
 	}
 	else

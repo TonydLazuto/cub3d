@@ -68,8 +68,14 @@ int		ft_raycasting(t_cub *cub)
 
 int		ft_mlx(t_cub *cub)
 {
-	ft_initialisation2(cub);
     ft_init_sprite(cub);
+	ft_initialisation2(cub);
+    if (!(cub->mlx_ptr = mlx_init()))
+        ft_error(cub, "mlx_init\n");
+    //|  Linux  |
+    //mlx_get_screen_size(cub.mlx_ptr, &cub.screen_width, &cub.screen_height);
+	//cub.width = (cub.width > cub.screen_width) ? cub.screen_width : cub.width;
+	//cub.height = (cub.height > cub.screen_height) ? cub.screen_height : cub.height;
 	ft_get_texture(cub);
 	cub->img.img = mlx_new_image(cub->mlx_ptr, cub->width, cub->height);
 	cub->img.addr = (int *)mlx_get_data_addr(cub->img.img, &cub->img.

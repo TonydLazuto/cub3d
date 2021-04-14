@@ -70,7 +70,7 @@ void	ft_stepsidedist(t_cub *cub)
 	ft_incrementray(cub);
 }
 
-void	ft_swap(t_cub *cub) //swap_img()
+void	ft_swap(t_cub *cub)
 {
 	void *tmp;
 

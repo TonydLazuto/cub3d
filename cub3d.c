@@ -30,20 +30,7 @@ int     main(int ac, const char *av[])
     init_cub(&cub);
 	if ((check_valid_cub(ac, av, &cub)) == -1)
 		return (0);
-	if (!(cub.mlx_ptr = mlx_init()))
-    {
-        ft_error(&cub, "mlx_init\n");
-		ft_exit(&cub);
-    }
-    //|  Linux  |
-    //mlx_get_screen_size(cub.mlx_ptr, &cub.screen_width, &cub.screen_height);
-	//cub.width = (cub.width > cub.screen_width) ? cub.screen_width : cub.width;
-	//cub.height = (cub.height > cub.screen_height) ? cub.screen_height : cub.height;
-	if (!(cub.win_ptr = mlx_new_window(cub.mlx_ptr, cub.width, cub.height, "Mon titre")))
-	{
-        ft_error(&cub, "mlx_new_window\n");
-		ft_exit(&cub);
-	}
+    printf("|%s|\n",cub.north);
     cub.player = find_player(cub.map, cub.player);
     ft_mlx(&cub);
 	return (0);
