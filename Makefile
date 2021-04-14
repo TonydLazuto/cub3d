@@ -33,8 +33,7 @@ SRCS		=	cub3d.c \
 				init.c \
 				key_draw.c \
 				errors.c \
-				save.c \
-				sprites.c
+				save.c
 
 OBJS		= $(SRCS:.c=.o)
 

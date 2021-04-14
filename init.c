@@ -10,10 +10,10 @@ void	ft_init_more(t_cub *cub)
 	cub->texture[4].img = NULL;
 	cub->win_ptr = NULL;
 	cub->map = NULL;
-	cub->s.order = NULL;
-	cub->s.dist = NULL;
-	cub->s.zbuffer = NULL;
-	cub->sxy = NULL;
+	//cub->s.order = NULL;
+	//cub->s.dist = NULL;
+	//cub->s.zbuffer = NULL;
+	//cub->sxy = NULL;
 }
 
 void	ft_init_dir(t_cub *cub)

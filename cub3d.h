@@ -9,14 +9,20 @@
 # include "./gnl/get_next_line.h"
 # include "./mlx/mlx.h"
 # include "./libft/libft.h"
-# define PI             3.1415926535
-# define SIZE_SQUARE    40.0
+/*
 # define ROTATE_LEFT	123
 # define ROTATE_RIGHT	124
 # define FORWARD_W_Z	13
 # define BACK_S_S		1
 # define RIGHT_D_D		2
 # define LEFT_A_Q		0
+*/
+# define ROTATE_LEFT	65361
+# define ROTATE_RIGHT	65363
+# define FORWARD_W_Z	119
+# define BACK_S_S		115
+# define RIGHT_D_D		100
+# define LEFT_A_Q		97
 
 typedef struct s_img
 {
@@ -36,7 +42,7 @@ typedef struct		s_sprxy
 	double			x;
 	double			y;
 }					t_sprxy;
-
+/*
 typedef struct		s_sprite
 {
 	int				nbspr;
@@ -56,7 +62,7 @@ typedef struct		s_sprite
 	int				spritewidth;
 	double			*zbuffer;
 }					t_sprite;
-
+*/
 typedef struct		s_texture
 {
 	int				texdir;
@@ -141,8 +147,8 @@ typedef struct s_cub
     t_ray       ray;
     t_point     *player;
     t_texture   t;
-    t_sprite    s;
-    t_sprxy     *sxy;
+//    t_sprite    s;
+//    t_sprxy     *sxy;
 }				t_cub;
 
 void	ft_free(char **s);

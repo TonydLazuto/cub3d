@@ -4,6 +4,7 @@ void	ft_error2(t_cub *cub)
 {
 	if (cub->map)
 		free(cub->map);
+    /*
 	if (cub->s.order)
 		free(cub->s.order);
 	if (cub->s.dist)
@@ -12,6 +13,7 @@ void	ft_error2(t_cub *cub)
 		free(cub->sxy);
 	if (cub->s.zbuffer)
 		free(cub->s.zbuffer);
+        */
 	ft_exit(cub);
 }
 
@@ -40,9 +42,9 @@ void	ft_error(t_cub *cub, char *str)
 	ft_error2(cub);
 }
 
-
 int		ft_exit(t_cub *cub)
 {
+    (void)cub;
 	if (cub->img.img)
 		mlx_destroy_image(cub->mlx_ptr, cub->img.img);
 	if (cub->texture[0].img)

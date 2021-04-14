@@ -50,6 +50,8 @@ void	ft_save(t_cub *cub)
 		y--;
 	}
 	system("chmod 777 image.bmp");
+    close(fd);
+    ft_exit(0);
 }
 
 int		ft_check_save(char *str)

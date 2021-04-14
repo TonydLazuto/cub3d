@@ -2,8 +2,8 @@
 
 void    ft_initialisation2(t_cub *cub)
 {
-    cub->ray.posX = (double)cub->player->x + 0.5;
-    cub->ray.posY = (double)cub->player->y + 0.5;
+    cub->ray.posX = (double)cub->player->y + 0.5;
+    cub->ray.posY = (double)cub->player->x + 0.5;
     cub->ray.dirX = 0;
     cub->ray.dirY = 0;
     cub->ray.rayDirX = 0;
@@ -52,7 +52,7 @@ void	ft_init_texture(t_cub *cub)
 						* cub->ray.rayDirX;
 	cub->t.wallx -= floor((cub->t.wallx));
 }
-
+/*
 void	ft_init_sprite2(t_cub *cub, int i, int j, int v)
 {
 	while (cub->map[i])
@@ -97,4 +97,4 @@ void	ft_init_sprite(t_cub *cub)
 	if (!(cub->s.dist = (double *)malloc(sizeof(double) * cub->s.nbspr)))
 		ft_error(cub, "Malloc s.dist*");
 	ft_init_sprite2(cub, 0, 0, 0);
-}
+}*/
