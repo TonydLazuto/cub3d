@@ -37,7 +37,7 @@ void	ft_save(t_cub *cub)
 	y = cub->height;
 	if ((fd = open("./image.bmp", O_CREAT | O_RDWR)) == -1)
 		ft_error(cub, "Impossible de creer .bmp\n");
-	ft_header(cub, fd);
+	//ft_header(cub, fd);
 	while (y >= 0)
 	{
 		x = 0;

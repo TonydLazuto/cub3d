@@ -1,5 +1,41 @@
 #include "cub3d.h"
 
+void	ft_init_more(t_cub *cub)
+{
+	cub->img.img = NULL;
+	cub->texture[0].img = NULL;
+	cub->texture[1].img = NULL;
+	cub->texture[2].img = NULL;
+	cub->texture[3].img = NULL;
+	cub->texture[4].img = NULL;
+	cub->win_ptr = NULL;
+	cub->map = NULL;
+	//cub->s.order = NULL;
+	//cub->s.dist = NULL;
+	//cub->s.zbuffer = NULL;
+	//cub->sxy = NULL;
+}
+
+void	ft_init_dir(t_cub *cub)
+{
+	if (cub->player->val == 'N')
+		cub->ray.dirX = -1;
+	else if (cub->player->val == 'S')
+		cub->ray.dirX = 1;
+	else if (cub->player->val == 'E')
+		cub->ray.dirY = 1;
+	else if (cub->player->val == 'W')
+		cub->ray.dirY = -1;
+	if (cub->player->val == 'N')
+		cub->ray.planeY = 0.66;
+	else if (cub->player->val == 'S')
+		cub->ray.planeY = -0.66;
+	else if (cub->player->val == 'E')
+		cub->ray.planeX = 0.66;
+	else if (cub->player->val == 'W')
+		cub->ray.planeX = -0.66;
+}
+
 void    ft_initialisation2(t_cub *cub)
 {
     cub->ray.posX = (double)cub->player->y + 0.5;
@@ -18,6 +54,22 @@ void    ft_initialisation2(t_cub *cub)
     return ;
 }
 
+void	ft_init_more3(t_cub *cub)
+{
+	if (cub->ray.rayDirY == 0)
+		cub->ray.deltaDistX = 0;
+	else if (cub->ray.rayDirX == 0)
+		cub->ray.deltaDistX = 1;
+	else
+		cub->ray.deltaDistX = fabs(1 / cub->ray.rayDirX);
+	if (cub->ray.rayDirX == 0)
+		cub->ray.deltaDistY = 0;
+	else if (cub->ray.rayDirY == 0)
+		cub->ray.deltaDistY = 1;
+	else
+		cub->ray.deltaDistY = fabs(1 / cub->ray.rayDirY);
+}
+
 void	ft_initialisation3(t_cub *cub)
 {
 	cub->ray.hit = 0;
@@ -30,71 +82,6 @@ void	ft_initialisation3(t_cub *cub)
 	cub->ray.mapX = (int)cub->ray.posX;
 	cub->ray.mapY = (int)cub->ray.posY;
 	cub->ray.moveSpeed = 0.1;
-	cub->ray.rotSpeed = 0.033 * 1.8;
+	cub->ray.rotSpeed = 0.033 * 3.5;
 	ft_init_more3(cub);
 }
-
-void	ft_init_texture(t_cub *cub)
-{
-	if (cub->ray.side == 0 && cub->ray.rayDirX < 0)
-		cub->t.texdir = 0;
-	if (cub->ray.side == 0 && cub->ray.rayDirX >= 0)
-		cub->t.texdir = 1;
-	if (cub->ray.side == 1 && cub->ray.rayDirY < 0)
-		cub->t.texdir = 2;
-	if (cub->ray.side == 1 && cub->ray.rayDirY >= 0)
-		cub->t.texdir = 3;
-	if (cub->ray.side == 0)
-		cub->t.wallx = cub->ray.posY + cub->ray.perpWallDist \
-						* cub->ray.rayDirY;
-	else
-		cub->t.wallx = cub->ray.posX + cub->ray.perpWallDist \
-						* cub->ray.rayDirX;
-	cub->t.wallx -= floor((cub->t.wallx));
-}
-/*
-void	ft_init_sprite2(t_cub *cub, int i, int j, int v)
-{
-	while (cub->map[i])
-	{
-		j = 0;
-		while (cub->map[i][j])
-		{
-			if (cub->map[i][j] == '2')
-			{
-				cub->sxy[v].x = (double)i + 0.5;
-				cub->sxy[v].y = (double)j + 0.5;
-				v++;
-			}
-            j++;
-		}
-        i++;
-	}
-}
-
-void	ft_init_sprite(t_cub *cub)
-{
-	int i;
-	int j;
-
-	i = 0;
-	cub->s.nbspr = 0;
-	while (cub->map[i])// a voir
-	{
-		j = 0;
-		while (cub->map[i][j]) // a voir
-		{
-			if (cub->map[i][j] == '2')
-				cub->s.nbspr += 1;
-            j++;
-		}
-        i++;
-	}
-	if (!(cub->sxy = (t_sprxy *)malloc(sizeof(t_sprxy) * cub->s.nbspr)))
-		ft_error(cub, "Malloc sxy*");
-	if (!(cub->s.order = (int *)malloc(sizeof(int) * cub->s.nbspr)))
-		ft_error(cub, "Malloc s.order*");
-	if (!(cub->s.dist = (double *)malloc(sizeof(double) * cub->s.nbspr)))
-		ft_error(cub, "Malloc s.dist*");
-	ft_init_sprite2(cub, 0, 0, 0);
-}*/

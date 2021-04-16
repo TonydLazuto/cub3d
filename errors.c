@@ -13,7 +13,7 @@ void	ft_error2(t_cub *cub)
 		free(cub->sxy);
 	if (cub->s.zbuffer)
 		free(cub->s.zbuffer);
-        */
+    */
 	ft_exit(cub);
 }
 

@@ -62,7 +62,6 @@ int		ft_raycasting(t_cub *cub)
 	ft_forward_back(cub);
 	ft_left_right(cub);
 	ft_rotate_right_left(cub);
-	ft_swap(cub);
 	return (0);
 }
 
@@ -83,9 +82,6 @@ int		ft_mlx(t_cub *cub)
 			bits_per_pixel, &cub->img.line_length, &cub->img.endian);
 	if (cub->save == 1)
 		ft_raycasting(cub);
-	cub->img.img2 = mlx_new_image(cub->mlx_ptr, cub->width, cub->height);
-	cub->img.addr2 = (int *)mlx_get_data_addr(cub->img.img2, &cub->
-			img.bits_per_pixel, &cub->img.line_length, &cub->img.endian);
 	mlx_hook(cub->win_ptr, 33, 1L << 17, ft_exit, cub);
 	mlx_hook(cub->win_ptr, 2, 1L << 0, ft_key_press, cub);
 	mlx_loop_hook(cub->mlx_ptr, ft_raycasting, cub);

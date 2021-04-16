@@ -69,15 +69,3 @@ void	ft_stepsidedist(t_cub *cub)
 	}
 	ft_incrementray(cub);
 }
-
-void	ft_swap(t_cub *cub)
-{
-	void *tmp;
-
-	tmp = cub->img.img;
-	cub->img.img = cub->img.img2;
-	cub->img.img2 = tmp;
-	tmp = cub->img.addr;
-	cub->img.addr = cub->img.addr2;
-	cub->img.addr2 = tmp;
-}
