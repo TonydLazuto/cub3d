@@ -34,11 +34,11 @@ void	ft_save(t_cub *cub)
 	int	x;
 	int	y;
 
-	y = cub->height;
+	y = 0;
 	if ((fd = open("./image.bmp", O_CREAT | O_RDWR)) == -1)
 		ft_error(cub, "Impossible de creer .bmp\n");
 	//ft_header(cub, fd);
-	while (y >= 0)
+	while (y < cub->height)
 	{
 		x = 0;
 		while (x < cub->width)
@@ -47,24 +47,9 @@ void	ft_save(t_cub *cub)
 				4);
 			x++;
 		}
-		y--;
+		y++;
 	}
-	system("chmod 777 image.bmp");
+	//system("chmod 777 image.bmp");
     close(fd);
     ft_exit(0);
-}
-
-int		ft_check_save(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	if (str[i - 1] == 'e' && str[i - 2] == 'v' && str[i - 3] == 'a' &&
-		str[i - 4] == 's' && str[i - 5] == '-' && str[i - 6] == '-'
-		&& ft_strlen(str) < 7)
-		return (1);
-	else
-		return (0);
 }

@@ -16,14 +16,7 @@
 # define BACK_S_S		1
 # define RIGHT_D_D		2
 # define LEFT_A_Q		0
-/*
-# define ROTATE_LEFT	65361
-# define ROTATE_RIGHT	65363
-# define FORWARD_W_Z	119
-# define BACK_S_S		115
-# define RIGHT_D_D		100
-# define LEFT_A_Q		97
-*/
+
 typedef struct s_img
 {
 	void		*img;
@@ -85,8 +78,8 @@ typedef struct s_ray
 	double		rayDirY;
 	double		planeX;
 	double		planeY;
-    double      time; //
-    double      oldTime; //
+    double      time; // tuto
+    double      oldTime; // tuto
     int         drawstart;
 	int         drawend;
     int         rotate_left;
@@ -188,9 +181,6 @@ void	ft_draw_texture(t_cub *cub, int x, int y);
 
 void	ft_initialisation3(t_cub *cub);
 void    ft_initialisation2(t_cub *cub);
-void	ft_init_more(t_cub *cub);
-void	ft_init_dir(t_cub *cub);
-void	ft_init_more3(t_cub *cub);
 void	ft_init_sprite(t_cub *cub);
 void	ft_init_texture(t_cub *cub);
 
@@ -212,7 +202,6 @@ void	ft_sprite(t_cub *cub);
 
 void	ft_header(t_cub *cub, int fd);
 void	ft_save(t_cub *cub);
-int		ft_check_save(char *str);
-void	ft_error(t_cub *cub, char *str);
+void	ft_error(t_cub *cub, const char *str);
 
 #endif

@@ -1,22 +1,16 @@
 #include "cub3d.h"
 
-void	ft_init_more(t_cub *cub)
+static void ft_init_mvt(t_cub *cub)
 {
-	cub->img.img = NULL;
-	cub->texture[0].img = NULL;
-	cub->texture[1].img = NULL;
-	cub->texture[2].img = NULL;
-	cub->texture[3].img = NULL;
-	cub->texture[4].img = NULL;
-	cub->win_ptr = NULL;
-	cub->map = NULL;
-	//cub->s.order = NULL;
-	//cub->s.dist = NULL;
-	//cub->s.zbuffer = NULL;
-	//cub->sxy = NULL;
+    cub->ray.forward = 0;
+    cub->ray.back = 0;
+    cub->ray.left = 0;
+    cub->ray.right = 0;
+    cub->ray.rotate_left = 0;
+    cub->ray.rotate_right = 0;
 }
 
-void	ft_init_dir(t_cub *cub)
+static void	ft_init_dir(t_cub *cub)
 {
 	if (cub->player->val == 'N')
 		cub->ray.dirX = -1;
@@ -34,6 +28,7 @@ void	ft_init_dir(t_cub *cub)
 		cub->ray.planeX = 0.66;
 	else if (cub->player->val == 'W')
 		cub->ray.planeX = -0.66;
+    ft_init_mvt(cub);
 }
 
 void    ft_initialisation2(t_cub *cub)
@@ -54,7 +49,7 @@ void    ft_initialisation2(t_cub *cub)
     return ;
 }
 
-void	ft_init_more3(t_cub *cub)
+static void	ft_init_deltaDist(t_cub *cub)
 {
 	if (cub->ray.rayDirY == 0)
 		cub->ray.deltaDistX = 0;
@@ -83,5 +78,5 @@ void	ft_initialisation3(t_cub *cub)
 	cub->ray.mapY = (int)cub->ray.posY;
 	cub->ray.moveSpeed = 0.1;
 	cub->ray.rotSpeed = 0.033 * 3.5;
-	ft_init_more3(cub);
+	ft_init_deltaDist(cub);
 }
