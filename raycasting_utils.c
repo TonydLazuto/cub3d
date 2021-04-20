@@ -15,7 +15,7 @@ void	ft_drawstartend(t_cub *cub)
 	if (cub->ray.drawstart < 0)
 		cub->ray.drawstart = 0;
 	cub->ray.drawend = cub->ray.lineheight / 2 + cub->height / 2;
-	if (cub->ray.drawend >= cub->height/* || cub->ray.drawend < 0*/) // A voir
+	if (cub->ray.drawend >= cub->height)
 		cub->ray.drawend = cub->height - 1;
 }
 

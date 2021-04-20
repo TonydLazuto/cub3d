@@ -44,25 +44,28 @@ void	ft_left_right(t_cub *cub)
 	}
 }
 
-/* REFACTO ROTATE */
-
-void	ft_rotate_left(t_cub *cub, double olddirx)
+void	ft_rotate_left(t_cub *cub, double olddirx, double oldplaneX)
 {
-	double oldplanex;
+    cub->ray.dirX = cub->ray.dirX * cos(cub->ray.rotSpeed / 2) -
+        cub->ray.dirY * sin(cub->ray.rotSpeed / 2);
+    cub->ray.dirY = olddirx * sin(cub->ray.rotSpeed / 2) +
+        cub->ray.dirY * cos(cub->ray.rotSpeed / 2);
+    cub->ray.planeX = cub->ray.planeX * cos(cub->ray.rotSpeed / 2) -
+        cub->ray.planeY * sin(cub->ray.rotSpeed / 2);
+    cub->ray.planeY = oldplaneX * sin(cub->ray.rotSpeed / 2) +
+        cub->ray.planeY * cos(cub->ray.rotSpeed / 2);
+}
 
-	if (cub->ray.rotate_left == 1)
-	{
-		olddirx = cub->ray.dirX;
-		oldplanex = cub->ray.planeX;
-		cub->ray.dirX = cub->ray.dirX * cos(cub->ray.rotSpeed / 2) -
-			cub->ray.dirY * sin(cub->ray.rotSpeed / 2);
-		cub->ray.dirY = olddirx * sin(cub->ray.rotSpeed / 2) + cub->
-			ray.dirY * cos(cub->ray.rotSpeed / 2);
-		cub->ray.planeX = cub->ray.planeX * cos(cub->ray.rotSpeed / 2) -
-			cub->ray.planeY * sin(cub->ray.rotSpeed / 2);
-		cub->ray.planeY = oldplanex * sin(cub->ray.rotSpeed / 2) +
-			cub->ray.planeY * cos(cub->ray.rotSpeed / 2);
-	}
+void	ft_rotate_right(t_cub *cub, double olddirx, double oldplaneX)
+{
+	cub->ray.dirX = cub->ray.dirX * cos(-cub->ray.rotSpeed / 2) -
+        cub->ray.dirY * sin(-cub->ray.rotSpeed / 2);
+    cub->ray.dirY = olddirx * sin(-cub->ray.rotSpeed / 2) +
+        cub->ray.dirY * cos(-cub->ray.rotSpeed / 2);
+    cub->ray.planeX = cub->ray.planeX * cos(-cub->ray.rotSpeed / 2)
+        - cub->ray.planeY * sin(-cub->ray.rotSpeed / 2);
+    cub->ray.planeY = oldplaneX * sin(-cub->ray.rotSpeed / 2) +
+        cub->ray.planeY * cos(-cub->ray.rotSpeed / 2);
 }
 
 void	ft_rotate_right_left(t_cub *cub)
@@ -70,18 +73,16 @@ void	ft_rotate_right_left(t_cub *cub)
 	double oldplaneX;
 	double olddirx;
 
-	oldplaneX = cub->ray.planeX;
-	olddirx = cub->ray.dirX;
 	if (cub->ray.rotate_right == 1)
 	{
-		cub->ray.dirX = cub->ray.dirX * cos(-cub->ray.rotSpeed / 2) -
-			cub->ray.dirY * sin(-cub->ray.rotSpeed / 2);
-		cub->ray.dirY = olddirx * sin(-cub->ray.rotSpeed / 2) +
-			cub->ray.dirY * cos(-cub->ray.rotSpeed / 2);
-		cub->ray.planeX = cub->ray.planeX * cos(-cub->ray.rotSpeed / 2)
-			- cub->ray.planeY * sin(-cub->ray.rotSpeed / 2);
-		cub->ray.planeY = oldplaneX * sin(-cub->ray.rotSpeed / 2) +
-			cub->ray.planeY * cos(-cub->ray.rotSpeed / 2);
+        oldplaneX = cub->ray.planeX;
+	    olddirx = cub->ray.dirX;
+        ft_rotate_right(cub, olddirx, oldplaneX);
 	}
-	ft_rotate_left(cub, olddirx);
+    if (cub->ray.rotate_left == 1)
+	{
+		olddirx = cub->ray.dirX;
+		oldplaneX = cub->ray.planeX;
+        ft_rotate_left(cub, olddirx, oldplaneX);
+	}
 }

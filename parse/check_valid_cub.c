@@ -33,13 +33,13 @@ static int	parse_file(const char *map_file, t_cub *cub)
 	fd = open(map_file, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putendl_fd("Error\nFile .cub -> (Maybe doesn't exists)", 1);
+		ft_error(cub, "File .cub -> (Maybe doesn't exists)");
 		return (-1);
 	}
 	file = file_to_string(fd);
 	if (!file)
 	{
-		ft_putendl_fd("Error\nWhile malloc the gnl in a string", 1);
+		ft_error(cub, "Error\nWhile malloc the gnl in a string");
 		close(fd);
 		return (-1);
 	}
@@ -49,7 +49,7 @@ static int	parse_file(const char *map_file, t_cub *cub)
 	return (0);
 }
 
-static int	cmp_ext(const char *av)
+static int	cmp_ext(t_cub *cub, const char *av)
 {
 	size_t	len;
 	char	*ext;
@@ -62,7 +62,7 @@ static int	cmp_ext(const char *av)
 	res_cmp = ft_strncmp(ext, ".cub", 4);
 	ft_free(&ext);
 	if (res_cmp)
-		ft_putendl_fd("Error\nFile extension.", 1);
+		ft_error(cub, "File extension.");
 	return (res_cmp);
 }
 
@@ -70,17 +70,19 @@ int	check_valid_cub(int ac, const char **av, t_cub *cub)
 {
 	if (ac == 2 || ac == 3)
 	{
-		if (cmp_ext(av[1]) || ((parse_file(av[1], cub)) == -1))
+		if (cmp_ext(cub, av[1]) || ((parse_file(av[1], cub)) == -1))
 			return (-1);
 		if (ac == 3)
 		{
 			if (ft_strncmp(av[2], "--save", 6) == 0)
 				cub->save = 1;
+            else
+                ft_error(cub, "Wrong third argument");
 		}
 	}
 	else
 	{
-		ft_putendl_fd("Error\nWrong number of arguments", 1);
+		ft_error(cub, "Wrong number of arguments");
 		return (-1);
 	}
 	return (0);

@@ -79,12 +79,10 @@ typedef struct s_ray
 	double		rayDirY;
 	double		planeX;
 	double		planeY;
-    double      time; // tuto
-    double      oldTime; // tuto
+    double      time;
+    double      oldTime;
     int         drawstart;
 	int         drawend;
-    int         rotate_left;
-    int         rotate_right;
     //which box of the map we're in
     int         mapX;
     int         mapY;
@@ -106,6 +104,8 @@ typedef struct s_ray
 	int         back;
 	int         left;
 	int         right;
+    int         rotate_left;
+    int         rotate_right;
     //frame
     double      moveSpeed;
 	double      rotSpeed;
@@ -159,16 +159,14 @@ void	pop_front_point(t_point **lst);
 void	clear_points(t_point **point);
 int		is_point_in_list(t_point *lstpoint, t_point *point);
 
-void	print_points(t_point *point);
-
 int		check_valid_cub(int ac, const char **av, t_cub *cub);
 int		split_file(char *file, t_cub *cub);
 int		parse_param(char *line, t_cub *cub);
 char	*get_resolution(char *line, size_t *j, t_cub *cub);
-char	*get_rgb(char *line, size_t *j, int nb);
-char	*get_path(char *line, size_t *j);
-int		parse_map(char **map);
-t_point	*spread_map(char **map, t_point *stack, t_point *visited);
+char	*get_rgb(char *line, size_t *j, int nb, t_cub *cub);
+char	*get_path(char *line, size_t *j, t_cub *cub);
+int		parse_map(t_cub* cub, char **map);
+t_point	*spread_map(t_cub *cub, char **map, t_point *stack, t_point *visited);
 t_point	*find_player(char **map, t_point *player);
 
 int		create_trgb(int t, int r, int g, int b);
@@ -189,7 +187,6 @@ void	ft_init_texture(t_cub *cub);
 void	ft_forward_back(t_cub *cub);
 void	ft_left_right(t_cub *cub);
 void	ft_rotate_right_left(t_cub *cub);
-void	ft_rotate_left(t_cub *cub, double olddirx);
 
 void	ft_get_texture_adress(t_cub *cub);
 void	ft_get_texture(t_cub *cub);

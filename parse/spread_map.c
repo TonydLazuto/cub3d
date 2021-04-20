@@ -3,17 +3,6 @@
     This is base one a flood filled algorithm
     "visited" is filled while "stack" is emptyied out
 */
-void        print_points(t_point *point)
-{
-    if (!point)
-        return ;
-    while (point)
-    {
-        printf("point->x = %d\npoint->y = %d\npoint->val = %c\n\n",
-            point->x, point->y, point->val);
-        point = point->next;
-    }
-}
 /*
     compass be like :
         812
@@ -113,7 +102,7 @@ static t_point      *handle_stack(char **map, t_point **visited, t_point *stack)
     return (stack);
 }
 
-t_point             *spread_map(char **map, t_point *stack, t_point *visited)
+t_point             *spread_map(t_cub *cub, char **map, t_point *stack, t_point *visited)
 {
     while (stack)
     {
@@ -122,13 +111,11 @@ t_point             *spread_map(char **map, t_point *stack, t_point *visited)
         {
             clear_points(&stack);
             clear_points(&visited);
-            ft_putendl_fd("Error\nA map point is not surrounding.", 1);
+            ft_error(cub , "A map point is not surrounding.");
             return (NULL);
         }
         pop_front_point(&stack);
     }
-    //printf("|-----Visited-----|\n");
-    //print_points(visited);
     clear_points(&stack);
     return (visited);
 }

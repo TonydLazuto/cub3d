@@ -51,7 +51,7 @@ t_point		*find_player(char **map, t_point *player)
 	return (nb_players == 1 ? player : NULL);
 }
 
-static t_point	*spread_all_points(char **map, t_point *visited)
+static t_point	*spread_all_points(t_cub *cub, char **map, t_point *visited)
 {
 	int		i;
 	int		j;
@@ -69,7 +69,7 @@ static t_point	*spread_all_points(char **map, t_point *visited)
 			if (!is_point_in_list(visited, stack2) &&
 				(map[j][i] == '0' || map[j][i] == '2'))
 			{
-				visited = spread_map(map, stack2, visited);
+				visited = spread_map(cub, map, stack2, visited);
 				if (!visited)
 					return (NULL);
 			}
@@ -80,7 +80,7 @@ static t_point	*spread_all_points(char **map, t_point *visited)
 	return (visited);
 }
 
-int	parse_map(char **map)
+int	parse_map(t_cub *cub, char **map)
 {
 	t_point	*player;
 	t_point	*visited;
@@ -89,19 +89,19 @@ int	parse_map(char **map)
 	visited = NULL;
 	if (check_map_chars(map) == -1)
 	{
-		ft_putendl_fd("Error\nUnexpected characters in total map.", 1);
+		ft_error(cub , "Unexpected characters in total map.");
 		return (-1);
 	}
 	player = find_player(map, player);
 	if (!player)
 	{
-		ft_putendl_fd("Error\nThe player may not exists or there is multiple players.", 1);
+		ft_error(cub , "The player may not exists or there is multiple players.");
 		return (-1);
 	}
-	visited = spread_map(map, player, visited);
+	visited = spread_map(cub, map, player, visited);
 	if (!visited)
 		return (-1);
-	visited = spread_all_points(map, visited);
+	visited = spread_all_points(cub, map, visited);
 	if (!visited)
 		return (-1);
 	clear_points(&visited);

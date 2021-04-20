@@ -16,13 +16,13 @@ char	*get_resolution(char *line, size_t *j, t_cub *cub)
 	*j = skip_space(line, *j);
 	if (line[*j] != '\0' && cub->width != 0)
 	{
-		ft_putendl_fd("Error\nResolution in .cub file.", 1);
+		ft_error(cub , "Resolution in .cub file.");
 		return (NULL);
 	}
 	return (resolution);
 }
 
-char	*get_rgb(char *line, size_t *j, int nb)
+char	*get_rgb(char *line, size_t *j, int nb, t_cub *cub)
 {
 	char			*rgb;
 	unsigned int	start;
@@ -38,7 +38,7 @@ char	*get_rgb(char *line, size_t *j, int nb)
 	*j = skip_space(line, *j);
 	if ((nb == 2 && line[*j] != '\0') || (nb < 2 && line[*j] != ','))
 	{
-		ft_putendl_fd("Error\nColor Floor or/and Ceiling in .cub file.", 1);
+		ft_error(cub , "Color Floor or/and Ceiling in .cub file.");
 		return (NULL);
 	}
 	if (line[*j] == ',' && nb < 2)
@@ -46,7 +46,7 @@ char	*get_rgb(char *line, size_t *j, int nb)
 	return (rgb);
 }
 
-char	*get_path(char *line, size_t *j)
+char	*get_path(char *line, size_t *j, t_cub *cub)
 {
 	char			*path;
 	unsigned int	start;
@@ -62,7 +62,7 @@ char	*get_path(char *line, size_t *j)
 	*j = skip_space(line, *j);
 	if (line[*j])
 	{
-		ft_putendl_fd("Error\nIncorrect Path Texture.", 1);
+		ft_error(cub , "Incorrect Path Texture.");
 		return (NULL);
 	}
 	return (path);
