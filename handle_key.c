@@ -14,6 +14,8 @@ int		ft_key_press(int keycode, t_cub *cub)
 		cub->ray.rotate_left = 1;
 	else if (keycode == ROTATE_RIGHT)
 		cub->ray.rotate_right = 1;
+    else if (keycode == ESCAPE_E)
+        ft_exit(cub);
 	return (1);
 }
 
@@ -32,4 +34,13 @@ int		ft_key_release(int keycode, t_cub *cub)
 	else if (keycode == ROTATE_RIGHT)
 		cub->ray.rotate_right = 0;
 	return (1);
+}
+
+int     ft_mouse_click(int button, int x, int y, t_cub *cub)
+{   
+    (void)x;
+    (void)y;
+    if (button == 1 && !cub->win_ptr)
+        ft_exit(cub);
+    return (1);       
 }

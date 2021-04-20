@@ -49,13 +49,13 @@ int		ft_raycasting(t_cub *cub)
 	cub->ray.x = 0;
 	while (cub->ray.x < cub->width)
 	{
-		ft_initialisation3(cub);
+		ft_init2(cub);
 		ft_stepsidedist(cub);
 		ft_color_column(cub);
-		//cub->s.zbuffer[cub->ray.x] = cub->ray.perpWallDist;
+		cub->s.zBuffer[cub->ray.x] = cub->ray.perpWallDist;
 		cub->ray.x++;
 	}
-	//ft_sprite(cub);
+    ft_sprite(cub);
 	if (cub->save == 1)
 		ft_save(cub);
 	mlx_put_image_to_window(cub->mlx_ptr, cub->win_ptr, cub->img.img, 0, 0);
@@ -67,7 +67,7 @@ int		ft_raycasting(t_cub *cub)
 
 int		ft_mlx(t_cub *cub)
 {
-    //ft_init_sprite(cub);
+    ft_init_sprite(cub);
     if (!(cub->mlx_ptr = mlx_init()))
         ft_error(cub, "mlx_init\n");
     //|  Linux  |
@@ -75,17 +75,18 @@ int		ft_mlx(t_cub *cub)
 	//cub.width = (cub.width > cub.screen_width) ? cub.screen_width : cub.width;
 	//cub.height = (cub.height > cub.screen_height) ? cub.screen_height : cub.height;
     cub->win_ptr = mlx_new_window(cub->mlx_ptr, cub->width, cub->height, "Cub3d");
-	ft_get_texture(cub);
+    ft_get_texture(cub);
 	cub->img.img = mlx_new_image(cub->mlx_ptr, cub->width, cub->height);
 	cub->img.addr = (int *)mlx_get_data_addr(cub->img.img, &cub->img.
 			bits_per_pixel, &cub->img.line_length, &cub->img.endian);
-    ft_initialisation2(cub);
-	if (cub->save == 1)
+    ft_init(cub);
+    if (cub->save == 1)
 		ft_raycasting(cub);
+    mlx_loop_hook(cub->mlx_ptr, ft_raycasting, cub);
     mlx_hook(cub->win_ptr, 33, 1L << 17, ft_exit, cub);
 	mlx_hook(cub->win_ptr, 2, 1L << 0, ft_key_press, cub);
 	mlx_hook(cub->win_ptr, 3, 1L << 1, ft_key_release, cub);
-	mlx_loop_hook(cub->mlx_ptr, ft_raycasting, cub);
+	mlx_hook(cub->win_ptr, 4, 1L << 2, ft_mouse_click, cub);
 	mlx_loop(cub->mlx_ptr);
 	return (0);
 }

@@ -31,6 +31,7 @@ SRCS		=	cub3d.c \
 				raycasting_move.c \
 				raycasting_utils.c \
 				sprite_init.c \
+				sprite.c \
 				draw_text.c \
 				handle_key.c \
 				errors.c \

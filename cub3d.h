@@ -16,6 +16,7 @@
 # define BACK_S_S		1
 # define RIGHT_D_D		2
 # define LEFT_A_Q		0
+# define ESCAPE_E       53
 
 typedef struct s_img
 {
@@ -35,35 +36,35 @@ typedef struct		s_sprxy
 	double			x;
 	double			y;
 }					t_sprxy;
-/*
+
 typedef struct		s_sprite
 {
-	int				nbspr;
+	int				numSprites;
 	int				*order;
 	double			*dist;
-	double			spritex;
-	double			spritey;
-	double			invdet;
-	double			transformx;
-	double			transformy;
-	int				spritescreenx;
-	int				spriteheight;
-	int				drawstartx;
-	int				drawstarty;
-	int				drawendy;
-	int				drawendx;
-	int				spritewidth;
-	double			*zbuffer;
+	double			spriteX;
+	double			spriteY;
+	double			invDet;
+	double			transformX;
+	double			transformY;
+	int				spritescreenX;
+	int				spriteHeight;
+	int				drawStartX;
+	int				drawStartY;
+	int				drawEndY;
+	int				drawEndX;
+	int				spriteWidth;
+	double			*zBuffer;
 }					t_sprite;
-*/
+
 typedef struct		s_texture
 {
-	int				texdir;
-	double			wallx;
-	int				texx;
-	int				texy;
+	int				texDir;
+	double			wallX;
+	int				texX;
+	int				texY;
 	double			step;
-	double			texpos;
+	double			texPos;
 }					t_texture;
 
 typedef struct s_ray
@@ -140,8 +141,8 @@ typedef struct s_cub
     t_ray       ray;
     t_point     *player;
     t_texture   t;
-//    t_sprite    s;
-//    t_sprxy     *sxy;
+    t_sprite    s;
+    t_sprxy     *sxy;
 }				t_cub;
 
 void	ft_free(char **s);
@@ -174,13 +175,14 @@ int		create_trgb(int t, int r, int g, int b);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
 int		ft_exit(t_cub *cub);
+int     ft_mouse_click(int button, int x, int y, t_cub *cub);
 int		ft_key_press(int keycode, t_cub *cub);
 int		ft_key_release(int keycode, t_cub *cub);
 int		ft_color_column(t_cub *cub);
 void	ft_draw_texture(t_cub *cub, int x, int y);
 
-void	ft_initialisation3(t_cub *cub);
-void    ft_initialisation2(t_cub *cub);
+void	ft_init2(t_cub *cub);
+void    ft_init(t_cub *cub);
 void	ft_init_sprite(t_cub *cub);
 void	ft_init_texture(t_cub *cub);
 
@@ -202,6 +204,6 @@ void	ft_sprite(t_cub *cub);
 
 void	ft_header(t_cub *cub, int fd);
 void	ft_save(t_cub *cub);
-void	ft_error(t_cub *cub, const char *str);
+void	ft_error(t_cub *cub, char *str);
 
 #endif

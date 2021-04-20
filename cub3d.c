@@ -21,10 +21,10 @@ void	init_cub(t_cub *cub)
 	cub->texture[3].img = NULL;
 	cub->texture[4].img = NULL;
     cub->img.img = NULL;
-	//cub->s.order = NULL;
-	//cub->s.dist = NULL;
-	//cub->s.zbuffer = NULL;
-	//cub->sxy = NULL;
+	cub->s.order = NULL;
+	cub->s.dist = NULL;
+	cub->s.zBuffer = NULL;
+	cub->sxy = NULL;
 }
 
 int     main(int ac, const char *av[])

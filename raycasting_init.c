@@ -31,18 +31,21 @@ static void	ft_init_dir(t_cub *cub)
     ft_init_mvt(cub);
 }
 
-void    ft_initialisation2(t_cub *cub)
+void    ft_init(t_cub *cub)
 {
     cub->ray.posX = (double)cub->player->y + 0.5;
     cub->ray.posY = (double)cub->player->x + 0.5;
+    cub->map[cub->player->y][cub->player->x] = '0';
+    if (!(cub->s.zBuffer = (double *)malloc(sizeof(double) * cub->width)))
+		exit(0);
     cub->ray.dirX = 0;
     cub->ray.dirY = 0;
     cub->ray.rayDirX = 0;
     cub->ray.rayDirY = 0;
     cub->ray.rotate_right = 0;
 	cub->ray.rotate_left = 0;
-    cub->ray.time = 0; // tuto
-    cub->ray.oldTime = 0; // tuto
+    cub->ray.time = 0;
+    cub->ray.oldTime = 0;
     cub->ray.planeX = 0; 
     cub->ray.planeY = 0;
     ft_init_dir(cub);
@@ -65,7 +68,7 @@ static void	ft_init_deltaDist(t_cub *cub)
 		cub->ray.deltaDistY = fabs(1 / cub->ray.rayDirY);
 }
 
-void	ft_initialisation3(t_cub *cub)
+void	ft_init2(t_cub *cub)
 {
 	cub->ray.hit = 0;
 	cub->ray.perpWallDist = 0;

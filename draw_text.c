@@ -3,20 +3,20 @@
 void	ft_init_texture(t_cub *cub)
 {
 	if (cub->ray.side == 0 && cub->ray.rayDirX < 0)
-		cub->t.texdir = 0;
+		cub->t.texDir = 0;
 	if (cub->ray.side == 0 && cub->ray.rayDirX >= 0)
-		cub->t.texdir = 1;
+		cub->t.texDir = 1;
 	if (cub->ray.side == 1 && cub->ray.rayDirY < 0)
-		cub->t.texdir = 2;
+		cub->t.texDir = 2;
 	if (cub->ray.side == 1 && cub->ray.rayDirY >= 0)
-		cub->t.texdir = 3;
+		cub->t.texDir = 3;
 	if (cub->ray.side == 0)
-		cub->t.wallx = cub->ray.posY + cub->ray.perpWallDist \
+		cub->t.wallX = cub->ray.posY + cub->ray.perpWallDist \
 						* cub->ray.rayDirY;
 	else
-		cub->t.wallx = cub->ray.posX + cub->ray.perpWallDist \
+		cub->t.wallX = cub->ray.posX + cub->ray.perpWallDist \
 						* cub->ray.rayDirX;
-	cub->t.wallx -= floor((cub->t.wallx));
+	cub->t.wallX -= floor((cub->t.wallX));
 }
 
 void	ft_draw_texture(t_cub *cub, int x, int y)
@@ -24,26 +24,26 @@ void	ft_draw_texture(t_cub *cub, int x, int y)
 	y = cub->ray.drawstart - 1;
 	ft_init_texture(cub);
 	cub->t.step = 1.0 * cub->texture[0].height / cub->ray.lineheight;
-	cub->t.texx = (int)(cub->t.wallx * (double)cub->texture
-			[cub->t.texdir].width);
+	cub->t.texX = (int)(cub->t.wallX * (double)cub->texture
+			[cub->t.texDir].width);
 	if (cub->ray.side == 0 && cub->ray.rayDirX > 0)
-		cub->t.texx = cub->texture[cub->t.texdir].width -
-			cub->t.texx - 1;
+		cub->t.texX = cub->texture[cub->t.texDir].width -
+			cub->t.texX - 1;
 	if (cub->ray.side == 1 && cub->ray.rayDirY < 0)
-		cub->t.texx = cub->texture[cub->t.texdir].width -
-			cub->t.texx - 1;
-	cub->t.texpos = (cub->ray.drawstart - cub->height / 2 +
+		cub->t.texX = cub->texture[cub->t.texDir].width -
+			cub->t.texX - 1;
+	cub->t.texPos = (cub->ray.drawstart - cub->height / 2 +
 			cub->ray.lineheight / 2) * cub->t.step;
 	while (++y <= cub->ray.drawend)
 	{
-		cub->t.texy = (int)cub->t.texpos &
-			(cub->texture[cub->t.texdir].height - 1);
-		cub->t.texpos += cub->t.step;
+		cub->t.texY = (int)cub->t.texPos &
+			(cub->texture[cub->t.texDir].height - 1);
+		cub->t.texPos += cub->t.step;
 		if (y < cub->height && x < cub->width)
 			cub->img.addr[y * cub->img.line_length / 4 + x] =
-				cub->texture[cub->t.texdir].addr[cub->t.texy *
-					cub->texture[cub->t.texdir].line_length /
-					4 + cub->t.texx];
+				cub->texture[cub->t.texDir].addr[cub->t.texY *
+					cub->texture[cub->t.texDir].line_length /
+					4 + cub->t.texX];
 	}
 }
 

@@ -35,9 +35,9 @@ void	ft_save(t_cub *cub)
 	int	y;
 
 	y = 0;
-	if ((fd = open("./image.bmp", O_CREAT | O_RDWR)) == -1)
-		ft_error(cub, "Impossible de creer .bmp\n");
-	//ft_header(cub, fd);
+	if ((fd = open("./map--save.bmp", O_CREAT | O_RDWR)) == -1)
+		ft_error(cub, "saving map.\n");
+	ft_header(cub, fd);
 	while (y < cub->height)
 	{
 		x = 0;
@@ -49,7 +49,7 @@ void	ft_save(t_cub *cub)
 		}
 		y++;
 	}
-	//system("chmod 777 image.bmp");
+	system("chmod 777 map--save.bmp");
     close(fd);
-    ft_exit(0);
+    ft_exit(cub);
 }

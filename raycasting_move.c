@@ -5,19 +5,19 @@ void	ft_forward_back(t_cub *cub)
 	if (cub->ray.forward == 1)
 	{
 		if (cub->map[(int)(cub->ray.posX + (cub->ray.dirX *
-                    cub->ray.moveSpeed * 2))][(int)cub->ray.posY] != '1')
+                    cub->ray.moveSpeed * 2))][(int)cub->ray.posY] == '0')
 			cub->ray.posX += cub->ray.dirX * cub->ray.moveSpeed;
 		if (cub->map[(int)(cub->ray.posX)][(int)(cub->ray.posY +
-					(cub->ray.dirY * cub->ray.moveSpeed * 2))] != '1')
+					(cub->ray.dirY * cub->ray.moveSpeed * 2))] == '0')
 			cub->ray.posY += cub->ray.dirY * cub->ray.moveSpeed;
 	}
 	if (cub->ray.back == 1)
 	{
 		if (cub->map[(int)(cub->ray.posX - (cub->ray.dirX *
-                    cub->ray.moveSpeed * 2))][(int)(cub->ray.posY)] != '1')
+                    cub->ray.moveSpeed * 2))][(int)(cub->ray.posY)] == '0')
 			cub->ray.posX -= cub->ray.dirX * cub->ray.moveSpeed;
 		if (cub->map[(int)(cub->ray.posX)][(int)(cub->ray.posY -
-					(cub->ray.dirY * cub->ray.moveSpeed * 2))] != '1')
+					(cub->ray.dirY * cub->ray.moveSpeed * 2))] == '0')
 			cub->ray.posY -= cub->ray.dirY * cub->ray.moveSpeed;
 	}
 }
@@ -27,19 +27,19 @@ void	ft_left_right(t_cub *cub)
 	if (cub->ray.right == 1)
 	{
 		if (cub->map[(int)(cub->ray.posX + cub->ray.dirY *
-					(cub->ray.moveSpeed * 2))][(int)cub->ray.posY] != '1')
+					(cub->ray.moveSpeed * 2))][(int)cub->ray.posY] == '0')
 			cub->ray.posX += cub->ray.dirY * cub->ray.moveSpeed;
 		if (cub->map[(int)cub->ray.posX][(int)(cub->ray.posY -
-					cub->ray.dirX * (cub->ray.moveSpeed * 2))] != '1')
+					cub->ray.dirX * (cub->ray.moveSpeed * 2))] == '0')
 			cub->ray.posY -= cub->ray.dirX * cub->ray.moveSpeed;
 	}
 	if (cub->ray.left == 1)
 	{
 		if (cub->map[(int)(cub->ray.posX - cub->ray.dirY *
-					(cub->ray.moveSpeed * 2))][(int)cub->ray.posY] != '1')
+					(cub->ray.moveSpeed * 2))][(int)cub->ray.posY] == '0')
 			cub->ray.posX -= cub->ray.dirY * cub->ray.moveSpeed;
 		if (cub->map[(int)cub->ray.posX][(int)(cub->ray.posY +
-					cub->ray.dirX * (cub->ray.moveSpeed * 2))] != '1')
+					cub->ray.dirX * (cub->ray.moveSpeed * 2))] == '0')
 			cub->ray.posY += cub->ray.dirX * cub->ray.moveSpeed;
 	}
 }
