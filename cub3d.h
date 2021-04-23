@@ -173,7 +173,6 @@ int		create_trgb(int t, int r, int g, int b);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 
 int		ft_exit(t_cub *cub);
-int     ft_mouse_click(int button, int x, int y, t_cub *cub);
 int		ft_key_press(int keycode, t_cub *cub);
 int		ft_key_release(int keycode, t_cub *cub);
 int		ft_color_column(t_cub *cub);
