@@ -15,7 +15,7 @@ int		ft_key_press(int keycode, t_cub *cub)
 	else if (keycode == ROTATE_RIGHT)
 		cub->ray.rotate_right = 1;
     else if (keycode == ESCAPE_E)
-        ft_exit(cub);
+		ft_exit(cub);
 	return (1);
 }
 

@@ -2,30 +2,34 @@
 
 NAME		= cub3D
 
-CC			= gcc
+CC			= clang
 
-CFLAGS		= -Wall -Wextra -Werror -O3 -g3 -fsanitize=address
+FLAGS		= -Wall -Wextra -Werror -g3 -fsanitize=address
 
 RM			= /bin/rm -f
 
-MLXLIB		= -lft -lm -Lmlx -lmlx -framework OpenGL -framework AppKit
+MLXFLAG		= -lft -Lmlx -lmlx -lm -lbsd -lXext -lX11
+
+INC			= cub3d.h
 
 LIB_DIR		= libft
 
 MLX_DIR		= mlx
 
+OBJ_DIR		= obj
+
 SRCS		=	cub3d.c \
-				./gnl/get_next_line.c \
-				./gnl/get_next_line_utils.c \
-				./utils/utils.c  \
-				./utils/lst_point.c \
-				./utils/lst_point2.c \
-				./parse/check_valid_cub.c \
-				./parse/parse.c \
-				./parse/parse_params.c \
-				./parse/parse_map.c \
-				./parse/get_params.c \
-				./parse/spread_map.c \
+				get_next_line.c \
+				get_next_line_utils.c \
+				utils.c  \
+				lst_point.c \
+				lst_point2.c \
+				check_valid_cub.c \
+				parse.c \
+				parse_params.c \
+				parse_map.c \
+				get_params.c \
+				spread_map.c \
 				raycasting_init.c \
 				raycasting.c \
 				raycasting_move.c \
@@ -37,22 +41,34 @@ SRCS		=	cub3d.c \
 				errors.c \
 				save.c
 
-OBJS		= $(SRCS:.c=.o)
+OBJS		= $(addprefix $(OBJ_DIR)/,$(SRCS:.c=.o))
 
-all: 		$(NAME)
+_YELLOW		= \e[38;5;184m
+_GREEN		= \e[38;5;46m
+_CLEAR		= \033[2K\c
 
-$(NAME): 	$(OBJS)
-			@make -C libft
-			@make -C mlx
-			$(CC) $(CFLAGS) $(MLXLIB) -L libft $(MLX_DIR)/libmlx.a $(LIB_DIR)/libft.a -o $(NAME) $(OBJS)
+all: 		init $(NAME)
 
-$(%.o):		$(%.c)
-			$(CC) -Ilibft -Imlx -c $< -o $@
+init:
+			@ $(shell mkdir -p $(OBJ_DIR))
+			@ make --silent -C $(LIB_DIR)
+			@ echo "\t$(_YELLOW)-->Minilibx loading..."
+			@ make --silent -C $(MLX_DIR)
+			@ echo "\t$(_GREEN)-->SUCCESS minilibx!"
+
+$(NAME): 		$(OBJS) $(INC)
+				@ echo "$(_YELLOW)--> (NAME)..."
+				$(CC) $(FLAGS) -o $(NAME) $(OBJS) -L $(LIB_DIR) -L $(MLX_DIR) $(MLXFLAG)
+
+$(OBJ_DIR)/%.o:	%.c
+				@ echo "$(_YELLOW)-->Cub3d compiling..."
+				$(CC) $(FLAGS) -c $< -o $@
+				@ echo "$(_CLEAR)"
 
 clean:
-			@make clean -C libft
-			@make clean -C mlx
-			$(RM) $(OBJS)
+			@ make clean -C libft
+			@ make clean -C mlx
+			rm -rf $(OBJ_DIR)
 
 fclean:		clean
 			$(RM) $(MLX_DIR)/libmlx.a

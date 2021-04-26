@@ -6,7 +6,7 @@
 # include <unistd.h>
 # include <X11/keysym.h>
 # include <X11/X.h>
-# include "./gnl/get_next_line.h"
+# include "get_next_line.h"
 # include "./mlx/mlx.h"
 # include "./libft/libft.h"
 
