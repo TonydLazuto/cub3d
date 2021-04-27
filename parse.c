@@ -1,21 +1,5 @@
 #include "cub3d.h"
-/*
---> delete the comparison inside parse_resolution() in parse_params.c
---> VOIR si mlx_get_screen_size() type "void" returns?
-static void		check_max_screen_size(t_cub *cub)
-{
-	int screen_width;
-	int screen_height;
 
-	screen_width = 0;
-	screen_height = 0;
-	mlx_get_screen_size(cub->mlx_ptr, &screen_width, &screen_height);
-	if (cub->width > screen_width)
-		cub->width = screen_width;
-	if (cub->height > screen_height)
-		cub->height = screen_height;
-}
-*/
 static int	fill_params(char **file_lines, t_cub *cub, size_t len_params)
 {
 	size_t	i;
@@ -27,10 +11,7 @@ static int	fill_params(char **file_lines, t_cub *cub, size_t len_params)
 		if (!file_lines[i])
 			return (-1);
 		if (file_lines[i][0] != '\0')
-		{
-			if (parse_param(file_lines[i], cub) == -1)
-				return (-1);
-		}
+			parse_param(file_lines[i], cub);
 		i++;
 	}
 	return (0);
