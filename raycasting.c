@@ -76,9 +76,9 @@ int		ft_mlx(t_cub *cub)
     if (!(cub->mlx_ptr = mlx_init()))
         ft_error(cub, "mlx_init\n");
     //|  Linux  |
-    //mlx_get_screen_size(cub.mlx_ptr, &cub.screen_width, &cub.screen_height);
-	//cub.width = (cub.width > cub.screen_width) ? cub.screen_width : cub.width;
-	//cub.height = (cub.height > cub.screen_height) ? cub.screen_height : cub.height;
+    mlx_get_screen_size(cub->mlx_ptr, &cub->screen_width, &cub->screen_height);
+	cub->width = (cub->width > cub->screen_width) ? cub->screen_width : cub->width;
+	cub->height = (cub->height > cub->screen_height) ? cub->screen_height : cub->height;
     cub->win_ptr = mlx_new_window(cub->mlx_ptr, cub->width, cub->height, "Cub3d");
     ft_get_texture(cub);
 	cub->img.img = mlx_new_image(cub->mlx_ptr, cub->width, cub->height);
