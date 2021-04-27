@@ -39,7 +39,7 @@ static int	parse_file(const char *map_file, t_cub *cub)
 	file = file_to_string(fd);
 	if (!file)
 	{
-		ft_error(cub, "Error\nWhile malloc the gnl in a string");
+		ft_error(cub, "While malloc the gnl in a string");
 		close(fd);
 		return (-1);
 	}

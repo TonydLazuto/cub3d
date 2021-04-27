@@ -48,6 +48,7 @@ static int          point_in_map(char **map, int x, int y)
     }
     return (0);
 }
+
 static t_point      *fill_stack(char **map, t_point *cur_point, t_point *stack, t_point **visited)
 {
     t_point     *point;
