@@ -46,26 +46,11 @@ char	*get_rgb(char *line, size_t *j, int nb, t_cub *cub)
 	return (rgb);
 }
 
-<<<<<<< Updated upstream
-char	*get_path(char *line, size_t *j, t_cub *cub, char *path)
-=======
 char	*get_path(char *line, t_cub *cub, char *path)
->>>>>>> Stashed changes
 {
 	unsigned int	start;
 	size_t			j;
 
-<<<<<<< Updated upstream
-	*j = skip_space(line, *j);
-	start = (unsigned int)*j;
-	while (line[*j] && line[*j] != ' ')
-		(*j)++;
-	path = ft_substr(line, start, (*j) - start);
-	if (!path)
-		ft_error(cub , "Malloc path.");
-	*j = skip_space(line, *j);
-	if (line[*j])
-=======
 	j = line[1] == ' ' ? 2 : 3;
 	j = skip_space(line, j);
 	start = (unsigned int)j;
@@ -76,7 +61,6 @@ char	*get_path(char *line, t_cub *cub, char *path)
 		ft_error(cub , "Malloc path.");
 	j = skip_space(line, j);
 	if (line[j])
->>>>>>> Stashed changes
 		ft_error(cub , "Incorrect Path Texture.");
 	return (path);
 }

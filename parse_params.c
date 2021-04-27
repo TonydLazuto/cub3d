@@ -1,10 +1,6 @@
 #include "cub3d.h"
 
-<<<<<<< Updated upstream
-static void      parse_resolution(char *line, t_cub *cub, size_t j)
-=======
 static void      parse_resolution(char *line, t_cub *cub)
->>>>>>> Stashed changes
 {
     char    *digit;
 	size_t	j;
@@ -27,11 +23,7 @@ static void      parse_resolution(char *line, t_cub *cub)
     ft_free(&digit);
 }
 
-<<<<<<< Updated upstream
-static void      parse_color(char *line, t_cub *cub, size_t j)
-=======
 static void      parse_color(char *line, t_cub *cub)
->>>>>>> Stashed changes
 {
     char    *digit;
     int     rgb[3];
@@ -46,38 +38,17 @@ static void      parse_color(char *line, t_cub *cub)
         digit = get_rgb(line, &j, nb, cub);
         rgb[nb] = ft_atoi(digit);
         if (rgb[nb] < 0 || rgb[nb] > 255)
-<<<<<<< Updated upstream
-            ft_error(cub , "Range Color Rgb -> Floor or/and Ceiling is incorrect.");
-=======
 		{
 			ft_free(&digit);
             ft_error(cub , "Range Color Rgb -> Floor or/and Ceiling is incorrect.");
 		}
     	ft_free(&digit);
->>>>>>> Stashed changes
         nb++;
     }
     if (line[0] == 'F')
         cub->floor = create_trgb(0,rgb[0],rgb[1],rgb[2]);
     else
         cub->ceiling = create_trgb(0,rgb[0],rgb[1],rgb[2]);
-<<<<<<< Updated upstream
-    ft_free(&digit);
-}
-
-static void      parse_path(char *line, t_cub *cub, size_t j)
-{
-    if (line[0] == 'N' && line[1] == 'O')
-        cub->north = get_path(line, &j, cub, cub->north);
-    else if (line[0] == 'S' && line[1] == 'O')
-        cub->south = get_path(line, &j, cub, cub->south);
-    else if (line[0] == 'W' && line[1] == 'E')
-        cub->west = get_path(line, &j, cub, cub->west);
-    else if (line[0] == 'E' && line[1] == 'A')
-        cub->east = get_path(line, &j, cub, cub->east);
-    else if (line[0] == 'S' && line[1] == ' ')
-        cub->sprite = get_path(line, &j, cub, cub->sprite);
-=======
 }
 
 static void      parse_path(char *line, t_cub *cub)
@@ -92,21 +63,11 @@ static void      parse_path(char *line, t_cub *cub)
         cub->east = get_path(line, cub, cub->east);
     else if (line[0] == 'S' && line[1] == ' ')
         cub->sprite = get_path(line, cub, cub->sprite);
->>>>>>> Stashed changes
 }
 
 void     parse_param(char *line, t_cub *cub)
 {
     if (line[0] == 'R' && line[1] == ' ')
-<<<<<<< Updated upstream
-        parse_resolution(line, cub, j);
-    else if ((line[0] == 'F' || line[0] == 'C') && line[1] == ' ')
-       parse_color(line, cub, j);
-    else if (((((line[0] == 'N' && line[1] == 'O') || (line[0] == 'S' && line[1] == 'O')
-                || (line[0] == 'W' && line[1] == 'E') || (line[0] == 'E' && line[1] == 'A'))
-                && line[2] == ' ')) || (line[0] == 'S' && line[1] == ' '))
-        parse_path(line, cub, j);
-=======
         parse_resolution(line, cub);
     else if ((line[0] == 'F' || line[0] == 'C') && line[1] == ' ')
        parse_color(line, cub);
@@ -114,7 +75,6 @@ void     parse_param(char *line, t_cub *cub)
                 || (line[0] == 'W' && line[1] == 'E') || (line[0] == 'E' && line[1] == 'A'))
                 && line[2] == ' ')) || (line[0] == 'S' && line[1] == ' '))
         parse_path(line, cub);
->>>>>>> Stashed changes
     else
         ft_error(cub , "Unconventionnal map parameter.");
 }

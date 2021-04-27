@@ -164,11 +164,7 @@ int		split_file(char *file, t_cub *cub);
 void	parse_param(char *line, t_cub *cub);
 char	*get_resolution(char *line, size_t *j, t_cub *cub);
 char	*get_rgb(char *line, size_t *j, int nb, t_cub *cub);
-<<<<<<< Updated upstream
-char	*get_path(char *line, size_t *j, t_cub *cub, char *path);
-=======
 char	*get_path(char *line, t_cub *cub, char *path);
->>>>>>> Stashed changes
 int		parse_map(t_cub* cub, char **map);
 t_point	*spread_map(t_cub *cub, char **map, t_point *stack, t_point *visited);
 t_point	*find_player(char **map, t_point *player);
