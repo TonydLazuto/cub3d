@@ -61,11 +61,11 @@ static int	fill_map(char **file_lines, t_cub *cub, size_t len_params)
 	return (0);
 }
 
-static int		check_nb_params(t_cub *cub, char** line, size_t len_params)
+static void		check_nb_params(t_cub *cub, char** line, size_t len_params)
 {
-	int nb_params;
-	size_t i;
-	size_t j;
+	int		nb_params;
+	size_t	i;
+	size_t	j;
 
 	nb_params = 8;
 	i = 0;
@@ -84,11 +84,7 @@ static int		check_nb_params(t_cub *cub, char** line, size_t len_params)
 		i++;
 	}
 	if (nb_params != 0)
-	{
 		ft_error(cub , "Number map paramaters.");
-		return (-1);
-	}
-	return (0);
 }
 
 int	split_file(char *file, t_cub *cub)
@@ -108,8 +104,7 @@ int	split_file(char *file, t_cub *cub)
 			break ;
 		len_params++;
 	}
-	if (check_nb_params(cub, file_lines, len_params) == -1)
-		return (-1);
+	check_nb_params(cub, file_lines, len_params);
 	if (fill_map(file_lines, cub, len_params) == -1)
 		return (-1);
 	if (fill_params(file_lines, cub, len_params) == -1)

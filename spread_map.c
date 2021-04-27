@@ -113,7 +113,6 @@ t_point             *spread_map(t_cub *cub, char **map, t_point *stack, t_point 
             clear_points(&stack);
             clear_points(&visited);
             ft_error(cub , "A map point is not surrounding.");
-            return (NULL);
         }
         pop_front_point(&stack);
     }

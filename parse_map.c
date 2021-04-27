@@ -88,16 +88,10 @@ int	parse_map(t_cub *cub, char **map)
 	player = NULL;
 	visited = NULL;
 	if (check_map_chars(map) == -1)
-	{
 		ft_error(cub , "Unexpected characters in total map.");
-		return (-1);
-	}
 	player = find_player(map, player);
 	if (!player)
-	{
 		ft_error(cub , "The player may not exists or there is multiple players.");
-		return (-1);
-	}
 	visited = spread_map(cub, map, player, visited);
 	if (!visited)
 		return (-1);

@@ -12,12 +12,12 @@ char	*get_resolution(char *line, size_t *j, t_cub *cub)
 		(*j)++;
 	resolution = ft_substr(line, start, (*j) - start);
 	if (!resolution)
-		return (NULL);
+		ft_error(cub , "Malloc resolution.");
 	*j = skip_space(line, *j);
 	if (line[*j] != '\0' && cub->width != 0)
 	{
+		ft_free(&resolution);
 		ft_error(cub , "Resolution in .cub file.");
-		return (NULL);
 	}
 	return (resolution);
 }
@@ -34,36 +34,31 @@ char	*get_rgb(char *line, size_t *j, int nb, t_cub *cub)
 		(*j)++;
 	rgb = ft_substr(line, start, (*j) - start);
 	if (!rgb)
-		return (NULL);
+		ft_error(cub , "Malloc rgb.");
 	*j = skip_space(line, *j);
 	if ((nb == 2 && line[*j] != '\0') || (nb < 2 && line[*j] != ','))
 	{
+		ft_free(&rgb);
 		ft_error(cub , "Color Floor or/and Ceiling in .cub file.");
-		return (NULL);
 	}
 	if (line[*j] == ',' && nb < 2)
 		(*j)++;
 	return (rgb);
 }
 
-char	*get_path(char *line, size_t *j, t_cub *cub)
+char	*get_path(char *line, size_t *j, t_cub *cub, char *path)
 {
-	char			*path;
 	unsigned int	start;
 
-	path = NULL;
 	*j = skip_space(line, *j);
 	start = (unsigned int)*j;
 	while (line[*j] && line[*j] != ' ')
 		(*j)++;
 	path = ft_substr(line, start, (*j) - start);
 	if (!path)
-		return (NULL);
+		ft_error(cub , "Malloc path.");
 	*j = skip_space(line, *j);
 	if (line[*j])
-	{
 		ft_error(cub , "Incorrect Path Texture.");
-		return (NULL);
-	}
 	return (path);
 }

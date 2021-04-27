@@ -57,6 +57,9 @@ int		ft_exit(t_cub *cub)
 		mlx_destroy_image(cub->mlx_ptr, cub->img.img);
 	if (cub->win_ptr)
 		mlx_destroy_window(cub->mlx_ptr, cub->win_ptr);
+	if (cub->mlx_ptr)
+		mlx_destroy_display(cub->mlx_ptr);
+	free(cub->mlx_ptr);
 	exit(0);
 }
 

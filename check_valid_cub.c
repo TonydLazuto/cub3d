@@ -32,18 +32,11 @@ static int	parse_file(const char *map_file, t_cub *cub)
 	file = NULL;
 	fd = open(map_file, O_RDONLY);
 	if (fd == -1)
-	{
 		ft_error(cub, "File .cub -> (Maybe doesn't exists)");
-		return (-1);
-	}
 	file = file_to_string(fd);
-	if (!file)
-	{
-		ft_error(cub, "While malloc the gnl in a string");
-		close(fd);
-		return (-1);
-	}
 	close(fd);
+	if (!file)
+		ft_error(cub, "While malloc the gnl in a string");
 	if (split_file(file, cub) == -1)
 		return (-1);
 	return (0);
@@ -81,9 +74,6 @@ int	check_valid_cub(int ac, const char **av, t_cub *cub)
 		}
 	}
 	else
-	{
 		ft_error(cub, "Wrong number of arguments");
-		return (-1);
-	}
 	return (0);
 }
