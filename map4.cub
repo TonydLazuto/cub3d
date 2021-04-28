@@ -1,16 +1,11 @@
          R 1000 680   
-
-      SO  ./path_to_the_south_texture   
-
         F 31,133    ,0222      
      
-
-    WE ./path_to_the_west_texture  
-   
-EA ./path_to_the_east_texture      
-
-    NO       ./path_to_the_north_texture
-S             ./path_to_the_sprite_texture
+SO txt1.xpm
+NO txt2.xpm
+EA txt3.xpm
+WE txt4.xpm
+S covid.xpm
 
 
    C 225,  30,0 
