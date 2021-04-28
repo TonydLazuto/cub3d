@@ -51,28 +51,24 @@ static int          point_in_map(char **map, int x, int y)
 
 static t_point      *fill_stack(char **map, t_point *cur_point, t_point *stack, t_point **visited)
 {
-    t_point     *point;
-
     cur_point->val = map[cur_point->y][cur_point->x];
-    if (!(point = new_point(cur_point->x, cur_point->y, cur_point->val)))
+    if (!is_in_charset(cur_point->val, "012NSWE"))
         return (NULL);
-    if (!is_in_charset(point->val, "012NSWE"))
-        return (NULL);
-    if (point->val != '1')
+    if (cur_point->val != '1')
     {
-        if (point->x == stack->x && point->y == stack->y)
+        if (cur_point->x == stack->x && cur_point->y == stack->y)
         {
-            if (!is_point_in_list(*visited, point))
-                push_back_point(visited, point);
+            if (!is_point_in_list(*visited, cur_point))
+                push_back_point(visited, cur_point);
         }
         else
         {
-            if (!is_point_in_list(stack, point) && !is_point_in_list(*visited, point))
-                push_back_point(&stack, point);
+            if (!is_point_in_list(stack, cur_point) && !is_point_in_list(*visited, cur_point))
+                push_back_point(&stack, cur_point);
         }
     }
-    else if (!is_point_in_list(*visited, point))
-        push_back_point(visited, point);
+    else if (!is_point_in_list(*visited, cur_point))
+        push_back_point(visited, cur_point);	
     return (stack);
 }
 
@@ -98,8 +94,6 @@ static t_point      *handle_stack(char **map, t_point **visited, t_point *stack)
             compass++;
         }
     }
-    free(cur_point);
-    cur_point = NULL;
     return (stack);
 }
 

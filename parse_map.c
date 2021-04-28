@@ -51,6 +51,19 @@ t_point		*find_player(char **map, t_point *player)
 	return (nb_players == 1 ? player : NULL);
 }
 
+static t_point	*spread_one(t_cub *cub, char **map, t_point *stack2, t_point *visited)
+{
+	if ((stack2->val == '0' || stack2->val ==2)
+			&&!is_point_in_list(visited, stack2))
+		visited = spread_map(cub, map, stack2, visited);
+	else
+	{
+		free(stack2);
+		stack2 = NULL;
+	}
+	return (visited);
+}
+
 static t_point	*spread_all_points(t_cub *cub, char **map, t_point *visited)
 {
 	int		i;
@@ -63,16 +76,9 @@ static t_point	*spread_all_points(t_cub *cub, char **map, t_point *visited)
 		i = 0;
 		while (map[j][i])
 		{
-			stack2 = new_point(i, j, map[j][i]);
-			if (!stack2)
-				return (NULL);
-			if (!is_point_in_list(visited, stack2) &&
-				(map[j][i] == '0' || map[j][i] == '2'))
-			{
-				visited = spread_map(cub, map, stack2, visited);
-				if (!visited)
-					return (NULL);
-			}
+			if (!(stack2 = new_point(i, j, map[j][i])))
+				ft_error(cub, "Malloc stack2 --> spread_all_points()");
+			visited = spread_one(cub, map, stack2, visited);
 			i++;
 		}
 		j++;
