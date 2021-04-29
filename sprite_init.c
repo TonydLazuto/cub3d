@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprite_init.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tonyd <aderose73@gmail.com>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/29 16:39:36 by tonyd             #+#    #+#             */
+/*   Updated: 2021/04/29 16:39:37 by tonyd            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	ft_init_sprite2(t_cub *cub, int i, int j, int v)
@@ -13,9 +25,9 @@ void	ft_init_sprite2(t_cub *cub, int i, int j, int v)
 				cub->sxy[v].y = (double)j + 0.5;
 				v++;
 			}
-            j++;
+			j++;
 		}
-        i++;
+		i++;
 	}
 }
 
@@ -33,9 +45,9 @@ void	ft_init_sprite(t_cub *cub)
 		{
 			if (cub->map[i][j] == '2')
 				cub->s.numSprites += 1;
-            j++;
+			j++;
 		}
-        i++;
+		i++;
 	}
 	if (!(cub->sxy = (t_sprxy *)malloc(sizeof(t_sprxy) * cub->s.numSprites)))
 		ft_error(cub, "Malloc sxy*");

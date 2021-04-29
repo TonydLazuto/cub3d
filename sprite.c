@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sprite.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tonyd <aderose73@gmail.com>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/29 16:39:30 by tonyd             #+#    #+#             */
+/*   Updated: 2021/04/29 16:39:31 by tonyd            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	ft_sort_sprites2(t_cub *cub)
@@ -11,7 +23,7 @@ void	ft_sort_sprites2(t_cub *cub)
 		cub->s.dist[i] = ((cub->ray.posX - cub->sxy[i].x) *
 				(cub->ray.posX - cub->sxy[i].x) + (cub->ray.posY -
 					cub->sxy[i].y) * (cub->ray.posY - cub->sxy[i].y));
-        i++;
+		i++;
 	}
 }
 
@@ -37,9 +49,9 @@ void	ft_sort_sprites(t_cub *cub)
 				cub->s.order[j] = cub->s.order[j + 1];
 				cub->s.order[j + 1] = (int)tmp;
 			}
-            j++;
+			j++;
 		}
-        i++;
+		i++;
 	}
 }
 
@@ -117,6 +129,6 @@ void	ft_sprite(t_cub *cub)
 			}
 			stripe++;
 		}
-        i++;
+		i++;
 	}
 }

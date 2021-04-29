@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   errors.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tonyd <aderose73@gmail.com>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/29 16:36:40 by tonyd             #+#    #+#             */
+/*   Updated: 2021/04/29 16:36:42 by tonyd            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	ft_freemore(t_cub *cub)
@@ -8,10 +20,10 @@ void	ft_freemore(t_cub *cub)
 	if (cub->map)
 	{
 		while (cub->map[i])
-        {
+		{
 			free(cub->map[i]);
-            i++;
-        }
+			i++;
+		}
 	}
 	if (cub->map)
 		free(cub->map);
@@ -43,7 +55,7 @@ int		ft_exit(t_cub *cub)
 {
 	ft_freetext(cub);
 	ft_freemore(cub);
-    if (cub->texture[0].img)
+	if (cub->texture[0].img)
 		mlx_destroy_image(cub->mlx_ptr, cub->texture[0].img);
 	if (cub->texture[1].img)
 		mlx_destroy_image(cub->mlx_ptr, cub->texture[1].img);
@@ -66,8 +78,8 @@ int		ft_exit(t_cub *cub)
 void	ft_error(t_cub *cub, char *str)
 {
 	//write(1, "Error\n", 6);
-    ft_putendl_fd("Error", 1);
-    ft_putendl_fd(str, 1);
+	ft_putendl_fd("Error", 1);
+	ft_putendl_fd(str, 1);
 	//write(1, str, ft_strlen(str));
 	ft_exit(cub);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lst_point2.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tonyd <aderose73@gmail.com>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/29 16:37:37 by tonyd             #+#    #+#             */
+/*   Updated: 2021/04/29 16:37:38 by tonyd            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 t_point		*last_point(t_point *point)
@@ -39,15 +51,15 @@ int			is_point_in_list(t_point *lstpoint, t_point *point)
 
 void        print_points(t_point *point)
 {
-    static int i = 1;
-    if (!point)
-        return ;
-    //printf("|%d|\n",i);
-    i++;
-    while (point)
-    {
-        printf("point->x = %d\npoint->y = %d\npoint->val = %c\n\n",
-            point->x, point->y, point->val);
-        point = point->next;
-    }
+	static int i = 1;
+	if (!point)
+		return ;
+	//printf("|%d|\n",i);
+	i++;
+	while (point)
+	{
+		printf("point->x = %d\npoint->y = %d\npoint->val = %c\n\n",
+			point->x, point->y, point->val);
+		point = point->next;
+	}
 }

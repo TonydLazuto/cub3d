@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   handle_key.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tonyd <aderose73@gmail.com>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/29 16:37:24 by tonyd             #+#    #+#             */
+/*   Updated: 2021/04/29 16:37:25 by tonyd            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int		ft_key_press(int keycode, t_cub *cub)
@@ -14,7 +26,7 @@ int		ft_key_press(int keycode, t_cub *cub)
 		cub->ray.rotate_left = 1;
 	else if (keycode == ROTATE_RIGHT)
 		cub->ray.rotate_right = 1;
-    else if (keycode == ESCAPE_E)
+	else if (keycode == ESCAPE_E)
 		ft_exit(cub);
 	return (1);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tonyd <aderose73@gmail.com>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/29 16:39:42 by tonyd             #+#    #+#             */
+/*   Updated: 2021/04/29 16:39:44 by tonyd            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int     	create_trgb(int t, int r, int g, int b)
@@ -14,20 +26,20 @@ int			skip_space(char *line, unsigned int i)
 
 char		*trim_line(char *line)
 {
-    char			*line_clean;
+	char			*line_clean;
 	unsigned int	i;
 	size_t			k;
 
 	i = 0;
-    line_clean = NULL;
-    i = skip_space(line, 0);
+	line_clean = NULL;
+	i = skip_space(line, 0);
 	k = ft_strlen(line) - 1;
 	while (k > 0 && line[k] == ' ')
 		k--;
 	if (!(line_clean = ft_substr(line, i, k + 1 - (size_t)i)))
 		return (NULL);
 	ft_free(&line);
-    return (line_clean);
+	return (line_clean);
 }
 
 char		*strjoinfree(char *s1, char *s2)

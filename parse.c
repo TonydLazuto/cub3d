@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tonyd <aderose73@gmail.com>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/29 16:37:45 by tonyd             #+#    #+#             */
+/*   Updated: 2021/04/29 16:37:47 by tonyd            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static int	fill_params(char **file_lines, t_cub *cub, size_t len_params)
@@ -54,13 +66,13 @@ static void		check_nb_params(t_cub *cub, char** line, size_t len_params)
 	{
 		j = skip_space(line[i], 0);
 		if ((line[i][j] == 'R' && line[i][j + 1] == ' ')
-            || (line[i][j] == 'S' && line[i][j + 1] == ' ')
+			|| (line[i][j] == 'S' && line[i][j + 1] == ' ')
 			|| (line[i][j] == 'F' && line[i][j + 1] == ' ')
-            || (line[i][j] == 'C' && line[i][j + 1] == ' ')
+			|| (line[i][j] == 'C' && line[i][j + 1] == ' ')
 			|| (line[i][j] == 'N' && line[i][j + 1] == 'O')
-            || (line[i][j] == 'S' && line[i][j + 1] == 'O')
+			|| (line[i][j] == 'S' && line[i][j + 1] == 'O')
 			|| (line[i][j] == 'W' && line[i][j + 1] == 'E')
-            || (line[i][j] == 'E' && line[i][j + 1] == 'A'))
+			|| (line[i][j] == 'E' && line[i][j + 1] == 'A'))
 			nb_params--;
 		i++;
 	}

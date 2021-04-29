@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tonyd <aderose73@gmail.com>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/29 16:36:18 by tonyd             #+#    #+#             */
+/*   Updated: 2021/04/29 16:36:21 by tonyd            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 # include <stdlib.h>
@@ -25,10 +37,10 @@ typedef struct s_img
 	int			bits_per_pixel;
 	int			line_length;
 	int			endian;
-    int         width;
+	int         width;
 	int         height;
-    void        *img2;
-    int		*addr2;
+	void        *img2;
+	int		*addr2;
 }				t_img;
 
 typedef struct		s_sprxy
@@ -69,45 +81,45 @@ typedef struct		s_texture
 
 typedef struct s_ray
 {
-    double      posX;
-    double      posY;
-    double      cameraX;
-    int         x;
-    double      dirX;
-    double      dirY;
+	double      posX;
+	double      posY;
+	double      cameraX;
+	int         x;
+	double      dirX;
+	double      dirY;
 	double		rayDirX;
 	double		rayDirY;
 	double		planeX;
 	double		planeY;
-    double      time;
-    double      oldTime;
-    int         drawstart;
+	double      time;
+	double      oldTime;
+	int         drawstart;
 	int         drawend;
-    //which box of the map we're in
-    int         mapX;
-    int         mapY;
-    //length of ray from current position to next x or y-side
-    double      sideDistX;
-    double      sideDistY;
-    int         lineheight;
-    //length of ray from one x or y-side to next x or y-side
-    double      deltaDistX;
-    double      deltaDistY;
-    double      perpWallDist;
-    //what direction to step in x or y-direction (either +1 or -1)
-    int         stepX;
-    int         stepY;
-    int         hit; //was there a wall hit?
-    int         side; //0 = NS(x-side) or 1 = EW(y-side) wall
-    //movement
-    int         forward;
+	//which box of the map we're in
+	int         mapX;
+	int         mapY;
+	//length of ray from current position to next x or y-side
+	double      sideDistX;
+	double      sideDistY;
+	int         lineheight;
+	//length of ray from one x or y-side to next x or y-side
+	double      deltaDistX;
+	double      deltaDistY;
+	double      perpWallDist;
+	//what direction to step in x or y-direction (either +1 or -1)
+	int         stepX;
+	int         stepY;
+	int         hit; //was there a wall hit?
+	int         side; //0 = NS(x-side) or 1 = EW(y-side) wall
+	//movement
+	int         forward;
 	int         back;
 	int         left;
 	int         right;
-    int         rotate_left;
-    int         rotate_right;
-    //frame
-    double      moveSpeed;
+	int         rotate_left;
+	int         rotate_right;
+	//frame
+	double      moveSpeed;
 	double      rotSpeed;
 }				t_ray;
 
@@ -123,7 +135,7 @@ typedef struct s_cub
 {
 	int			width;
 	int			height;
-    char		*north;
+	char		*north;
 	char		*south;
 	char		*west;
 	char		*east;
@@ -132,17 +144,17 @@ typedef struct s_cub
 	int			ceiling;
 	void		*mlx_ptr;
 	void		*win_ptr;
-    int         screen_width;
-    int         screen_height;
+	int         screen_width;
+	int         screen_height;
 	char		**map;
-    int         save;
+	int         save;
 	t_img		img;
 	t_img		texture[5];
-    t_ray       ray;
-    t_point     *player;
-    t_texture   t;
-    t_sprite    s;
-    t_sprxy     *sxy;
+	t_ray       ray;
+	t_point     *player;
+	t_texture   t;
+	t_sprite    s;
+	t_sprxy     *sxy;
 }				t_cub;
 
 void	ft_free(char **s);

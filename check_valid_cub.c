@@ -70,8 +70,8 @@ int	check_valid_cub(int ac, const char **av, t_cub *cub)
 		{
 			if (ft_strncmp(av[2], "--save", 6) == 0)
 				cub->save = 1;
-            else
-                ft_error(cub, "Wrong third argument");
+			else
+				ft_error(cub, "Wrong third argument");
 		}
 	}
 	else

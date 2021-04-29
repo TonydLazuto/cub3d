@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   raycasting_init.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tonyd <aderose73@gmail.com>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/04/29 16:38:24 by tonyd             #+#    #+#             */
+/*   Updated: 2021/04/29 16:38:25 by tonyd            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 static void ft_init_mvt(t_cub *cub)
 {
-    cub->ray.forward = 0;
-    cub->ray.back = 0;
-    cub->ray.left = 0;
-    cub->ray.right = 0;
-    cub->ray.rotate_left = 0;
-    cub->ray.rotate_right = 0;
+	cub->ray.forward = 0;
+	cub->ray.back = 0;
+	cub->ray.left = 0;
+	cub->ray.right = 0;
+	cub->ray.rotate_left = 0;
+	cub->ray.rotate_right = 0;
 }
 
 static void	ft_init_dir(t_cub *cub)
@@ -28,28 +40,28 @@ static void	ft_init_dir(t_cub *cub)
 		cub->ray.planeX = 0.66;
 	else if (cub->player->val == 'W')
 		cub->ray.planeX = -0.66;
-    ft_init_mvt(cub);
+	ft_init_mvt(cub);
 }
 
 void    ft_init(t_cub *cub)
 {
-    cub->ray.posX = (double)cub->player->y + 0.5;
-    cub->ray.posY = (double)cub->player->x + 0.5;
-    cub->map[cub->player->y][cub->player->x] = '0';
-    if (!(cub->s.zBuffer = (double *)malloc(sizeof(double) * cub->width)))
+	cub->ray.posX = (double)cub->player->y + 0.5;
+	cub->ray.posY = (double)cub->player->x + 0.5;
+	cub->map[cub->player->y][cub->player->x] = '0';
+	if (!(cub->s.zBuffer = (double *)malloc(sizeof(double) * cub->width)))
 		exit(0);
-    cub->ray.dirX = 0;
-    cub->ray.dirY = 0;
-    cub->ray.rayDirX = 0;
-    cub->ray.rayDirY = 0;
-    cub->ray.rotate_right = 0;
+	cub->ray.dirX = 0;
+	cub->ray.dirY = 0;
+	cub->ray.rayDirX = 0;
+	cub->ray.rayDirY = 0;
+	cub->ray.rotate_right = 0;
 	cub->ray.rotate_left = 0;
-    cub->ray.time = 0;
-    cub->ray.oldTime = 0;
-    cub->ray.planeX = 0; 
-    cub->ray.planeY = 0;
-    ft_init_dir(cub);
-    return ;
+	cub->ray.time = 0;
+	cub->ray.oldTime = 0;
+	cub->ray.planeX = 0; 
+	cub->ray.planeY = 0;
+	ft_init_dir(cub);
+	return ;
 }
 
 static void	ft_init_deltaDist(t_cub *cub)
