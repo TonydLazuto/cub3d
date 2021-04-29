@@ -17,12 +17,12 @@ void	ft_sort_sprites2(t_cub *cub)
 	int i;
 
 	i = 0;
-	while (i < cub->s.numSprites)
+	while (i < cub->s.num_sprites)
 	{
 		cub->s.order[i] = i;
-		cub->s.dist[i] = ((cub->ray.posX - cub->sxy[i].x) *
-				(cub->ray.posX - cub->sxy[i].x) + (cub->ray.posY -
-					cub->sxy[i].y) * (cub->ray.posY - cub->sxy[i].y));
+		cub->s.dist[i] = ((cub->ray.posx - cub->sxy[i].x) *
+				(cub->ray.posx - cub->sxy[i].x) + (cub->ray.posy -
+					cub->sxy[i].y) * (cub->ray.posy - cub->sxy[i].y));
 		i++;
 	}
 }
@@ -35,10 +35,10 @@ void	ft_sort_sprites(t_cub *cub)
 
 	ft_sort_sprites2(cub);
 	i = 0;
-	while (i < cub->s.numSprites)
+	while (i < cub->s.num_sprites)
 	{
 		j = 0;
-		while (j < cub->s.numSprites - 1)
+		while (j < cub->s.num_sprites - 1)
 		{
 			if (cub->s.dist[j] < cub->s.dist[j + 1])
 			{
@@ -57,47 +57,47 @@ void	ft_sort_sprites(t_cub *cub)
 
 void	ft_calculs(t_cub *cub, int i)
 {
-	cub->s.spriteX = cub->sxy[cub->s.order[i]].x - cub->ray.posX;
-	cub->s.spriteY = cub->sxy[cub->s.order[i]].y - cub->ray.posY;
-	cub->s.invDet = 1.0 / (cub->ray.planeX * cub->ray.dirY -
-			cub->ray.dirX * cub->ray.planeY);
-	cub->s.transformX = cub->s.invDet * (cub->ray.dirY *
-			cub->s.spriteX - cub->ray.dirX * cub->s.spriteY);
-	cub->s.transformY = cub->s.invDet * (-cub->ray.planeY *
-			cub->s.spriteX + cub->ray.planeX * cub->s.spriteY);
-	cub->s.spritescreenX = (int)((cub->width / 2) * (1 + cub->s.transformX
-				/ cub->s.transformY));
-	cub->s.spriteHeight = abs((int)(cub->height / (cub->s.transformY)));
-	cub->s.drawStartY = -cub->s.spriteHeight / 2 + cub->height / 2;
-	if (cub->s.drawStartY < 0)
-		cub->s.drawStartY = 0;
-	cub->s.drawEndY = cub->s.spriteHeight / 2 + cub->height / 2;
-	if (cub->s.drawEndY >= cub->height)
-		cub->s.drawEndY = cub->height;
-	cub->s.spriteWidth = abs((int)(cub->height / (cub->s.transformY)));
-	cub->s.drawStartX = -cub->s.spriteWidth / 2 + cub->s.spritescreenX;
-	if (cub->s.drawStartX < 0)
-		cub->s.drawStartX = 0;
-	cub->s.drawEndX = cub->s.spriteWidth / 2 + cub->s.spritescreenX;
-	if (cub->s.drawEndX >= cub->width)
-		cub->s.drawEndX = cub->width;
+	cub->s.spritex = cub->sxy[cub->s.order[i]].x - cub->ray.posx;
+	cub->s.spritey = cub->sxy[cub->s.order[i]].y - cub->ray.posy;
+	cub->s.inv_det = 1.0 / (cub->ray.planex * cub->ray.diry -
+			cub->ray.dirx * cub->ray.planey);
+	cub->s.transformx = cub->s.inv_det * (cub->ray.diry *
+			cub->s.spritex - cub->ray.dirx * cub->s.spritey);
+	cub->s.transformy = cub->s.inv_det * (-cub->ray.planey *
+			cub->s.spritex + cub->ray.planex * cub->s.spritey);
+	cub->s.spritescreenx = (int)((cub->width / 2) * (1 + cub->s.transformx
+				/ cub->s.transformy));
+	cub->s.spriteheight = abs((int)(cub->height / (cub->s.transformy)));
+	cub->s.draw_starty = -cub->s.spriteheight / 2 + cub->height / 2;
+	if (cub->s.draw_starty < 0)
+		cub->s.draw_starty = 0;
+	cub->s.draw_endy = cub->s.spriteheight / 2 + cub->height / 2;
+	if (cub->s.draw_endy >= cub->height)
+		cub->s.draw_endy = cub->height;
+	cub->s.spritewidth = abs((int)(cub->height / (cub->s.transformy)));
+	cub->s.draw_startx = -cub->s.spritewidth / 2 + cub->s.spritescreenx;
+	if (cub->s.draw_startx < 0)
+		cub->s.draw_startx = 0;
+	cub->s.draw_endx = cub->s.spritewidth / 2 + cub->s.spritescreenx;
+	if (cub->s.draw_endx >= cub->width)
+		cub->s.draw_endx = cub->width;
 }
 
-void	ft_sprite2(t_cub *cub, int y, int texX, int stripe)
+void	ft_sprite2(t_cub *cub, int y, int texx, int stripe)
 {
 	int		d;
-	int		texY;
+	int		texy;
 
-	while (y < cub->s.drawEndY)
+	while (y < cub->s.draw_endy)
 	{
-		d = (y) * 256 - cub->height * 128 + cub->s.spriteHeight * 128;
-		texY = ((d * cub->texture[4].height) / cub->s.spriteHeight) / 256;
-		if (cub->texture[4].addr[texY * cub->texture[4].line_length / 4 +
-				texX] != -16777216)
+		d = (y) * 256 - cub->height * 128 + cub->s.spriteheight * 128;
+		texy = ((d * cub->texture[4].height) / cub->s.spriteheight) / 256;
+		if (cub->texture[4].addr[texy * cub->texture[4].line_length / 4 +
+				texx] != -16777216)
 		{
 			cub->img.addr[y * cub->img.line_length / 4 + stripe] =
-				cub->texture[4].addr[texY * cub->texture[4].line_length /
-				4 + texX];
+				cub->texture[4].addr[texy * cub->texture[4].line_length /
+				4 + texx];
 		}
 		y++;
 	}
@@ -108,24 +108,23 @@ void	ft_sprite(t_cub *cub)
 	int i;
 	int y;
 	int stripe;
-	int texX;
+	int texx;
 
 	i = 0;
 	ft_sort_sprites(cub);
-	while (i < cub->s.numSprites)
+	while (i < cub->s.num_sprites)
 	{
 		ft_calculs(cub, i);
-		stripe = cub->s.drawStartX;
-		while (stripe < cub->s.drawEndX)
+		stripe = cub->s.draw_startx;
+		while (stripe < cub->s.draw_endx)
 		{
-			texX = (int)(256 * (stripe - (-cub->s.spriteWidth / 2 +
-							cub->s.spritescreenX)) * cub->texture[4].width
-					/ cub->s.spriteWidth) / 256;
-			if (cub->s.transformY > 0 && stripe >= 0 && stripe < cub->width
-					&& cub->s.transformY < cub->s.zBuffer[stripe])
+			texx = (int)(256 * (stripe - (-cub->s.spritewidth / 2 + cub->s.spritescreenx))
+                    * cub->texture[4].width / cub->s.spritewidth) / 256;
+			if (cub->s.transformy > 0 && stripe >= 0 && stripe < cub->width
+					&& cub->s.transformy < cub->s.z_buffer[stripe])
 			{
-				y = cub->s.drawStartY;
-				ft_sprite2(cub, y, texX, stripe);
+				y = cub->s.draw_starty;
+				ft_sprite2(cub, y, texx, stripe);
 			}
 			stripe++;
 		}

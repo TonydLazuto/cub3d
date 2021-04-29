@@ -64,7 +64,7 @@ int		ft_raycasting(t_cub *cub)
 		ft_init2(cub);
 		ft_stepsidedist(cub);
 		ft_color_column(cub);
-		cub->s.zBuffer[cub->ray.x] = cub->ray.perpWallDist;
+		cub->s.z_buffer[cub->ray.x] = cub->ray.perpwalldist;
 		cub->ray.x++;
 	}
 	ft_sprite(cub);
@@ -100,7 +100,6 @@ int		ft_mlx(t_cub *cub)
 	mlx_loop_hook(cub->mlx_ptr, ft_raycasting, cub);
 	mlx_hook(cub->win_ptr, 33, 1L << 17, ft_exit, cub);
 	mlx_hook(cub->win_ptr, 17, 1L << 17, ft_exit, cub);
-	mlx_hook(cub->win_ptr, 9, 1L << 21, ft_resize, cub);
 	mlx_hook(cub->win_ptr, 2, 1L << 0, ft_key_press, cub);
 	mlx_hook(cub->win_ptr, 3, 1L << 1, ft_key_release, cub);
 	mlx_loop(cub->mlx_ptr);

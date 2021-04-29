@@ -15,14 +15,14 @@
 void	ft_drawstartend(t_cub *cub)
 {
 	if (cub->ray.side == 0)
-		cub->ray.perpWallDist = ((double)cub->ray.mapX - \
-				cub->ray.posX + (1 - (double)cub->ray.
-				stepX) / 2) / cub->ray.rayDirX;
+		cub->ray.perpwalldist = ((double)cub->ray.mapx - \
+				cub->ray.posx + (1 - (double)cub->ray.
+				stepx) / 2) / cub->ray.raydirx;
 	else
-		cub->ray.perpWallDist = ((double)cub->ray.mapY - \
-				cub->ray.posY + (1 - (double)cub->ray.
-				stepY) / 2) / cub->ray.rayDirY;
-	cub->ray.lineheight = (int)(cub->height / cub->ray.perpWallDist);
+		cub->ray.perpwalldist = ((double)cub->ray.mapy - \
+				cub->ray.posy + (1 - (double)cub->ray.
+				stepy) / 2) / cub->ray.raydiry;
+	cub->ray.lineheight = (int)(cub->height / cub->ray.perpwalldist);
 	cub->ray.drawstart = -cub->ray.lineheight / 2 + cub->height / 2;
 	if (cub->ray.drawstart < 0)
 		cub->ray.drawstart = 0;
@@ -35,19 +35,19 @@ void	ft_incrementray(t_cub *cub)
 {
 	while (cub->ray.hit == 0)
 	{
-		if (cub->ray.sideDistX < cub->ray.sideDistY)
+		if (cub->ray.sidedistx < cub->ray.sidedisty)
 		{
-			cub->ray.sideDistX += cub->ray.deltaDistX;
-			cub->ray.mapX += cub->ray.stepX;
+			cub->ray.sidedistx += cub->ray.deltadistx;
+			cub->ray.mapx += cub->ray.stepx;
 			cub->ray.side = 0;
 		}
 		else
 		{
-			cub->ray.sideDistY += cub->ray.deltaDistY;
-			cub->ray.mapY += cub->ray.stepY;
+			cub->ray.sidedisty += cub->ray.deltadisty;
+			cub->ray.mapy += cub->ray.stepy;
 			cub->ray.side = 1;
 		}
-		if (cub->map[cub->ray.mapX][cub->ray.mapY] == '1')
+		if (cub->map[cub->ray.mapx][cub->ray.mapy] == '1')
 			cub->ray.hit = 1;
 	}
 	ft_drawstartend(cub);
@@ -55,29 +55,29 @@ void	ft_incrementray(t_cub *cub)
 
 void	ft_stepsidedist(t_cub *cub)
 {
-	if (cub->ray.rayDirX < 0)
+	if (cub->ray.raydirx < 0)
 	{
-		cub->ray.stepX = -1;
-		cub->ray.sideDistX = (cub->ray.posX - cub->ray.mapX) \
-							* cub->ray.deltaDistX;
+		cub->ray.stepx = -1;
+		cub->ray.sidedistx = (cub->ray.posx - cub->ray.mapx) \
+							* cub->ray.deltadistx;
 	}
 	else
 	{
-		cub->ray.stepX = 1;
-		cub->ray.sideDistX = (cub->ray.mapX + 1.0 - cub->ray.posX) \
-							* cub->ray.deltaDistX;
+		cub->ray.stepx = 1;
+		cub->ray.sidedistx = (cub->ray.mapx + 1.0 - cub->ray.posx) \
+							* cub->ray.deltadistx;
 	}
-	if (cub->ray.rayDirY < 0)
+	if (cub->ray.raydiry < 0)
 	{
-		cub->ray.stepY = -1;
-		cub->ray.sideDistY = (cub->ray.posY - cub->ray.mapY) \
-							* cub->ray.deltaDistY;
+		cub->ray.stepy = -1;
+		cub->ray.sidedisty = (cub->ray.posy - cub->ray.mapy) \
+							* cub->ray.deltadisty;
 	}
 	else
 	{
-		cub->ray.stepY = 1;
-		cub->ray.sideDistY = (cub->ray.mapY + 1.0 - cub->ray.posY) \
-							* cub->ray.deltaDistY;
+		cub->ray.stepy = 1;
+		cub->ray.sidedisty = (cub->ray.mapy + 1.0 - cub->ray.posy) \
+							* cub->ray.deltadisty;
 	}
 	ft_incrementray(cub);
 }

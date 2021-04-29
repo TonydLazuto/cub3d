@@ -33,8 +33,8 @@ void	ft_freemore(t_cub *cub)
 		free(cub->s.dist);
 	if (cub->sxy)
 		free(cub->sxy);
-	if (cub->s.zBuffer)
-		free(cub->s.zBuffer);
+	if (cub->s.z_buffer)
+		free(cub->s.z_buffer);
 }
 
 void	ft_freetext(t_cub *cub)

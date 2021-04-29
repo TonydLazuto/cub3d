@@ -13,15 +13,15 @@
 #include "cub3d.h"
 
 /*
- * This is based on the flood filled algorithm
- * "visited" is filled while "stack" is emptyied
- */
+** This is based on the flood filled algorithm
+** "visited" is filled while "stack" is emptyied
+**/
 
 /*
-	compass be like :
-		812
-		7N3
-		654
+** compass be like :
+**      812
+**		7N3
+**		654
 */
 
 static void		get_neighbor(t_point *neighbor, size_t compass)

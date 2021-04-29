@@ -45,14 +45,12 @@ t_point			*find_player(char **map, t_point *player)
 		i = 0;
 		while (map[j][i])
 		{
-			if (map[j][i] == 'N' || map[j][i] == 'S'
-				|| map[j][i] == 'E' || map[j][i] == 'W')
+			if (map[j][i] == 'N' || map[j][i] == 'S' || map[j][i] == 'E' || map[j][i] == 'W')
 			{
 				nb_players++;
 				if (is_empty_lst(player))
 				{
-					player = new_point(i, j, map[j][i]);
-					if (!player)
+					if (!(player = new_point(i, j, map[j][i])))
 						return (NULL);
 				}
 			}

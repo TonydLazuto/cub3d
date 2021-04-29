@@ -35,7 +35,7 @@ void	init_cub(t_cub *cub)
 	cub->img.img = NULL;
 	cub->s.order = NULL;
 	cub->s.dist = NULL;
-	cub->s.zBuffer = NULL;
+	cub->s.z_buffer = NULL;
 	cub->sxy = NULL;
 }
 

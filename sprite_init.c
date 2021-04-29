@@ -37,23 +37,23 @@ void	ft_init_sprite(t_cub *cub)
 	int j;
 
 	i = 0;
-	cub->s.numSprites = 0;
+	cub->s.num_sprites = 0;
 	while (cub->map[i])
 	{
 		j = 0;
 		while (cub->map[i][j])
 		{
 			if (cub->map[i][j] == '2')
-				cub->s.numSprites += 1;
+				cub->s.num_sprites += 1;
 			j++;
 		}
 		i++;
 	}
-	if (!(cub->sxy = (t_sprxy *)malloc(sizeof(t_sprxy) * cub->s.numSprites)))
+	if (!(cub->sxy = (t_sprxy *)malloc(sizeof(t_sprxy) * cub->s.num_sprites)))
 		ft_error(cub, "Malloc sxy*");
-	if (!(cub->s.order = (int *)malloc(sizeof(int) * cub->s.numSprites)))
+	if (!(cub->s.order = (int *)malloc(sizeof(int) * cub->s.num_sprites)))
 		ft_error(cub, "Malloc s.order*");
-	if (!(cub->s.dist = (double *)malloc(sizeof(double) * cub->s.numSprites)))
+	if (!(cub->s.dist = (double *)malloc(sizeof(double) * cub->s.num_sprites)))
 		ft_error(cub, "Malloc s.dist*");
 	ft_init_sprite2(cub, 0, 0, 0);
 }

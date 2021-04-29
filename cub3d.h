@@ -51,64 +51,64 @@ typedef struct		s_sprxy
 
 typedef struct		s_sprite
 {
-	int				numSprites;
+	int				num_sprites;
 	int				*order;
 	double			*dist;
-	double			spriteX;
-	double			spriteY;
-	double			invDet;
-	double			transformX;
-	double			transformY;
-	int				spritescreenX;
-	int				spriteHeight;
-	int				drawStartX;
-	int				drawStartY;
-	int				drawEndY;
-	int				drawEndX;
-	int				spriteWidth;
-	double			*zBuffer;
+	double			spritex;
+	double			spritey;
+	double			inv_det;
+	double			transformx;
+	double			transformy;
+	int				spritescreenx;
+    int				spritewidth;
+	int				spriteheight;
+	int				draw_startx;
+	int				draw_starty;
+	int				draw_endy;
+	int				draw_endx;
+	double			*z_buffer;
 }					t_sprite;
 
 typedef struct		s_texture
 {
-	int				texDir;
-	double			wallX;
-	int				texX;
-	int				texY;
+	int				tex_dir;
+	double			wallx;
+	int				texx;
+	int				texy;
 	double			step;
-	double			texPos;
+	double			tex_pos;
 }					t_texture;
 
 typedef struct	s_ray
 {
-	double		posX;
-	double		posY;
-	double		cameraX;
+	double		posx;
+	double		posy;
+	double		camerax;
 	int			x;
-	double		dirX;
-	double		dirY;
-	double		rayDirX;
-	double		rayDirY;
-	double		planeX;
-	double		planeY;
+	double		dirx;
+	double		diry;
+	double		raydirx;
+	double		raydiry;
+	double		planex;
+	double		planey;
 	double		time;
-	double		oldTime;
+	double		oldtime;
 	int			drawstart;
 	int			drawend;
 	//which box of the map we're in
-	int			mapX;
-	int			mapY;
+	int			mapx;
+	int			mapy;
 	//length of ray from current position to next x or y-side
-	double		sideDistX;
-	double		sideDistY;
+	double		sidedistx;
+	double		sidedisty;
 	int			lineheight;
 	//length of ray from one x or y-side to next x or y-side
-	double		deltaDistX;
-	double		deltaDistY;
-	double		perpWallDist;
+	double		deltadistx;
+	double		deltadisty;
+	double		perpwalldist;
 	//what direction to step in x or y-direction (either +1 or -1)
-	int			stepX;
-	int			stepY;
+	int			stepx;
+	int			stepy;
 	int			hit; //was there a wall hit?
 	int			side; //0 = NS(x-side) or 1 = EW(y-side) wall
 	//movement
@@ -119,8 +119,8 @@ typedef struct	s_ray
 	int			rotate_left;
 	int			rotate_right;
 	//frame
-	double		moveSpeed;
-	double		rotSpeed;
+	double		move_speed;
+	double		rot_speed;
 }				t_ray;
 
 typedef struct		s_point
