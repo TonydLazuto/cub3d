@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static int	fill_params(char **file_lines, t_cub *cub, size_t len_params)
+static int		fill_params(char **file_lines, t_cub *cub, size_t len_params)
 {
 	size_t	i;
 
@@ -29,7 +29,7 @@ static int	fill_params(char **file_lines, t_cub *cub, size_t len_params)
 	return (0);
 }
 
-static int	fill_map(char **file_lines, t_cub *cub, size_t len_params)
+static int		fill_map(char **file_lines, t_cub *cub, size_t len_params)
 {
 	size_t	len_map;
 	size_t	i;
@@ -54,7 +54,7 @@ static int	fill_map(char **file_lines, t_cub *cub, size_t len_params)
 	return (0);
 }
 
-static void		check_nb_params(t_cub *cub, char** line, size_t len_params)
+static void		check_nb_params(t_cub *cub, char **line, size_t len_params)
 {
 	int		nb_params;
 	size_t	i;
@@ -77,10 +77,10 @@ static void		check_nb_params(t_cub *cub, char** line, size_t len_params)
 		i++;
 	}
 	if (nb_params != 0)
-		ft_error(cub , "Number map paramaters.");
+		ft_error(cub, "Number map paramaters.");
 }
 
-int	split_file(char *file, t_cub *cub)
+int				split_file(char *file, t_cub *cub)
 {
 	size_t	j;
 	size_t	len_params;

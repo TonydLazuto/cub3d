@@ -12,9 +12,9 @@
 
 #include "cub3d.h"
 
-static void      parse_resolution(char *line, t_cub *cub)
+static void		parse_resolution(char *line, t_cub *cub)
 {
-    char    *digit;
+    char	*digit;
 	size_t	j;
 
 	j = 2;
@@ -35,11 +35,11 @@ static void      parse_resolution(char *line, t_cub *cub)
     ft_free(&digit);
 }
 
-static void      parse_color(char *line, t_cub *cub)
+static void		parse_color(char *line, t_cub *cub)
 {
-    char    *digit;
-    int     rgb[3];
-    int     nb;
+    char	*digit;
+    int		rgb[3];
+    int		nb;
 	size_t	j;
 
 	j = 2;
@@ -52,7 +52,8 @@ static void      parse_color(char *line, t_cub *cub)
         if (rgb[nb] < 0 || rgb[nb] > 255)
 		{
 			ft_free(&digit);
-            ft_error(cub , "Range Color Rgb -> Floor or/and Ceiling is incorrect.");
+            ft_error(cub, "Range Color Rgb -> Floor or/and \
+							Ceiling is incorrect.");
 		}
     	ft_free(&digit);
         nb++;
@@ -63,7 +64,7 @@ static void      parse_color(char *line, t_cub *cub)
         cub->ceiling = create_trgb(0,rgb[0],rgb[1],rgb[2]);
 }
 
-static void      parse_path(char *line, t_cub *cub)
+static void		parse_path(char *line, t_cub *cub)
 {
     if (line[0] == 'N' && line[1] == 'O')
         cub->north = get_path(line, cub, cub->north);
@@ -77,7 +78,7 @@ static void      parse_path(char *line, t_cub *cub)
         cub->sprite = get_path(line, cub, cub->sprite);
 }
 
-void     parse_param(char *line, t_cub *cub)
+void			parse_param(char *line, t_cub *cub)
 {
     if (line[0] == 'R' && line[1] == ' ')
         parse_resolution(line, cub);
@@ -88,5 +89,5 @@ void     parse_param(char *line, t_cub *cub)
                 && line[2] == ' ')) || (line[0] == 'S' && line[1] == ' '))
         parse_path(line, cub);
     else
-        ft_error(cub , "Unconventionnal map parameter.");
+        ft_error(cub, "Unconventionnal map parameter.");
 }

@@ -11,17 +11,20 @@
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
 /*
-	This is based on the flood filled algorithm
-	"visited" is filled while "stack" is emptyied
-*/
+ * This is based on the flood filled algorithm
+ * "visited" is filled while "stack" is emptyied
+ */
+
 /*
 	compass be like :
 		812
 		7N3
 		654
 */
-static void         get_neighbor(t_point *neighbor, size_t compass)
+
+static void		get_neighbor(t_point *neighbor, size_t compass)
 {
 	if (compass == 1)
 		neighbor->y += 1;
@@ -41,7 +44,7 @@ static void         get_neighbor(t_point *neighbor, size_t compass)
 		neighbor->y += 1;
 }
 
-static int          point_in_map(char **map, int x, int y)
+static int		point_in_map(char **map, int x, int y)
 {
 	int i;
 	int j;
@@ -61,7 +64,8 @@ static int          point_in_map(char **map, int x, int y)
 	return (0);
 }
 
-static t_point      *fill_stack(char **map, t_point *cur_point, t_point *stack, t_point **visited)
+static t_point	*fill_stack(char **map, t_point *cur_point,
+								t_point *stack, t_point **visited)
 {
 	cur_point->val = map[cur_point->y][cur_point->x];
 	if (!is_in_charset(cur_point->val, "012NSWE"))
@@ -75,19 +79,21 @@ static t_point      *fill_stack(char **map, t_point *cur_point, t_point *stack, 
 		}
 		else
 		{
-			if (!is_point_in_list(stack, cur_point) && !is_point_in_list(*visited, cur_point))
+			if (!is_point_in_list(stack, cur_point)
+					&& !is_point_in_list(*visited, cur_point))
 				push_back_point(&stack, cur_point);
 		}
 	}
 	else if (!is_point_in_list(*visited, cur_point))
-		push_back_point(visited, cur_point);	
+		push_back_point(visited, cur_point);
 	return (stack);
 }
 
-static t_point      *handle_stack(char **map, t_point **visited, t_point *stack)
+static t_point	*handle_stack(char **map,
+					t_point **visited, t_point *stack)
 {
-	t_point     *cur_point;
-	size_t      compass;
+	t_point		*cur_point;
+	size_t		compass;
 
 	cur_point = NULL;
 	compass = 0;
@@ -109,7 +115,8 @@ static t_point      *handle_stack(char **map, t_point **visited, t_point *stack)
 	return (stack);
 }
 
-t_point             *spread_map(t_cub *cub, char **map, t_point *stack, t_point *visited)
+t_point			*spread_map(t_cub *cub, char **map,
+					t_point *stack, t_point *visited)
 {
 	while (stack)
 	{
@@ -118,7 +125,7 @@ t_point             *spread_map(t_cub *cub, char **map, t_point *stack, t_point 
 		{
 			clear_points(&stack);
 			clear_points(&visited);
-			ft_error(cub , "A map point is not surrounding.");
+			ft_error(cub, "A map point is not surrounding.");
 		}
 		pop_front_point(&stack);
 	}

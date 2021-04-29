@@ -12,19 +12,19 @@
 
 #include "cub3d.h"
 
-int     	create_trgb(int t, int r, int g, int b)
+int		create_trgb(int t, int r, int g, int b)
 {
-	return(t << 24 | r << 16 | g << 8 | b);
+	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-int			skip_space(char *line, unsigned int i)
+int		skip_space(char *line, unsigned int i)
 {
 	while (line[i] && line[i] == ' ')
 		i++;
 	return (i);
 }
 
-char		*trim_line(char *line)
+char	*trim_line(char *line)
 {
 	char			*line_clean;
 	unsigned int	i;
@@ -42,7 +42,7 @@ char		*trim_line(char *line)
 	return (line_clean);
 }
 
-char		*strjoinfree(char *s1, char *s2)
+char	*strjoinfree(char *s1, char *s2)
 {
 	char	*str;
 
@@ -63,7 +63,7 @@ char		*strjoinfree(char *s1, char *s2)
 	return (str);
 }
 
-int             is_in_charset(char c, char const *set)
+int		is_in_charset(char c, char const *set)
 {
 	while (*set && *set != c)
 		set++;

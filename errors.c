@@ -77,9 +77,7 @@ int		ft_exit(t_cub *cub)
 
 void	ft_error(t_cub *cub, char *str)
 {
-	//write(1, "Error\n", 6);
 	ft_putendl_fd("Error", 1);
 	ft_putendl_fd(str, 1);
-	//write(1, str, ft_strlen(str));
 	ft_exit(cub);
 }

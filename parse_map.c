@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static int	check_map_chars(char **map)
+static int		check_map_chars(char **map)
 {
 	int	i;
 	int	j;
@@ -32,7 +32,7 @@ static int	check_map_chars(char **map)
 	return (0);
 }
 
-t_point		*find_player(char **map, t_point *player)
+t_point			*find_player(char **map, t_point *player)
 {
 	int	i;
 	int	j;
@@ -63,10 +63,11 @@ t_point		*find_player(char **map, t_point *player)
 	return (nb_players == 1 ? player : NULL);
 }
 
-static t_point	*spread_one(t_cub *cub, char **map, t_point *stack2, t_point *visited)
+static t_point	*spread_one(t_cub *cub, char **map,
+						t_point *stack2, t_point *visited)
 {
-	if ((stack2->val == '0' || stack2->val ==2)
-			&&!is_point_in_list(visited, stack2))
+	if ((stack2->val == '0' || stack2->val == 2)
+			&& !is_point_in_list(visited, stack2))
 		visited = spread_map(cub, map, stack2, visited);
 	else
 	{
@@ -98,7 +99,7 @@ static t_point	*spread_all_points(t_cub *cub, char **map, t_point *visited)
 	return (visited);
 }
 
-int	parse_map(t_cub *cub, char **map)
+int				parse_map(t_cub *cub, char **map)
 {
 	t_point	*player;
 	t_point	*visited;
@@ -106,10 +107,11 @@ int	parse_map(t_cub *cub, char **map)
 	player = NULL;
 	visited = NULL;
 	if (check_map_chars(map) == -1)
-		ft_error(cub , "Unexpected characters in total map.");
+		ft_error(cub, "Unexpected characters in total map.");
 	player = find_player(map, player);
 	if (!player)
-		ft_error(cub , "The player may not exists or there is multiple players.");
+		ft_error(cub, "The player may not exists \
+							or there is multiple players.");
 	visited = spread_map(cub, map, player, visited);
 	if (!visited)
 		return (-1);

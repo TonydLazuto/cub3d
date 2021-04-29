@@ -60,7 +60,7 @@ static int	cmp_ext(t_cub *cub, const char *av)
 	return (res_cmp);
 }
 
-int	check_valid_cub(int ac, const char **av, t_cub *cub)
+int			check_valid_cub(int ac, const char **av, t_cub *cub)
 {
 	if (ac == 2 || ac == 3)
 	{

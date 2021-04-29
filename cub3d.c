@@ -39,7 +39,7 @@ void	init_cub(t_cub *cub)
 	cub->sxy = NULL;
 }
 
-int     main(int ac, const char *av[])
+int		main(int ac, const char *av[])
 {
 	t_cub	cub;
 

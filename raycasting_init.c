@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static void ft_init_mvt(t_cub *cub)
+static void		ft_init_mvt(t_cub *cub)
 {
 	cub->ray.forward = 0;
 	cub->ray.back = 0;
@@ -22,7 +22,7 @@ static void ft_init_mvt(t_cub *cub)
 	cub->ray.rotate_right = 0;
 }
 
-static void	ft_init_dir(t_cub *cub)
+static void		ft_init_dir(t_cub *cub)
 {
 	if (cub->player->val == 'N')
 		cub->ray.dirX = -1;
@@ -43,7 +43,7 @@ static void	ft_init_dir(t_cub *cub)
 	ft_init_mvt(cub);
 }
 
-void    ft_init(t_cub *cub)
+void			ft_init(t_cub *cub)
 {
 	cub->ray.posX = (double)cub->player->y + 0.5;
 	cub->ray.posY = (double)cub->player->x + 0.5;
@@ -58,13 +58,13 @@ void    ft_init(t_cub *cub)
 	cub->ray.rotate_left = 0;
 	cub->ray.time = 0;
 	cub->ray.oldTime = 0;
-	cub->ray.planeX = 0; 
+	cub->ray.planeX = 0;
 	cub->ray.planeY = 0;
 	ft_init_dir(cub);
 	return ;
 }
 
-static void	ft_init_deltaDist(t_cub *cub)
+static void		ft_init_deltaDist(t_cub *cub)
 {
 	if (cub->ray.rayDirY == 0)
 		cub->ray.deltaDistX = 0;
@@ -80,7 +80,7 @@ static void	ft_init_deltaDist(t_cub *cub)
 		cub->ray.deltaDistY = fabs(1 / cub->ray.rayDirY);
 }
 
-void	ft_init2(t_cub *cub)
+void			ft_init2(t_cub *cub)
 {
 	cub->ray.hit = 0;
 	cub->ray.perpWallDist = 0;
