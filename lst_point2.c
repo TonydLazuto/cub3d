@@ -48,16 +48,3 @@ int			is_point_in_list(t_point *lstpoint, t_point *point)
 	}
 	return (0);
 }
-
-void		print_points(t_point *point)
-{
-	//TEMP
-	if (!point)
-		return ;
-	while (point)
-	{
-		printf("point->x = %d\npoint->y = %d\npoint->val = %c\n\n",
-			point->x, point->y, point->val);
-		point = point->next;
-	}
-}

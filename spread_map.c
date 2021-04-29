@@ -15,7 +15,7 @@
 /*
 ** This is based on the flood filled algorithm
 ** "visited" is filled while "stack" is emptyied
-**/
+*/
 
 /*
 ** compass be like :

@@ -59,9 +59,9 @@ static void		parse_color(char *line, t_cub *cub)
 		nb++;
 	}
 	if (line[0] == 'F')
-		cub->floor = create_trgb(0,rgb[0],rgb[1],rgb[2]);
+		cub->floor = create_trgb(0, rgb[0], rgb[1], rgb[2]);
 	else
-		cub->ceiling = create_trgb(0,rgb[0],rgb[1],rgb[2]);
+		cub->ceiling = create_trgb(0, rgb[0], rgb[1], rgb[2]);
 }
 
 static void		parse_path(char *line, t_cub *cub)
@@ -83,10 +83,13 @@ void			parse_param(char *line, t_cub *cub)
 	if (line[0] == 'R' && line[1] == ' ')
 		parse_resolution(line, cub);
 	else if ((line[0] == 'F' || line[0] == 'C') && line[1] == ' ')
-	   parse_color(line, cub);
-	else if (((((line[0] == 'N' && line[1] == 'O') || (line[0] == 'S' && line[1] == 'O')
-				|| (line[0] == 'W' && line[1] == 'E') || (line[0] == 'E' && line[1] == 'A'))
-				&& line[2] == ' ')) || (line[0] == 'S' && line[1] == ' '))
+		parse_color(line, cub);
+	else if (((((line[0] == 'N' && line[1] == 'O')
+				|| (line[0] == 'S' && line[1] == 'O')
+				|| (line[0] == 'W' && line[1] == 'E')
+				|| (line[0] == 'E' && line[1] == 'A'))
+				&& line[2] == ' '))
+				|| (line[0] == 'S' && line[1] == ' '))
 		parse_path(line, cub);
 	else
 		ft_error(cub, "Unconventionnal map parameter.");

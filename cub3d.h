@@ -180,7 +180,7 @@ char		*get_path(char *line, t_cub *cub, char *path);
 int			parse_map(t_cub *cub, char **map);
 t_point		*spread_map(t_cub *cub, char **map,
 				t_point *stack, t_point *visited);
-t_point		*find_player(char **map, t_point *player);
+t_point		*find_player(char **map, t_point *player, int nb_players);
 
 int			create_trgb(int t, int r, int g, int b);
 void		my_mlx_pixel_put(t_img *img, int x, int y, int color);

@@ -110,16 +110,17 @@ void	ft_sprite(t_cub *cub)
 	int stripe;
 	int texx;
 
-	i = 0;
+	i = -1;
 	ft_sort_sprites(cub);
-	while (i < cub->s.num_sprites)
+	while (++i < cub->s.num_sprites)
 	{
 		ft_calculs(cub, i);
 		stripe = cub->s.draw_startx;
 		while (stripe < cub->s.draw_endx)
 		{
-			texx = (int)(256 * (stripe - (-cub->s.spritewidth / 2 + cub->s.spritescreenx))
-                    * cub->texture[4].width / cub->s.spritewidth) / 256;
+			texx = (int)(256 * (stripe - (-cub->s.spritewidth / 2 +
+					cub->s.spritescreenx)) * cub->texture[4].width /
+					cub->s.spritewidth) / 256;
 			if (cub->s.transformy > 0 && stripe >= 0 && stripe < cub->width
 					&& cub->s.transformy < cub->s.z_buffer[stripe])
 			{
@@ -128,6 +129,5 @@ void	ft_sprite(t_cub *cub)
 			}
 			stripe++;
 		}
-		i++;
 	}
 }

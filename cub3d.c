@@ -42,11 +42,13 @@ void	init_cub(t_cub *cub)
 int		main(int ac, const char *av[])
 {
 	t_cub	cub;
+	int		nb_players;
 
 	init_cub(&cub);
+	nb_players = 0;
 	if ((check_valid_cub(ac, av, &cub)) == -1)
 		return (0);
-	cub.player = find_player(cub.map, cub.player);
+	cub.player = find_player(cub.map, cub.player, nb_players);
 	ft_mlx(&cub);
 	return (0);
 }

@@ -32,20 +32,19 @@ static int		check_map_chars(char **map)
 	return (0);
 }
 
-t_point			*find_player(char **map, t_point *player)
+t_point			*find_player(char **map, t_point *player, int nb_players)
 {
 	int	i;
 	int	j;
-	int	nb_players;
 
 	j = 0;
-	nb_players = 0;
 	while (map[j])
 	{
 		i = 0;
 		while (map[j][i])
 		{
-			if (map[j][i] == 'N' || map[j][i] == 'S' || map[j][i] == 'E' || map[j][i] == 'W')
+			if (map[j][i] == 'N' || map[j][i] == 'S'
+					|| map[j][i] == 'E' || map[j][i] == 'W')
 			{
 				nb_players++;
 				if (is_empty_lst(player))
@@ -101,12 +100,14 @@ int				parse_map(t_cub *cub, char **map)
 {
 	t_point	*player;
 	t_point	*visited;
+	int		nb_players;
 
 	player = NULL;
 	visited = NULL;
+	nb_players = 0;
 	if (check_map_chars(map) == -1)
 		ft_error(cub, "Unexpected characters in total map.");
-	player = find_player(map, player);
+	player = find_player(map, player, nb_players);
 	if (!player)
 		ft_error(cub, "The player may not exists \
 							or there is multiple players.");
