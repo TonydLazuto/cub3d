@@ -49,6 +49,7 @@ int		main(int ac, const char *av[])
 	if ((check_valid_cub(ac, av, &cub)) == -1)
 		return (0);
 	cub.player = find_player(cub.map, cub.player, nb_players);
+	ft_init(&cub);
 	ft_mlx(&cub);
 	return (0);
 }

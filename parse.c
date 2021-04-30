@@ -44,9 +44,11 @@ static int		fill_map(char **file_lines, t_cub *cub, size_t len_params)
 		return (-1);
 	while (file_lines[len_params])
 	{
-		cub->map[i++] = ft_strdup(file_lines[len_params++]);
+		cub->map[i] = ft_strdup(file_lines[len_params]);
 		if (!cub->map[i])
 			return (-1);
+		i++;
+		len_params++;
 	}
 	cub->map[i] = NULL;
 	if (parse_map(cub, cub->map) == -1)
@@ -89,7 +91,10 @@ int				split_file(char *file, t_cub *cub)
 	len_params = 0;
 	file_lines = ft_split(file, '\n');
 	if (!file_lines)
-		return (-1);
+	{
+		ft_free(&file);
+		ft_error(cub, "file_lines");
+	}
 	while (file_lines[len_params])
 	{
 		j = skip_space(file_lines[len_params], 0);

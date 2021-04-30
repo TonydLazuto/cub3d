@@ -35,6 +35,8 @@ void	ft_freemore(t_cub *cub)
 		free(cub->sxy);
 	if (cub->s.z_buffer)
 		free(cub->s.z_buffer);
+	if (cub->player)
+		free(cub->player);
 }
 
 void	ft_freetext(t_cub *cub)

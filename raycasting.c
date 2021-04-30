@@ -92,7 +92,6 @@ int		ft_mlx(t_cub *cub)
 	cub->img.img = mlx_new_image(cub->mlx_ptr, cub->width, cub->height);
 	cub->img.addr = (int *)mlx_get_data_addr(cub->img.img, &cub->img.
 			bits_per_pixel, &cub->img.line_length, &cub->img.endian);
-	ft_init(cub);
 	if (cub->save == 1)
 		ft_raycasting(cub);
 	cub->win_ptr = mlx_new_window(cub->mlx_ptr,

@@ -45,11 +45,8 @@ static void		ft_init_dir(t_cub *cub)
 
 void			ft_init(t_cub *cub)
 {
-	cub->ray.posx = (double)cub->player->y + 0.5;
-	cub->ray.posy = (double)cub->player->x + 0.5;
-	cub->map[cub->player->y][cub->player->x] = '0';
 	if (!(cub->s.z_buffer = (double *)malloc(sizeof(double) * cub->width)))
-		exit(0);
+		ft_error(cub, "Buffer malloc");
 	cub->ray.dirx = 0;
 	cub->ray.diry = 0;
 	cub->ray.raydirx = 0;
@@ -60,6 +57,9 @@ void			ft_init(t_cub *cub)
 	cub->ray.oldtime = 0;
 	cub->ray.planex = 0;
 	cub->ray.planey = 0;
+	cub->ray.posx = (double)cub->player->y + 0.5;
+	cub->ray.posy = (double)cub->player->x + 0.5;
+	cub->map[cub->player->y][cub->player->x] = '0';
 	ft_init_dir(cub);
 	return ;
 }
