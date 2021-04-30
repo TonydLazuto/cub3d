@@ -88,8 +88,6 @@ int		ft_mlx(t_cub *cub)
 			cub->screen_width : cub->width;
 	cub->height = (cub->height > cub->screen_height) ?
 			cub->screen_height : cub->height;
-	cub->win_ptr = mlx_new_window(cub->mlx_ptr,
-			cub->width, cub->height, "Cub3d");
 	ft_get_texture(cub);
 	cub->img.img = mlx_new_image(cub->mlx_ptr, cub->width, cub->height);
 	cub->img.addr = (int *)mlx_get_data_addr(cub->img.img, &cub->img.
@@ -97,6 +95,8 @@ int		ft_mlx(t_cub *cub)
 	ft_init(cub);
 	if (cub->save == 1)
 		ft_raycasting(cub);
+	cub->win_ptr = mlx_new_window(cub->mlx_ptr,
+			cub->width, cub->height, "Cub3d");
 	mlx_loop_hook(cub->mlx_ptr, ft_raycasting, cub);
 	mlx_hook(cub->win_ptr, 33, 1L << 17, ft_exit, cub);
 	mlx_hook(cub->win_ptr, 17, 1L << 17, ft_exit, cub);
