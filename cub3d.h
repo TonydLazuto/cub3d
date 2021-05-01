@@ -158,7 +158,7 @@ typedef struct	s_cub
 }				t_cub;
 
 void		ft_free(char **s);
-char		*strjoinfree(char *s1, char *s2);
+char		*strjoinfree(char *s1, char *s2, t_cub *cub);
 int			skip_space(char *line, unsigned int i);
 char		*trim_line(char *line);
 int			is_in_charset(char c, char const *set);

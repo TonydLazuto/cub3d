@@ -42,10 +42,15 @@ char	*trim_line(char *line)
 	return (line_clean);
 }
 
-char	*strjoinfree(char *s1, char *s2)
+char	*strjoinfree(char *s1, char *s2, t_cub *cub)
 {
 	char	*str;
 
+	str = NULL;
+	if (!s2 && !s1)
+		ft_error(cub, "the file is empty --> strjoinfree");
+	if (!s2)
+		return (NULL);
 	if (!s1)
 	{
 		if (!(str = ft_strdup(s2)))

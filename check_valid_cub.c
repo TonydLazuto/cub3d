@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static char	*file_to_string(int fd)
+static char	*file_to_string(int fd, t_cub *cub)
 {
 	char	*full_file;
 	char	*line;
@@ -21,15 +21,15 @@ static char	*file_to_string(int fd)
 	full_file = NULL;
 	while (get_next_line(fd, &line) == 1)
 	{
-		full_file = strjoinfree(full_file, line);
+		full_file = strjoinfree(full_file, line, cub);
 		if (!full_file)
 			return (NULL);
-		full_file = strjoinfree(full_file, "\n");
+		full_file = strjoinfree(full_file, "\n", cub);
 		if (!full_file)
 			return (NULL);
 		ft_free(&line);
 	}
-	full_file = strjoinfree(full_file, line);
+	full_file = strjoinfree(full_file, line, cub);
 	if (!full_file)
 		return (NULL);
 	ft_free(&line);
@@ -45,7 +45,7 @@ static int	parse_file(const char *map_file, t_cub *cub)
 	fd = open(map_file, O_RDONLY);
 	if (fd == -1)
 		ft_error(cub, "File .cub -> (Maybe doesn't exists)");
-	file = file_to_string(fd);
+	file = file_to_string(fd, cub);
 	close(fd);
 	if (!file)
 		ft_error(cub, "While malloc the gnl in a string");
