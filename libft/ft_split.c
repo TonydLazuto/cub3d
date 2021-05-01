@@ -6,54 +6,64 @@
 /*   By: aderose <aderose@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/02 12:25:09 by aderose           #+#    #+#             */
-/*   Updated: 2020/05/15 21:30:40 by aderose          ###   ########.fr       */
+/*   Updated: 2021/05/01 07:10:19 by tonyd            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-static size_t	strsplit_len(char const *s, char c)
+static char		**fillstr(char const *s, char c, char **str)
+{
+	unsigned int	i;
+	unsigned int	start;
+	size_t			len;
+	int				wrd;
+
+	i = 0;
+	start = 0;
+	len = 0;
+	wrd = -1;
+	while (s[i])
+	{
+		if (s[i] == c)
+		{
+			if (len != 0)
+				str[++wrd] = ft_substr(s, start, len);
+			start = i + 1;
+			len = -1;
+		}
+		i++;
+		len++;
+	}
+	if (len != 0)
+		str[++wrd] = ft_substr(s, start, len);
+	str[++wrd] = NULL;
+	return (str);
+}
+static size_t	get_nbwords(char const *s, char c)
 {
 	size_t	i;
+	int		j;
 	size_t	words;
 
 	i = 0;
+	j = 0;
 	words = 0;
 	while (s[i])
 	{
-		while (s[i] != c && s[i])
-			i++;
-		if (i > 0)
-			words++;
-		while (s[i] == c && s[i])
-			i++;
-	}
-	return (words);
-}
-
-static char		**fillstrsplit(char **str, char const *s, char c, size_t words)
-{
-	size_t			i;
-	size_t			j;
-	unsigned int	start;
-	size_t			len;
-
-	i = 0;
-	j = 0;
-	while (i < words)
-	{
-		while (s[j] == c && s[j])
-			j++;
-		start = (unsigned int)j;
-		while (s[j] != c && s[j])
-			j++;
-		len = j - start;
-		str[i] = ft_substr(s, start, len);
+		if (s[i] == c)
+		{
+			if (j != 0)
+				words++;
+			j = -1;
+		}
 		i++;
+		j++;
 	}
-	str[i] = NULL;
-	return (str);
+	if (j != 0)
+		words++;
+	return (words);
 }
 
 char			**ft_split(char const *s, char c)
@@ -61,11 +71,14 @@ char			**ft_split(char const *s, char c)
 	char	**str;
 	size_t	words;
 
-	if (!s)
+	str = NULL;
+	if (!s || !c)
 		return (NULL);
-	words = strsplit_len(s, c);
+	words = get_nbwords(s, c);
+	if (words == 0)
+		return (NULL);
 	if (!(str = (char**)malloc(sizeof(char*) * (words + 1))))
 		return (NULL);
-	fillstrsplit(str, s, c, words);
+	str = fillstr(s, c, str);
 	return (str);
 }
