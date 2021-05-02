@@ -22,13 +22,13 @@
 # include "./mlx/mlx.h"
 # include "./libft/libft.h"
 
-# define ROTATE_LEFT	123
-# define ROTATE_RIGHT	124
-# define FORWARD_W_Z	13
-# define BACK_S_S		1
-# define RIGHT_D_D		2
-# define LEFT_A_Q		0
-# define ESCAPE_E       53
+# define ROTATE_LEFT	65361
+# define ROTATE_RIGHT	65363
+# define FORWARD_W_Z	119
+# define BACK_S_S		115
+# define RIGHT_D_D		100
+# define LEFT_A_Q		97
+# define ESCAPE_E       65307
 
 typedef struct	s_img
 {

@@ -33,11 +33,11 @@ static char		*trim_line(char *line)
 
 static int		pre_parse_param(t_cub *cub, char **line, size_t *num_param)
 {
-	size_t	i;
+	int		i;
 	char	**param;
 	i = 0;
 	param = NULL;
-	if (!(param = (char**)malloc(sizeof(char*) * (8 + 1))))
+	if (!(param = (char**)malloc(sizeof(char*) * (9 + 1))))
 		return (-1);
 	param[9] = NULL;
 	while (i < 8)
@@ -47,6 +47,10 @@ static int		pre_parse_param(t_cub *cub, char **line, size_t *num_param)
 		parse_param(param[i], cub);
 		i++;
 	}
+	i = -1;
+	while (param[++i])
+		free(param[i]);
+	free(param);
 	return (0);
 }
 

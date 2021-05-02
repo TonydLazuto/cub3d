@@ -26,6 +26,7 @@ SRCS		=	cub3d.c \
 				lst_point2.c \
 				check_valid_cub.c \
 				parse.c \
+				start_parse_map.c \
 				parse_params.c \
 				parse_map.c \
 				get_params.c \
