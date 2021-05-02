@@ -112,6 +112,7 @@ int				split_file(char *file, t_cub *cub)
 {
 	char	**line;
 	size_t	*num_param;
+	int		i;
 	
 	num_param = NULL;
 	line = ft_split(file, '\n');
@@ -126,6 +127,12 @@ int				split_file(char *file, t_cub *cub)
 		ft_error(cub, "start_parse_param");
 	}
 	free(num_param);
-	ft_free(line);
+	i = 0;
+	while(line[i])
+	{
+		free(line[i]);
+		i++;
+	}
+	free(line);
 	return (0);
 }
