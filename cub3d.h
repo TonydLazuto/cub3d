@@ -22,13 +22,13 @@
 # include "./mlx/mlx.h"
 # include "./libft/libft.h"
 
-# define ROTATE_LEFT	65361
-# define ROTATE_RIGHT	65363
-# define FORWARD_W_Z	119
-# define BACK_S_S		115
-# define RIGHT_D_D		100
-# define LEFT_A_Q		97
-# define ESCAPE_E       65307
+# define ROTATE_LEFT	123
+# define ROTATE_RIGHT	124
+# define FORWARD_W_Z	13
+# define BACK_S_S		1
+# define RIGHT_D_D		2
+# define LEFT_A_Q		0
+# define ESCAPE_E       53
 
 typedef struct	s_img
 {
@@ -39,8 +39,6 @@ typedef struct	s_img
 	int			endian;
 	int			width;
 	int			height;
-	void		*img2;
-	int			*addr2;
 }				t_img;
 
 typedef struct		s_sprxy
@@ -160,7 +158,6 @@ typedef struct	s_cub
 void		ft_free(char **s);
 char		*strjoinfree(char *s1, char *s2, t_cub *cub);
 int			skip_space(char *line, unsigned int i);
-char		*trim_line(char *line, t_cub *cub);
 int			is_in_charset(char c, char const *set);
 
 int			is_empty_lst(t_point *point);
@@ -177,6 +174,7 @@ void		parse_param(char *line, t_cub *cub);
 char		*get_resolution(char *line, size_t *j, t_cub *cub);
 char		*get_rgb(char *line, size_t *j, int nb, t_cub *cub);
 char		*get_path(char *line, t_cub *cub, char *path);
+int         start_parse_map(t_cub *cub, char **line, size_t	*num_param);
 int			parse_map(t_cub *cub, char **map);
 t_point		*spread_map(t_cub *cub, char **map,
 				t_point *stack, t_point *visited);

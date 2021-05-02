@@ -12,96 +12,113 @@
 
 #include "cub3d.h"
 
-static int		fill_params(char **file_lines, t_cub *cub, size_t len_params)
+static char		*trim_line(char *line)
 {
-	size_t	i;
+	char			*line_clean;
+	unsigned int	start;
+	size_t			end;
 
-	i = 0;
-	while (i < len_params)
-	{
-		file_lines[i] = trim_line(file_lines[i], cub);
-		if (file_lines[i])
-			parse_param(file_lines[i], cub);
-		i++;
-	}
-	return (0);
+	start = 0;
+	line_clean = NULL;
+    if (!line)
+        return (NULL);
+    start = skip_space(line, 0);
+    end = ft_strlen(line);
+	while (line[--end] == ' ')
+        ;
+	if (!(line_clean = ft_substr(line, start, end + 1 - (size_t)start)))
+		return (NULL);
+	return (line_clean);
 }
 
-static int		fill_map(char **file_lines, t_cub *cub, size_t len_params)
+static int		pre_parse_param(t_cub *cub, char **line, size_t *num_param)
 {
-	size_t	len_map;
 	size_t	i;
-
+	char	**param;
 	i = 0;
-	len_map = len_params;
-	while (file_lines[len_map])
-		len_map++;
-	len_map -= len_params;
-	cub->map = malloc(sizeof(char *) * (len_map + 1));
-	if (!cub->map)
+	param = NULL;
+	if (!(param = (char**)malloc(sizeof(char*) * (8 + 1))))
 		return (-1);
-	while (file_lines[len_params])
+	param[9] = NULL;
+	while (i < 8)
 	{
-		cub->map[i] = ft_strdup(file_lines[len_params]);
-		if (!cub->map[i])
+		if (!(param[i] = trim_line(line[num_param[i]])))
 			return (-1);
+		parse_param(param[i], cub);
 		i++;
-		len_params++;
 	}
-	cub->map[i] = NULL;
-	if (parse_map(cub, cub->map) == -1)
-		return (-1);
 	return (0);
 }
 
-static void		check_nb_params(t_cub *cub, char **line, size_t len_params)
+static size_t	*get_num_lines_params(char **line, size_t *nb_lines,
+								size_t	*num_param)
 {
-	int		nb_params;
 	size_t	i;
 	size_t	j;
+	size_t	k;
 
-	nb_params = 8;
 	i = 0;
-	while (i < len_params)
+	j = 0;
+	*nb_lines = 0;
+	while (line[i])
 	{
-		j = skip_space(line[i], 0);
-		if ((line[i][j] == 'R' && line[i][j + 1] == ' ')
-			|| (line[i][j] == 'S' && line[i][j + 1] == ' ')
-			|| (line[i][j] == 'F' && line[i][j + 1] == ' ')
-			|| (line[i][j] == 'C' && line[i][j + 1] == ' ')
-			|| (line[i][j] == 'N' && line[i][j + 1] == 'O')
-			|| (line[i][j] == 'S' && line[i][j + 1] == 'O')
-			|| (line[i][j] == 'W' && line[i][j + 1] == 'E')
-			|| (line[i][j] == 'E' && line[i][j + 1] == 'A'))
-			nb_params--;
+		if (skip_space(line[i], 0) != (int)ft_strlen(line[i]))
+		{
+			if (*nb_lines < 9)
+			{
+				num_param[j] = i;
+				j++;
+			}
+			(*nb_lines)++;
+			k = skip_space(line[i], 0);
+			if (line[i][k] == '1')
+				break ;
+		}
 		i++;
 	}
-	if (nb_params != 0)
-		ft_error(cub, "Number map paramaters.");
+	return (num_param);
+}
+
+static size_t	*start_parse_param(t_cub *cub, char **line)
+{
+	size_t	nb_lines;
+	size_t	*num_param;
+
+	num_param = NULL;
+	num_param = (size_t*)malloc(sizeof(size_t) * 9);
+	nb_lines = 0;
+	num_param = get_num_lines_params(line, &nb_lines, num_param);
+	if (nb_lines != 9)
+	{
+		ft_free(line);
+		ft_error(cub, "Nb parameters incorrect");
+	}
+	if (pre_parse_param(cub, line, num_param) == -1)
+	{
+		ft_free(line);
+		ft_error(cub, "Malloc param");
+	}
+	return (num_param);
 }
 
 int				split_file(char *file, t_cub *cub)
 {
-	size_t	j;
-	size_t	len_params;
-	char	**file_lines;
-
-	len_params = 0;
-	file_lines = ft_split(file, '\n');
-	if (!file_lines)
-		ft_error(cub, "file_lines");
-	while (file_lines[len_params])
+	char	**line;
+	size_t	*num_param;
+	
+	num_param = NULL;
+	line = ft_split(file, '\n');
+	ft_free(&file);
+	if (!line)
+		ft_error(cub, "split file malloc");
+	num_param = start_parse_param(cub, line);
+	if (start_parse_map(cub, line, num_param) == -1)
 	{
-		j = skip_space(file_lines[len_params], 0);
-		if (file_lines[len_params][j] == '1')
-			break ;
-		len_params++;
+		free(num_param);
+		ft_free(line);
+		ft_error(cub, "start_parse_param");
 	}
-	check_nb_params(cub, file_lines, len_params);
-	if (fill_map(file_lines, cub, len_params) == -1)
-		return (-1);
-	if (fill_params(file_lines, cub, len_params) == -1)
-		return (-1);
-	ft_free(file_lines);
+	free(num_param);
+	ft_free(line);
 	return (0);
 }

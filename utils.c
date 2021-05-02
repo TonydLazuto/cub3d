@@ -24,40 +24,15 @@ int		skip_space(char *line, unsigned int i)
 	return (i);
 }
 
-char	*trim_line(char *line, t_cub *cub)
-{
-	char			*line_clean;
-	unsigned int	start;
-	size_t			end;
-
-	start = 0;
-	line_clean = NULL;
-	if (!line)
-		return (NULL);
-	start = skip_space(line, 0);
-	end = ft_strlen(line);
-	if (start == (unsigned int)end)
-		return (NULL);
-	while (line[--end] == ' ')
-		;
-	if (!(line_clean = ft_substr(line, start, end + 1 - (size_t)start)))
-	{
-		ft_free(&line);
-		ft_error(cub, "malloc trim_line");
-	}
-	ft_free(&line);
-	return (line_clean);
-}
-
 char	*strjoinfree(char *s1, char *s2, t_cub *cub)
 {
 	char	*str;
 
-	str = NULL;
-	if (!s2 && !s1)
-		ft_error(cub, "the file is empty --> strjoinfree");
-	if (!s2)
-		return (NULL);
+    str = NULL;
+    if (!s2 && !s1)
+        ft_error(cub, "Le fichier est vide");
+    if (!s2)
+        return (NULL);
 	if (!s1)
 	{
 		if (!(str = ft_strdup(s2)))
