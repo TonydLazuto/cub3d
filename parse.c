@@ -47,9 +47,12 @@ static int		pre_parse_param(t_cub *cub, char **line, size_t *num_param)
 		parse_param(param[i], cub);
 		i++;
 	}
-	i = -1;
-	while (param[++i])
+	i = 0;
+	while (i < 8)
+	{
 		free(param[i]);
+		i++;
+	}	
 	free(param);
 	return (0);
 }
