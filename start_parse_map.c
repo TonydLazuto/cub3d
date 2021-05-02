@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-int		start_parse_map(t_cub *cub, char **line, size_t	*num_param)
+int		start_parse_map(t_cub *cub, char **line, size_t *num_param)
 {
 	size_t	len_map;
 	size_t	i;

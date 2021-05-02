@@ -41,6 +41,7 @@ static char		**fillstr(char *s, char c, char **str)
 	str[++wrd] = NULL;
 	return (str);
 }
+
 static size_t	get_nbwords(char *s, char c)
 {
 	size_t	i;

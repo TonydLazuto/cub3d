@@ -28,11 +28,11 @@ char	*strjoinfree(char *s1, char *s2, t_cub *cub)
 {
 	char	*str;
 
-    str = NULL;
-    if (!s2 && !s1)
-        ft_error(cub, "Le fichier est vide");
-    if (!s2)
-        return (NULL);
+	str = NULL;
+	if (!s2 && !s1)
+		ft_error(cub, "Le fichier est vide");
+	if (!s2)
+		return (NULL);
 	if (!s1)
 	{
 		if (!(str = ft_strdup(s2)))

@@ -20,21 +20,23 @@ static char		*trim_line(char *line)
 
 	start = 0;
 	line_clean = NULL;
-    if (!line)
-        return (NULL);
-    start = skip_space(line, 0);
-    end = ft_strlen(line);
+	if (!line)
+		return (NULL);
+	start = skip_space(line, 0);
+	end = ft_strlen(line);
 	while (line[--end] == ' ')
-        ;
+		;
 	if (!(line_clean = ft_substr(line, start, end + 1 - (size_t)start)))
 		return (NULL);
 	return (line_clean);
 }
 
-static int		pre_parse_param(t_cub *cub, char **line, size_t *num_param)
+static int		pre_parse_param(t_cub *cub, char **line,
+									size_t *num_param)
 {
 	int		i;
 	char	**param;
+
 	i = 0;
 	param = NULL;
 	if (!(param = (char**)malloc(sizeof(char*) * (9 + 1))))
@@ -52,13 +54,13 @@ static int		pre_parse_param(t_cub *cub, char **line, size_t *num_param)
 	{
 		free(param[i]);
 		i++;
-	}	
+	}
 	free(param);
 	return (0);
 }
 
 static size_t	*get_num_lines_params(char **line, size_t *nb_lines,
-								size_t	*num_param)
+										size_t *num_param)
 {
 	size_t	i;
 	size_t	j;
@@ -113,7 +115,7 @@ int				split_file(char *file, t_cub *cub)
 	char	**line;
 	size_t	*num_param;
 	int		i;
-	
+
 	num_param = NULL;
 	line = ft_split(file, '\n');
 	ft_free(&file);
@@ -128,7 +130,7 @@ int				split_file(char *file, t_cub *cub)
 	}
 	free(num_param);
 	i = 0;
-	while(line[i])
+	while (line[i])
 	{
 		free(line[i]);
 		i++;
