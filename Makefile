@@ -4,7 +4,7 @@ NAME		= cub3D
 
 CC			= clang
 
-FLAGS		= -Wall -Wextra -Werror -g 
+FLAGS		= -Wall -Wextra -Werror -ggdb3 
 
 RM			= /bin/rm -f
 

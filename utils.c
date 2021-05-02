@@ -24,20 +24,27 @@ int		skip_space(char *line, unsigned int i)
 	return (i);
 }
 
-char	*trim_line(char *line)
+char	*trim_line(char *line, t_cub *cub)
 {
 	char			*line_clean;
-	unsigned int	i;
-	size_t			k;
+	unsigned int	start;
+	size_t			end;
 
-	i = 0;
+	start = 0;
 	line_clean = NULL;
-	i = skip_space(line, 0);
-	k = ft_strlen(line) - 1;
-	while (k > 0 && line[k] == ' ')
-		k--;
-	if (!(line_clean = ft_substr(line, i, k + 1 - (size_t)i)))
+	if (!line)
 		return (NULL);
+	start = skip_space(line, 0);
+	end = ft_strlen(line);
+	if (start == (unsigned int)end)
+		return (NULL);
+	while (line[--end] == ' ')
+		;
+	if (!(line_clean = ft_substr(line, start, end + 1 - (size_t)start)))
+	{
+		ft_free(&line);
+		ft_error(cub, "malloc trim_line");
+	}
 	ft_free(&line);
 	return (line_clean);
 }

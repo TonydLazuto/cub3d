@@ -19,10 +19,8 @@ static int		fill_params(char **file_lines, t_cub *cub, size_t len_params)
 	i = 0;
 	while (i < len_params)
 	{
-		file_lines[i] = trim_line(file_lines[i]);
-		if (!file_lines[i])
-			return (-1);
-		if (file_lines[i][0] != '\0')
+		file_lines[i] = trim_line(file_lines[i], cub);
+		if (file_lines[i])
 			parse_param(file_lines[i], cub);
 		i++;
 	}
@@ -91,10 +89,7 @@ int				split_file(char *file, t_cub *cub)
 	len_params = 0;
 	file_lines = ft_split(file, '\n');
 	if (!file_lines)
-	{
-		ft_free(&file);
 		ft_error(cub, "file_lines");
-	}
 	while (file_lines[len_params])
 	{
 		j = skip_space(file_lines[len_params], 0);

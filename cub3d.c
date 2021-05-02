@@ -23,6 +23,7 @@ void	init_cub(t_cub *cub)
 	cub->east = NULL;
 	cub->west = NULL;
 	cub->sprite = NULL;
+	cub->save = 0;
 	cub->map = NULL;
 	cub->player = NULL;
 	cub->mlx_ptr = NULL;

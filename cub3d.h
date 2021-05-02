@@ -160,7 +160,7 @@ typedef struct	s_cub
 void		ft_free(char **s);
 char		*strjoinfree(char *s1, char *s2, t_cub *cub);
 int			skip_space(char *line, unsigned int i);
-char		*trim_line(char *line);
+char		*trim_line(char *line, t_cub *cub);
 int			is_in_charset(char c, char const *set);
 
 int			is_empty_lst(t_point *point);
